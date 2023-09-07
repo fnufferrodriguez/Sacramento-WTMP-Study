@@ -16,10 +16,6 @@
       </Description>
       <DataLocations />
     </ModelAlternative>
-    <ModelAlternative Program="ResSim" Name="RSSacTrnRv" File="rss/RSSacTrnRv.ralt">
-      <Description />
-      <DataLocations />
-    </ModelAlternative>
   </Name>
 </ModelLinking>
 
