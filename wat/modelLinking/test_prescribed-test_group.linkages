@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelLinking>
+  <Name>
+    test_prescribed-test_group
+    <ModelAlternative Program="Scripting" Name="Pre-Process_ResSim_SacTrnPO" File="scripting/Pre-Process_ResSim_SacTrnPO.scAlt">
+      <Description>
+        <desc cnt="0" value="Pre-process DMS prescribed data into required ResSim-specific records" />
+      </Description>
+      <DataLocations />
+    </ModelAlternative>
+    <ModelAlternative Program="Scripting" Name="Acc_Dep_ResSim_SacTrn" File="scripting/Acc_Dep_ResSim_SacTrn.scAlt">
+      <Description>
+        <desc cnt="0" value="Compute Accretion/Depletion (balance) flows for reservoirs under prescribed operations" />
+      </Description>
+      <DataLocations />
+    </ModelAlternative>
+  </Name>
+</ModelLinking>
+

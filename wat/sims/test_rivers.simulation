@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<WatSimulation SimulationName="Calibration 00-19" Description="" FPart="ResSim Pre:2000-2019" HasComputed="false" ComputeError="true" Parent="Calibration 00-19" IsFrmSimulation="false">
+<WatSimulation SimulationName="test_rivers" Description="" FPart="ResSim Pre:2018" HasComputed="false" ComputeError="false" Parent="test_rivers" IsFrmSimulation="false">
   <ModelAlternatives ModelAlternativeCount="3">
     <ModelAlternative0 Program="Scripting" Name="Pre-Process_ResSim_SacTrnPO" File="scripting/Pre-Process_ResSim_SacTrnPO.scAlt">
       <Description>
         <desc cnt="0" value="Pre-process DMS prescribed data into required ResSim-specific records" />
       </Description>
-      <LastComputeTime Date="17 August 2023, 20:04" />
+      <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative0>
-    <ModelAlternative1 Program="ResSim" Name="RSSacTrnPO" File="rss/RSSacTrnPO.ralt">
+    <ModelAlternative1 Program="ResSim" Name="RSSacTrnRv" File="rss/RSSacTrnRv.ralt">
       <Description />
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative1>

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SimulationGroup Name="test_group">
+<SimulationGroup Name="Prescribed2018">
   <Description />
   <AnalysisPeriod>2018</AnalysisPeriod>
   <Simulations>
     <Simulation>
-      <Name>test_prescribed-test_group</Name>
-      <Class>hec2.wat.model.WatSimulation</Class>
-    </Simulation>
-    <Simulation>
-      <Name>test_rivers-test_group</Name>
+      <Name>W2 5-Res Prescribed-Prescribed2018</Name>
       <Class>hec2.wat.model.WatSimulation</Class>
     </Simulation>
   </Simulations>

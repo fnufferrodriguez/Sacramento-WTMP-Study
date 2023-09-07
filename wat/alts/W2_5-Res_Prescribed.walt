@@ -1,0 +1,6 @@
+WatAlternative
+Name=W2 5-Res Prescribed
+Description=The alterantive uses W2 to simulate all reservoirs in the Upper Sacramento - Trinity system, linking to downstream ResSim models of the Trinity and Sacramento Rivers, for prescribed input data.
+AlignmentName=Stream Alignment
+ConditionId=3
+NextNodeIndex=0

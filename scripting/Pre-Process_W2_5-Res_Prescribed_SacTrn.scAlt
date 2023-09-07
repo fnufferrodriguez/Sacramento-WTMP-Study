@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScriptingAlt Name="Pre-Process_W2_5-Res_Prescribed_SacTrn">
+  <Description>
+    <desc cnt="0" value="Prepare input data for W2 models(s), for all 5 Sacramento/Trinity system reservoirs.  1) Determine simulation year and copy W2 configuration files from shared/W2_annual_configs, if it exists" />
+  </Description>
+  <ScriptFile>scripts/Pre-Process_W2_5-Res_Prescribed_SacTrn.py</ScriptFile>
+  <TimeStep>1HOUR</TimeStep>
+</ScriptingAlt>
+
