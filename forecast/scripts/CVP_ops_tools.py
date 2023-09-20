@@ -229,9 +229,9 @@ def uniform_transform_monthly_to_daily(tsmath_months, currentAlternative=None):
 	# print "hourly start time = " + start_time_out.date(4) + ' ' + str(start_time_out.minutesSinceMidnight())
 
 	# is the input volumes or flows?
-	input_is_acrefeet = True
-	if tsmath_months.getUnits().upper().startswith("CFS"):
-		input_is_acrefeet = False
+	input_is_acrefeet = False
+	if tsmath_months.getUnits().upper().startswith("AC"):
+		input_is_acrefeet = True
 
 	# get the date and time value lists from the TimeSeriesMath objects
 	tsc_months = tsmath_months.getContainer()
@@ -246,10 +246,18 @@ def uniform_transform_monthly_to_daily(tsmath_months, currentAlternative=None):
 	post_time = HecTime()
 
 	tsc_result = tscont()
-	tsc_result.fullName = tsc_months.fullName
+	path_parts = tsc_months.fullName.split('/')
+	path_parts[5] = "1DAY"
+	tsc_result.fullName = '/'.join(path_parts)
 	tsc_result.version = "UNIFORM"
-	tsc_result.units = "CFS"
-	tsc_result.type = "PER-AVER"
+	if input_is_acrefeet:
+		tsc_result.units = "CFS"
+		tsc_result.type = "PER-AVER"
+	else:
+		tsc_result.units = tsc_months.units
+		tsc_result.type = tsc_months.type
+		tsc_result.parameter = tsc_months.parameter
+	tsc_result.location = tsc_months.location
 	tsc_result.interval = 1440
 	tsc_result.numberValues = 1+ (end_time_in.getMinutes() - start_time_out.getMinutes())/1440
 	values = []

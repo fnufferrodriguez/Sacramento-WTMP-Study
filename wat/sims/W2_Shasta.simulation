@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WatSimulation SimulationName="W2 Shasta" Description="" FPart="W2 Shasta:2018-03-FC" HasComputed="false" ComputeError="false" Parent="W2 Shasta" IsFrmSimulation="false">
+  <ModelAlternatives ModelAlternativeCount="2">
+    <ModelAlternative0 Program="Scripting" Name="Pre-Process_ResSim_SacTrn" File="scripting/Pre-Process_ResSim_SacTrn.scAlt">
+      <Description>
+        <desc cnt="0" value="Pre-process any data into required ResSim-specific records for forecast simulations" />
+      </Description>
+      <LastComputeTime Date="31 December 1899, 24:00" />
+    </ModelAlternative0>
+    <ModelAlternative1 Program="CeQualW2" Name="W2 Shasta Prescribed" File="CeQual-W2/W2 Shasta Prescribed/W2 Shasta Prescribed/W2_Shasta_Prescribed.w2Alt">
+      <Description />
+      <LastComputeTime Date="31 December 1899, 24:00" />
+    </ModelAlternative1>
+  </ModelAlternatives>
+  <TimeWindowManager Class="hec2.plugin.timewindow.TimeWindowManagerImpl" />
+</WatSimulation>
+

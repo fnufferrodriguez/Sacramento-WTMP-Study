@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ForecastSimulationGroup Name="F2018">
+<ForecastSimulationGroup Name="F18-03">
   <Description />
-  <AnalysisPeriod>2018</AnalysisPeriod>
+  <AnalysisPeriod>2018-03-FCST</AnalysisPeriod>
   <Simulations>
     <Simulation>
-      <Name>ResSim-F2018</Name>
+      <Name>ResSim-F18-03</Name>
       <Class>hec2.wat.model.WatSimulation</Class>
     </Simulation>
   </Simulations>
@@ -12,7 +12,7 @@
     <TemperatureTargetSet Name="SHASTA - TIER 1" user-defined="false">
       <Description />
       <file-path>forecast\CVP-ops\TempTarget-weekly.dss</file-path>
-      <Output-DSS-File>forecast\simGroups\F2018\SHASTA - TIER 1.dss</Output-DSS-File>
+      <Output-DSS-File>forecast\simGroups\F18-03\SHASTA - TIER 1.dss</Output-DSS-File>
       <River-Location Name="Above Clear Creek" Index="2">
         <Description />
       </River-Location>
@@ -39,7 +39,7 @@
       <Profile Name="2018-03-07" />
     </Reservoir>
     <Reservoir Name="Shasta Lake">
-      <Profile Name="2019-03-11" />
+      <Profile Name="2018-03-06" />
     </Reservoir>
     <Reservoir Name="Lewiston Reservoir">
       <Profile Name="2015-03-11" />
@@ -64,7 +64,7 @@
   <BoundaryConditions>
     <BcData Name="MAR50_WY2018v-Historical-2018">
       <Description />
-      <Output-DSS-File>forecast\simGroups\F2018\bc.dss</Output-DSS-File>
+      <Output-DSS-File>forecast\simGroups\F18-03\bc.dss</Output-DSS-File>
       <f-part>MAR50_WY2018v-Historical-2018</f-part>
       <Operations>MAR50_WY2018v</Operations>
       <Meteorology>Historical-2018</Meteorology>
@@ -72,20 +72,22 @@
   </BoundaryConditions>
   <EnsembleSets>
     <Simulation>
-      ResSim-F2018
+      ResSim-F18-03
       <EnsembleSet Name="MAR50_WY2018v-Historical-2018-SHASTA - TIER 1">
         <Description />
         <BcData>MAR50_WY2018v-Historical-2018</BcData>
         <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="0" Step="10" />
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="1" />
+          </intArray>
         </ComputedMembers>
         <MembersToCompute>1</MembersToCompute>
       </EnsembleSet>
     </Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
-    <Simulation Name="ResSim-F2018">
+    <Simulation Name="ResSim-F18-03">
       <EnsembleSet Name="MAR50_WY2018v-Historical-2018-SHASTA - TIER 1">
         <CollectionStart>0</CollectionStart>
         <CollectionEnd>499</CollectionEnd>

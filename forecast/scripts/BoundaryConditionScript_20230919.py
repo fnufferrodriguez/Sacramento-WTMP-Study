@@ -503,7 +503,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			print "reading pattern from file: " + pattern_DSS_file_name
 			print "\t" + whiskeytown_pattern_path
 			tsmath_pattern = patternDSS.read(whiskeytown_pattern_path)
-			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
+			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsm, tsmath_pattern)
 			tsmath_weighted.setPathname(ts.fullName)
 			tsmath_weighted.setTimeInterval("1DAY")
 			tsmath_weighted.setParameterPart("FLOW-IN")
@@ -645,7 +645,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		"SWIFT CR":(0.114000898, 0.114002108, 0.114000033, 0.114001063, 0.113999875, 0.114002195, 0.114015586, 0.113944013, 0.114068202, 0.114014717, 0.113997178, 0.113996712),
 		"TRINITY RIVER":(0.565000485, 0.564998603, 0.565000218, 0.56499946, 0.56500063, 0.565002124, 0.564984561, 0.564976455, 0.564869961, 0.564997226, 0.565011814, 0.56499853)}
 	names_flows = {}
-	for tsm in CVP.split_time_series_monthly(tsmath_trinity_inflow_daily, tributary_weights, "FLOW-IN"):
+	for tsm in CVP.split_time_series_monthly(tsmath_weighted, tributary_weights, "FLOW-IN"):
 		tsm.setVersion(BC_F_part)
 		tsm_list.append(tsm)
 		names_flows[tsm.getContainer().location] = tsm
