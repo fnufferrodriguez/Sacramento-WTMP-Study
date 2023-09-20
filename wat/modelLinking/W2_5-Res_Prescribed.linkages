@@ -13,14 +13,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="Shasta - Squaw Creek Inflow" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/Squaw Creek-Flow/Flow//1Day/228-230.7.125.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Known Flow" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Squaw Creek-Flow" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/Squaw Creek-Flow/Flow//1Day/228-230.7.125.1.1/" ComputeType="Computed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="Shasta - McCloud River Inflow" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/McCloud River-Flow/Flow//1Day/228-230.8.125.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Known Flow" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
           <DownStreamLocation>
@@ -549,54 +541,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="Global-Total_TCDU_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="WHISKEYTOWN_LOWER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-Total_TCDM_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="WHISKEYTOWN_LOWER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-Total_TCDL_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="WHISKEYTOWN_LOWER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-Total_TCDS_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="WHISKEYTOWN_LOWER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="WHISKEYTOWN_LOWER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-Whiskeytown_Upper_Gate_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="WHISKEYTOWN_LOWER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="Global-Whiskeytown_Lower_Gate_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_LOWER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
           <DownStreamLocation>
@@ -893,14 +837,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ-Whiskeytown Dam" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/WHI DAM OUTFLOW/TEMP-WATER//1HOUR/GRAB2PROCESSED-LINEARINTERP-MERGED/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown Prescribed" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Seg 109 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_109.csv/Seg 109 Withdrawal/Temp-TWO//1HOUR/C:000000|altName:apName:CeQualW2-W2 Whiskeytown Prescri/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
-              <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="WQ-Trinity R at Browns Cr - Browns Cr Local Inflow" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/TRINITY R BROWNS CK/TEMP-WATER//1DAY/WATERCOURSE/" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
           <DownStreamLocation>
@@ -914,14 +850,6 @@
           <DownStreamLocation>
             <DataLocation Name="TRINITY R CANYON CK" Class="hec2.model.DssDataLocation" DssPath="/USBR/TRINITY R CANYON CK/TEMP-WATER//1DAY/WATERCOURSE/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="WQ-Keswick Dam" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/KESWICK_TOUT/TEMP-WATER//1HOUR/INTERP/" ComputeType="Computed" Model="CeQualW2-W2 Keswick Prescribed" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Seg 102 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_102.opt/Seg 102 Withdrawal/Temp-TWO//1HOUR/C:000000|altName:apName:CeQualW2-W2 Keswick Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
-              <ModelAlternative Name="W2 Keswick Prescribed" Program="CeQualW2" />
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
@@ -973,20 +901,86 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ-Lewiston Dam" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/LEWISTON_HATCHERY/TEMP-WATER//1HOUR/GROSS_INTERP_PLACEHOLDER/" ComputeType="Computed" Model="Scripting-OutputLink_W2-Lewiston-Downstream_SacTrn" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="LEW-Out-FWA" Class="hec2.model.DataLocation" DssPath="//LEW-Out-FWA/TEMP-WATER//1HOUR/C:000000|altName:apName:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
-              <ModelAlternative Name="OutputLink_W2-Lewiston-Downstream_SacTrn" Program="Scripting" />
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="WQ-Trinity R at Indian Cr - Indian Cr Local Inflow" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/TRINITY R INDIAN CK/TEMP-WATER//1DAY/WATERCOURSE/" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
           <DownStreamLocation>
             <DataLocation Name="TRINITY R INDIAN CK" Class="hec2.model.DssDataLocation" DssPath="/USBR/TRINITY R INDIAN CK/TEMP-WATER//1DAY/WATERCOURSE/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
             </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ-Whiskeytown Dam" Class="hec2.model.DataLocation" Description="" DssPath="/W2:two_109.csv/Seg 109 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Whiskeytown Prescri/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown Prescri" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Seg 109 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_109.csv/Seg 109 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Whiskeytown Prescri/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0" />
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Total_TCDU_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/TOTAL TCD_U OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="TOTAL TCD_U OPEN" Class="hec2.model.DssDataLocation" DssPath="/USBR/TOTAL TCD_U OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Total_TCDL_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/TOTAL TCD_L OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="TOTAL TCD_L OPEN" Class="hec2.model.DssDataLocation" DssPath="/USBR/TOTAL TCD_L OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Whiskeytown_Upper_Gate_open" Class="hec2.model.DataLocation" DssPath="/USBR/WHISKEYTOWN_UPPER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="WHISKEYTOWN_UPPER_OUTLET_GATE" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHISKEYTOWN_UPPER_OUTLET_GATE/GATE//1HOUR/WATERCOURSE-INTERP/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ-Keswick Dam" Class="hec2.model.DataLocation" Description="" DssPath="/W2:two_102.opt/Seg 102 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Keswick Prescribed/" ComputeType="Computed" Model="CeQualW2-W2 Keswick Prescribed" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Seg 102 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_102.opt/Seg 102 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Keswick Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0" />
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Shasta - Squaw Creek Inflow" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SULANHARAS CREEK-FLOW/Flow//1Day/230.7.125.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Known Flow" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="SULANHARAS CREEK-FLOW" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SULANHARAS CREEK-FLOW/Flow//1Day/230.7.125.1.1/" ComputeType="Computed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/USBR/WHI DAM OUTFLOW/TEMP-WATER//1HOUR/GRAB2PROCESSED-LINEARINTERP-MERGED/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="WHI DAM OUTFLOW" Class="hec2.model.DssDataLocation" DssPath="/USBR/WHI DAM OUTFLOW/TEMP-WATER//1HOUR/GRAB2PROCESSED-LINEARINTERP-MERGED/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Total_TCDM_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/TOTAL TCD_M OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="TOTAL TCD_M OPEN" Class="hec2.model.DssDataLocation" DssPath="/USBR/TOTAL TCD_M OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Total_TCDS_gates_open" Class="hec2.model.DataLocation" DssPath="/USBR/TOTAL TCD_S OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="TOTAL TCD_S OPEN" Class="hec2.model.DssDataLocation" DssPath="/USBR/TOTAL TCD_S OPEN/GATE//1HOUR/USBR_BLESSED/" ComputeType="Computed" Parameter="GATE" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ-Lewiston Dam" Class="hec2.model.DataLocation" Description="" DssPath="//LEW-Out-FWA/TEMP-WATER//1HOUR/W2 5-Res P:2018:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Model="Scripting-OutputLink_W2-Lewiston" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="LEW-Out-FWA" Class="hec2.model.DataLocation" DssPath="//LEW-Out-FWA/TEMP-WATER//1HOUR/W2 5-Res P:2018:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0" />
           </DownStreamLocation>
         </DataLocation>
       </DataLocations>

@@ -51,7 +51,7 @@
   <Operations>
     <OperationsData Name="MAR50_WY2018v">
       <Description />
-      <OperationsFile>forecast/CVP-ops/MAR50_WY2018v.xlsx</OperationsFile>
+      <OperationsFile>forecast/CVP-ops/MAR50_WY2018v.csv</OperationsFile>
     </OperationsData>
   </Operations>
   <Meteorology>
