@@ -87,7 +87,7 @@ def build_BC_data_sets(AP_start_time, AP_end_time, BC_F_part, BC_output_DSS_file
 	if AP_start_time.month() < 10:
 		target_year = AP_start_time.year()
 	else:
-		
+
 		target_year = AP_end_time.year()
 
 	print "\nPreparing Meteorological Data..."
@@ -198,8 +198,8 @@ position_analysis_config_filename, met_output_DSS_filename, met_F_part):
 	return rv_lines
 
 def shift_monthly_averages(source_tsm, AP_start_time, AP_end_time):
-	# source_tsm -- time series math of monthly average values 
-	# AP_start_time, AP_end_time -- HecTime objects 
+	# source_tsm -- time series math of monthly average values
+	# AP_start_time, AP_end_time -- HecTime objects
 
 	# copy start and end time so manipulations in this scope don't affect others
 	shifted_start_time = HecTime()
@@ -530,11 +530,12 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_evap_monthly)
 			tsmath_acc_dep = tsmath_acc_dep.subtract(
 				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
-		elif ts.parameter.upper() == "TOTAL RELEASE":
+		elif "CLEAR CREEK" in ts.parameter.upper() and "TAF" in ts.parameter.upper():
 			tsmath_release_monthly = tsm
+			tsmath_release_monthly.setLocation("WHISKEYTOWN DAM")
 			tsm_list.append(tsmath_release_monthly)
-			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsm)
-			tsmath_release.setPathname(ts.fullName)
+			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
+			tsmath_release.setPathname(tsmath_release_monthly.getContainer().fullName)
 			tsmath_release.setTimeInterval("1HOUR")
 			tsmath_release.setParameterPart("FLOW-RELEASE")
 			tsmath_release.setVersion(BC_F_part)
@@ -604,17 +605,17 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_lewiston_release_flow_monthly = tsm
 			tsmath_lewiston_release_flow_monthly.setLocation("LEWISTON RESERVOIR")
 			tsmath_lewiston_release_flow_monthly.setParameterPart("FLOW-RIVER RELEASE")
-			tsm_list.append(tsmath_lewiston_release_flow_monthly)
+			# tsm_list.append(tsmath_lewiston_release_flow_monthly)
 		elif "RIVER REL" in ts.parameter.upper() and "TAF" in ts.parameter.upper():
 			tsmath_lewiston_release_monthly = tsm
 			tsmath_lewiston_release_monthly.setLocation("LEWISTON RESERVOIR")
 			tsmath_lewiston_release_monthly.setParameterPart("VOLUME-RIVER RELEASE")
 			tsm_list.append(tsmath_lewiston_release_monthly)
-			tsmath_lewiston_release = CVP.uniform_transform_monthly_to_hourly(tsmath_lewiston_release_monthly)
+			tsmath_lewiston_release = CVP.uniform_transform_monthly_to_daily(tsmath_lewiston_release_monthly)
 			tsmath_lewiston_release.setWatershed("TRINITY RIVER")
 			tsmath_lewiston_release.setLocation("LEWISTON RESERVOIR")
 			tsmath_lewiston_release.setParameterPart("FLOW-RIVER RELEASE")
-			tsmath_lewiston_release.setTimeInterval("1HOUR")
+			tsmath_lewiston_release.setTimeInterval("1DAY")
 			tsmath_lewiston_release.setVersion(BC_F_part)
 			tsm_list.append(tsmath_lewiston_release)
 		elif ts.parameter.upper() == "CARR PP":
