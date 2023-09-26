@@ -387,162 +387,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	patternDSS = hec.heclib.dss.HecDss.open(pattern_DSS_file_name)
 	temperatureDSS = hec.heclib.dss.HecDss.open(met_DSS_file_name)
 
-	########################
-	# Shasta/Keswick & main-stem Sacramento data from CVP spreadsheet
-	########################
-
 	tsm_list = []
-	print "TS Location = %s"%(shasta_ts_list[0].location.upper())
-	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
-		"%s 2400"%(end_time.date(4)),
-		"1DAY", "0M", 0.0)
-	tsmath_acc_dep.setUnits("CFS")
-	tsmath_acc_dep.setType("PER-AVER")
-	tsmath_acc_dep.setTimeInterval("1DAY")
-	tsmath_acc_dep.setWatershed("SACRAMENTO RIVER")
-	tsmath_acc_dep.setLocation("SHASTA LAKE")
-	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
-	tsmath_acc_dep.setVersion(BC_F_part)
-	for ts in shasta_ts_list:
-		print "\tTS Parameter = %s"%(ts.parameter.upper())
-		tsm = tsmath(ts)
-		tsm.setWatershed("SACRAMENTO RIVER")
-		tsm.setLocation("SHASTA LAKE")
-		if ts.parameter.upper() == "INFLOW":
-			tsmath_flow_monthly = tsm
-			tsm_list.append(tsmath_flow_monthly)
-			print "reading pattern from file: " + pattern_DSS_file_name
-			print "\t" + shasta_pattern_path
-			tsmath_pattern = patternDSS.read(shasta_pattern_path)
-			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
-			tsmath_weighted.setPathname(ts.fullName)
-			tsmath_weighted.setTimeInterval("1DAY")
-			tsmath_weighted.setParameterPart("FLOW-IN")
-			tsmath_weighted.setVersion(BC_F_part)
-			tsm_list.append(tsmath_weighted)
-		elif "STORAGE" in ts.parameter.upper():
-			tsmath_storage_monthly = tsm
-			tsmath_storage_monthly.setParameterPart("STORAGE")
-			tsmath_storage_monthly.setType("INST-VAL")
-			tsm_list.append(tsmath_storage_monthly)
-		elif "EVAP" in ts.parameter.upper():
-			tsmath_evap_monthly = tsm
-			tsmath_evap_monthly.setParameterPart("VOLUME-EST EVAPORATION")
-			tsm_list.append(tsmath_evap_monthly)
-			tsmath_acc_dep = tsmath_acc_dep.subtract(
-				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
-		elif ts.parameter.upper() == "TOTAL SHASTA RELEASE":
-			tsmath_release_monthly = tsm
-			tsm_list.append(tsmath_release_monthly)
-			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
-			tsmath_release.setPathname(ts.fullName)
-			tsmath_release.setTimeInterval("1HOUR")
-			tsmath_release.setParameterPart("FLOW-RELEASE")
-			tsmath_release.setVersion(BC_F_part)
-			tsm_list.append(tsmath_release)
-		else:
-			tsm_list.append(tsm)
-
-	tsm_list.append(tsmath_acc_dep)
-
-	########################
-	# Disaggregate Shasta Tributary In Flows
-	########################
-
-	tributary_weights = {
-		"Shasta-Sac-in":(0.212770745, 0.224327192, 0.221179858, 0.231031865, 0.22998096, 0.174508497, 0.096498474, 0.074162081, 0.066134982, 0.085930713, 0.110001981, 0.208573952),
-		"Shasta-McCloud-in":(0.138567582, 0.157547951, 0.139190927, 0.129798785, 0.107066929, 0.097430013, 0.099133208, 0.094616182, 0.097972639, 0.111942455, 0.109353393, 0.151801944),
-		"Shasta-Sulanharas-in":(0.037029058, 0.042679679, 0.040961806, 0.039603204, 0.037053932, 0.024035906, 0.01008518, 0.006934946, 0.006026154, 0.009676144, 0.013545787, 0.038994156),
-		"Shasta-Pit-in":(0.611632586, 0.575445235, 0.598667383, 0.599566102, 0.625898182, 0.704025567, 0.794283211, 0.824286819, 0.82986623, 0.792450666, 0.767098904, 0.600629926)}
-	names_flows = {}
-	for tsm in CVP.split_time_series_monthly(tsmath_weighted, tributary_weights, "FLOW-IN"):
-		tsm.setVersion(BC_F_part)
-		tsm_list.append(tsm)
-		names_flows[tsm.getContainer().location] = tsm
-
-	########################
-	# Estimate Shasta Tributary Temperatures
-	########################
-
-	#River, Intercept (deg C), Flow Coef (cfs), Air Temp Coef (deg C), RMS Error (deg C)
-	tributary_temp_regression_coefficients = {
-		"Shasta-Sac-in": (1.1597557, -2.5038779e-04, 0.62590134, 1.6474143),
-		"Shasta-Pit-in": (3.2822256, -1.541817e-04, 0.55336446, 1.4528962),
-		"Shasta-McCloud-in": (1.735364, 2.1436048e-04, 0.48995328, 1.1855532)}
-	tsmath_airtemp = temperatureDSS.read(airtemp_path)
-	for key in tributary_temp_regression_coefficients.keys():
-		tsm = CVP.evaluate_temp_regression(names_flows[key], tsmath_airtemp, tributary_temp_regression_coefficients[key])
-		tsm.setVersion(BC_F_part)
-		tsm_list.append(tsm)
-
-	########################
-	# Whiskeytown and Clear Creek
-	# data from CVP spreadsheet
-	########################
-	print "TS Location = %s"%(whiskeytown_ts_list[0].location.upper())
-	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
-		"%s 2400"%(end_time.date(4)),
-		"1DAY", "0M", 0.0)
-	tsmath_acc_dep.setUnits("CFS")
-	tsmath_acc_dep.setType("PER-AVER")
-	tsmath_acc_dep.setTimeInterval("1DAY")
-	tsmath_acc_dep.setWatershed("CLEAR CREEK")
-	tsmath_acc_dep.setLocation("WHISKEYTOWN LAKE")
-	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
-	tsmath_acc_dep.setVersion(BC_F_part)
-	for ts in whiskeytown_ts_list:
-		print "\tTS Parameter = %s"%(ts.parameter.upper())
-		tsm = tsmath(ts)
-		tsm.setWatershed("CLEAR CREEK")
-		tsm.setLocation("WHISKEYTOWN LAKE")
-		if ts.parameter.upper() == "INFLOW":
-			tsmath_flow_monthly = tsm
-			tsm_list.append(tsmath_flow_monthly)
-			print "reading pattern from file: " + pattern_DSS_file_name
-			print "\t" + whiskeytown_pattern_path
-			tsmath_pattern = patternDSS.read(whiskeytown_pattern_path)
-			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
-			tsmath_weighted.setPathname(ts.fullName)
-			tsmath_weighted.setTimeInterval("1DAY")
-			tsmath_weighted.setParameterPart("FLOW-IN")
-			tsmath_weighted.setVersion(BC_F_part)
-			tsm_list.append(tsmath_weighted)
-		elif "STORAGE" in ts.parameter.upper():
-			tsmath_storage_monthly = tsm
-			tsmath_storage_monthly.setParameterPart("STORAGE")
-			tsmath_storage_monthly.setType("INST-VAL")
-			tsm_list.append(tsmath_storage_monthly)
-		elif "SPRING CR" in ts.parameter.upper():
-			tsmath_sp_cr_monthly = tsm
-			tsm_list.append(tsmath_sp_cr_monthly)
-			tsmath_sp_cr = CVP.uniform_transform_monthly_to_hourly(tsm)
-			tsmath_sp_cr.setPathname(ts.fullName)
-			tsmath_sp_cr.setLocation("SPRING CREEK")
-			tsmath_sp_cr.setTimeInterval("1HOUR")
-			tsmath_sp_cr.setParameterPart("FLOW-PP")
-			tsmath_sp_cr.setVersion(BC_F_part)
-			tsm_list.append(tsmath_sp_cr)
-		elif "EVAP" in ts.parameter.upper():
-			tsmath_evap_monthly = tsm
-			tsmath_evap_monthly.setParameterPart("VOLUME-EST EVAPORATION")
-			tsm_list.append(tsmath_evap_monthly)
-			tsmath_acc_dep = tsmath_acc_dep.subtract(
-				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
-		elif "CLEAR CREEK" in ts.parameter.upper() and "TAF" in ts.parameter.upper():
-			tsmath_release_monthly = tsm
-			tsmath_release_monthly.setLocation("WHISKEYTOWN DAM")
-			tsm_list.append(tsmath_release_monthly)
-			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
-			tsmath_release.setPathname(tsmath_release_monthly.getContainer().fullName)
-			tsmath_release.setTimeInterval("1HOUR")
-			tsmath_release.setParameterPart("FLOW-RELEASE")
-			tsmath_release.setVersion(BC_F_part)
-			tsm_list.append(tsmath_release)
-		else:
-			tsm_list.append(tsm)
-	tsm_list.append(tsmath_acc_dep)
+	balance_list = []
 
 	########################
 	# Trinity-Clair Engle and Lewiston
@@ -560,18 +406,30 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_acc_dep.setLocation("TRINITY LAKE")
 	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
 	tsmath_acc_dep.setVersion(BC_F_part)
+	tsmath_bal_trnty = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(start_time.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1MONTH", "0M", 0.0)
+	tsmath_bal_trnty.setUnits("AC-FT")
+	tsmath_bal_trnty.setType("PER-CUM")
+	tsmath_bal_trnty.setTimeInterval("1MONTH")
+	tsmath_bal_trnty.setWatershed("TRINITY RIVER")
+	tsmath_bal_trnty.setLocation("TRINITY LAKE")
+	tsmath_bal_trnty.setParameterPart("VOLUME-BALANCE")
+	tsmath_bal_trnty.setVersion(BC_F_part)
 	for ts in trinity_ts_list:
 		print "\tTS Parameter = %s"%(ts.parameter.upper())
 		tsm = tsmath(ts)
 		tsm.setWatershed("TRINITY RIVER")
 		tsm.setLocation("TRINITY LAKE")
 		if ts.parameter.upper() == "INFLOW":
-			tsmath_trinity_inflow_monthly = tsm
-			tsm_list.append(tsmath_trinity_inflow_monthly)
+			tsmath_flow_monthly = tsm
+			tsm_list.append(tsmath_flow_monthly)
+			tsmath_bal_trnty = tsmath_bal_trnty.add(tsmath_flow_monthly)
 			print "reading pattern from file: " + pattern_DSS_file_name
 			print "\tDSS path:" + trinity_pattern_path
 			tsmath_pattern = patternDSS.read(trinity_pattern_path)
-			tsmath_trinity_inflow_daily = CVP.weight_transform_monthly_to_daily(tsmath_trinity_inflow_monthly, tsmath_pattern)
+			tsmath_trinity_inflow_daily = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
 			tsmath_trinity_inflow_daily.setPathname(ts.fullName)
 			tsmath_trinity_inflow_daily.setWatershed("TRINITY RIVER")
 			tsmath_trinity_inflow_daily.setLocation("TRINITY LAKE")
@@ -582,12 +440,20 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		elif "STORAGE" in ts.parameter.upper():
 			tsmath_storage_monthly = tsm
 			tsmath_storage_monthly.setParameterPart("STORAGE")
+			tsmath_storage_monthly.setType("INST-CUM")
+			tsm_storage_change = tsmath_storage_monthly.successiveDifferences()
 			tsmath_storage_monthly.setType("INST-VAL")
 			tsm_list.append(tsmath_storage_monthly)
+			tsm_storage_change.setWatershed("TRINITY RIVER")
+			tsm_storage_change.setLocation("TRINITY LAKE")
+			tsm_storage_change.setParameterPart("STORAGE-CHANGE")
+			tsm_list.append(tsm_storage_change)
+			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsm_storage_change)
 		elif "EVAP" in ts.parameter.upper():
 			tsmath_evap_monthly = tsm
 			tsmath_evap_monthly.setParameterPart("VOLUME-EST EVAPORATION")
 			tsm_list.append(tsmath_evap_monthly)
+			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsmath_evap_monthly)
 			tsmath_acc_dep = tsmath_acc_dep.subtract(
 				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
 		elif ts.parameter.upper() == "TOTAL RELEASE":
@@ -611,6 +477,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_lewiston_release_monthly.setLocation("LEWISTON RESERVOIR")
 			tsmath_lewiston_release_monthly.setParameterPart("VOLUME-RIVER RELEASE")
 			tsm_list.append(tsmath_lewiston_release_monthly)
+			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsmath_lewiston_release_monthly)
 			tsmath_lewiston_release = CVP.uniform_transform_monthly_to_daily(tsmath_lewiston_release_monthly)
 			tsmath_lewiston_release.setWatershed("TRINITY RIVER")
 			tsmath_lewiston_release.setLocation("LEWISTON RESERVOIR")
@@ -624,6 +491,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_carr_release_monthly.setLocation("LEWISTON RESERVOIR")
 			tsmath_carr_release_monthly.setParameterPart("VOLUME-CLEAR CREEK DIVERSION")
 			tsm_list.append(tsmath_carr_release_monthly)
+			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsmath_carr_release_monthly)
 			tsmath_carr_release = CVP.uniform_transform_monthly_to_hourly(tsm)
 			tsmath_carr_release.setWatershed("CLEAR CREEK")
 			tsmath_carr_release.setLocation("CARR POWERHOUSE")
@@ -634,6 +502,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		else:
 			tsm_list.append(tsm)
 	tsm_list.append(tsmath_acc_dep)
+	tsm_list.append(tsmath_bal_trnty)
 
 	########################
 	# Disaggregate Trinity Lake Tributary In Flows
@@ -685,6 +554,209 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		tsm = CVP.evaluate_temp_regression(names_flows[key], tsmath_airtemp, tributary_temp_regression_coefficients[key])
 		tsm.setVersion(BC_F_part)
 		tsm_list.append(tsm)
+
+	########################
+	# Whiskeytown and Clear Creek
+	# data from CVP spreadsheet
+	########################
+	print "TS Location = %s"%(whiskeytown_ts_list[0].location.upper())
+	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(start_time.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1DAY", "0M", 0.0)
+	tsmath_acc_dep.setUnits("CFS")
+	tsmath_acc_dep.setType("PER-AVER")
+	tsmath_acc_dep.setTimeInterval("1DAY")
+	tsmath_acc_dep.setWatershed("CLEAR CREEK")
+	tsmath_acc_dep.setLocation("WHISKEYTOWN LAKE")
+	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
+	tsmath_acc_dep.setVersion(BC_F_part)
+	tsmath_bal_whsky = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(start_time.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1MONTH", "0M", 0.0)
+	tsmath_bal_whsky.setUnits("AC-FT")
+	tsmath_bal_whsky.setType("PER-CUM")
+	tsmath_bal_whsky.setTimeInterval("1MONTH")
+	tsmath_bal_whsky.setWatershed("CLEAR CREEK")
+	tsmath_bal_whsky.setLocation("WHISKEYTOWN LAKE")
+	tsmath_bal_whsky.setParameterPart("VOLUME-BALANCE")
+	tsmath_bal_whsky.setVersion(BC_F_part)
+	tsmath_bal_whsky = tsmath_bal_whsky.add(tsmath_carr_release_monthly)
+	for ts in whiskeytown_ts_list:
+		print "\tTS Parameter = %s"%(ts.parameter.upper())
+		tsm = tsmath(ts)
+		tsm.setWatershed("CLEAR CREEK")
+		tsm.setLocation("WHISKEYTOWN LAKE")
+		if ts.parameter.upper() == "INFLOW":
+			tsmath_flow_monthly = tsm
+			tsm_list.append(tsmath_flow_monthly)
+			tsmath_bal_whsky = tsmath_bal_whsky.add(tsmath_flow_monthly)
+			print "reading pattern from file: " + pattern_DSS_file_name
+			print "\t" + whiskeytown_pattern_path
+			tsmath_pattern = patternDSS.read(whiskeytown_pattern_path)
+			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
+			tsmath_weighted.setPathname(ts.fullName)
+			tsmath_weighted.setTimeInterval("1DAY")
+			tsmath_weighted.setParameterPart("FLOW-IN")
+			tsmath_weighted.setVersion(BC_F_part)
+			tsm_list.append(tsmath_weighted)
+		elif "STORAGE" in ts.parameter.upper():
+			tsmath_storage_monthly = tsm
+			tsmath_storage_monthly.setParameterPart("STORAGE")
+			tsmath_storage_monthly.setType("INST-CUM")
+			tsm_storage_change = tsmath_storage_monthly.successiveDifferences()
+			tsmath_storage_monthly.setType("INST-VAL")
+			tsm_list.append(tsmath_storage_monthly)
+			tsm_storage_change.setWatershed("CLEAR CREEK")
+			tsm_storage_change.setLocation("WHISKEYTOWN LAKE")
+			tsm_storage_change.setParameterPart("STORAGE-CHANGE")
+			tsm_list.append(tsm_storage_change)
+			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsm_storage_change)
+		elif "SPRING CR" in ts.parameter.upper():
+			tsmath_sp_cr_monthly = tsm
+			tsm_list.append(tsmath_sp_cr_monthly)
+			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsmath_sp_cr_monthly)
+			tsmath_sp_cr = CVP.uniform_transform_monthly_to_hourly(tsm)
+			tsmath_sp_cr.setPathname(ts.fullName)
+			tsmath_sp_cr.setLocation("SPRING CREEK")
+			tsmath_sp_cr.setTimeInterval("1HOUR")
+			tsmath_sp_cr.setParameterPart("FLOW-PP")
+			tsmath_sp_cr.setVersion(BC_F_part)
+			tsm_list.append(tsmath_sp_cr)
+		elif "EVAP" in ts.parameter.upper():
+			tsmath_evap_monthly = tsm
+			tsmath_evap_monthly.setParameterPart("VOLUME-EST EVAPORATION")
+			tsm_list.append(tsmath_evap_monthly)
+			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsmath_evap_monthly)
+			tsmath_acc_dep = tsmath_acc_dep.subtract(
+				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
+		elif "CLEAR CREEK" in ts.parameter.upper() and "TAF" in ts.parameter.upper():
+			tsmath_release_monthly = tsm
+			tsmath_release_monthly.setLocation("WHISKEYTOWN DAM")
+			tsm_list.append(tsmath_release_monthly)
+			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsmath_release_monthly)
+			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
+			tsmath_release.setPathname(tsmath_release_monthly.getContainer().fullName)
+			tsmath_release.setTimeInterval("1HOUR")
+			tsmath_release.setParameterPart("FLOW-RELEASE")
+			tsmath_release.setVersion(BC_F_part)
+			tsm_list.append(tsmath_bal_whsky)
+		else:
+			tsm_list.append(tsm)
+	tsm_list.append(tsmath_acc_dep)
+	tsm_list.append(tsmath_acc_dep)
+
+
+	########################
+	# Shasta/Keswick & main-stem Sacramento data from CVP spreadsheet
+	########################
+	print "TS Location = %s"%(shasta_ts_list[0].location.upper())
+	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(start_time.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1DAY", "0M", 0.0)
+	tsmath_acc_dep.setUnits("CFS")
+	tsmath_acc_dep.setType("PER-AVER")
+	tsmath_acc_dep.setTimeInterval("1DAY")
+	tsmath_acc_dep.setWatershed("SACRAMENTO RIVER")
+	tsmath_acc_dep.setLocation("SHASTA LAKE")
+	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
+	tsmath_acc_dep.setVersion(BC_F_part)
+	tsmath_bal_shasta = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(start_time.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1MONTH", "0M", 0.0)
+	tsmath_bal_shasta.setUnits("AC-FT")
+	tsmath_bal_shasta.setType("PER-CUM")
+	tsmath_bal_shasta.setTimeInterval("1MONTH")
+	tsmath_bal_shasta.setWatershed("SACRAMENTO RIVER")
+	tsmath_bal_shasta.setLocation("SHASTA LAKE")
+	tsmath_bal_shasta.setParameterPart("VOLUME-BALANCE")
+	tsmath_bal_shasta.setVersion(BC_F_part)
+	for ts in shasta_ts_list:
+		print "\tTS Parameter = %s"%(ts.parameter.upper())
+		tsm = tsmath(ts)
+		tsm.setWatershed("SACRAMENTO RIVER")
+		tsm.setLocation("SHASTA LAKE")
+		if "INFLOW" in ts.parameter.upper():
+			tsmath_flow_monthly = tsm
+			tsm_list.append(tsmath_flow_monthly)
+			tsmath_bal_shasta = tsmath_bal_shasta.add(tsmath_flow_monthly)
+			print "\treading pattern from file: " + pattern_DSS_file_name
+			print "\t\t" + shasta_pattern_path
+			tsmath_pattern = patternDSS.read(shasta_pattern_path)
+			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
+			tsmath_weighted.setPathname(ts.fullName)
+			tsmath_weighted.setTimeInterval("1DAY")
+			tsmath_weighted.setParameterPart("FLOW-IN")
+			tsmath_weighted.setVersion(BC_F_part)
+			tsm_list.append(tsmath_weighted)
+		elif "STORAGE" in ts.parameter.upper():
+			tsmath_storage_monthly = tsm
+			tsmath_storage_monthly.setParameterPart("STORAGE")
+			tsmath_storage_monthly.setType("INST-CUM")
+			tsm_storage_change = tsmath_storage_monthly.successiveDifferences()
+			tsmath_storage_monthly.setType("INST-VAL")
+			tsm_list.append(tsmath_storage_monthly)
+			tsm_storage_change.setWatershed("SACRAMENTO RIVER")
+			tsm_storage_change.setLocation("SHASTA LAKE")
+			tsm_storage_change.setParameterPart("STORAGE-CHANGE")
+			tsm_list.append(tsm_storage_change)
+			tsmath_bal_shasta = tsmath_bal_shasta.subtract(tsm_storage_change)
+		elif "EVAP" in ts.parameter.upper():
+			tsmath_evap_monthly = tsm
+			tsmath_evap_monthly.setParameterPart("VOLUME-EST EVAPORATION")
+			tsm_list.append(tsmath_evap_monthly)
+			tsmath_bal_shasta = tsmath_bal_shasta.subtract(tsmath_evap_monthly)
+			tsmath_acc_dep = tsmath_acc_dep.subtract(
+				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
+		elif ts.parameter.upper() == "TOTAL SHASTA RELEASE":
+			tsmath_release_monthly = tsm
+			tsm_list.append(tsmath_release_monthly)
+			tsmath_bal_shasta = tsmath_bal_shasta.subtract(tsmath_release_monthly)
+			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
+			tsmath_release.setPathname(ts.fullName)
+			tsmath_release.setTimeInterval("1HOUR")
+			tsmath_release.setParameterPart("FLOW-RELEASE")
+			tsmath_release.setVersion(BC_F_part)
+			tsm_list.append(tsmath_release)
+		else:
+			tsm_list.append(tsm)
+
+	tsm_list.append(tsmath_acc_dep)
+	tsm_list.append(tsmath_bal_shasta)
+
+	########################
+	# Disaggregate Shasta Tributary In Flows
+	########################
+
+	tributary_weights = {
+		"Shasta-Sac-in":(0.212770745, 0.224327192, 0.221179858, 0.231031865, 0.22998096, 0.174508497, 0.096498474, 0.074162081, 0.066134982, 0.085930713, 0.110001981, 0.208573952),
+		"Shasta-McCloud-in":(0.138567582, 0.157547951, 0.139190927, 0.129798785, 0.107066929, 0.097430013, 0.099133208, 0.094616182, 0.097972639, 0.111942455, 0.109353393, 0.151801944),
+		"Shasta-Sulanharas-in":(0.037029058, 0.042679679, 0.040961806, 0.039603204, 0.037053932, 0.024035906, 0.01008518, 0.006934946, 0.006026154, 0.009676144, 0.013545787, 0.038994156),
+		"Shasta-Pit-in":(0.611632586, 0.575445235, 0.598667383, 0.599566102, 0.625898182, 0.704025567, 0.794283211, 0.824286819, 0.82986623, 0.792450666, 0.767098904, 0.600629926)}
+	names_flows = {}
+	for tsm in CVP.split_time_series_monthly(tsmath_weighted, tributary_weights, "FLOW-IN"):
+		tsm.setVersion(BC_F_part)
+		tsm_list.append(tsm)
+		names_flows[tsm.getContainer().location] = tsm
+
+	########################
+	# Estimate Shasta Tributary Temperatures
+	########################
+
+	#River, Intercept (deg C), Flow Coef (cfs), Air Temp Coef (deg C), RMS Error (deg C)
+	tributary_temp_regression_coefficients = {
+		"Shasta-Sac-in": (1.1597557, -2.5038779e-04, 0.62590134, 1.6474143),
+		"Shasta-Pit-in": (3.2822256, -1.541817e-04, 0.55336446, 1.4528962),
+		"Shasta-McCloud-in": (1.735364, 2.1436048e-04, 0.48995328, 1.1855532)}
+	tsmath_airtemp = temperatureDSS.read(airtemp_path)
+	for key in tributary_temp_regression_coefficients.keys():
+		tsm = CVP.evaluate_temp_regression(names_flows[key], tsmath_airtemp, tributary_temp_regression_coefficients[key])
+		tsm.setVersion(BC_F_part)
+		tsm_list.append(tsm)
+
 	########################
 	# Get flows and temperatures for downstream tributaries
 	# from monthly average data sets
