@@ -131,7 +131,20 @@
         <MembersToCompute />
       </EnsembleSet>
     </Simulation>
-    <Simulation>W2 Shasta-F18-04-test</Simulation>
+    <Simulation>
+      W2 Shasta-F18-04-test
+      <EnsembleSet Name="APR90_WY2018v-Historical-2018-SHASTA - TIER 1">
+        <Description />
+        <BcData>APR90_WY2018v-Historical-2018</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="1" />
+          </intArray>
+        </ComputedMembers>
+        <MembersToCompute>1</MembersToCompute>
+      </EnsembleSet>
+    </Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-F18-04-test">
