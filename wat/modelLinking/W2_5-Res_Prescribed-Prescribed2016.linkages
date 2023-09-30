@@ -173,19 +173,14 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
-          <DownStreamLocation>
-            <DataLocation Name="TCAC1-WIND SPEED" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-WIND SPEED/SPEED-WIND/01DEC2017/1HOUR/MERGEDFROM_MR SAC.-CLEAR CR. TO SAC R./" ComputeType="Computed" Parameter="SPEED-WIND" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
         </DataLocation>
         <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/PHI//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="PHI" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="TCAC1-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-WIND DIRECTION/DIR-WIND/01DEC2017/1HOUR/MERGEDFROM_MR SAC.-CLEAR CR. TO SAC R./" ComputeType="Computed" Parameter="DIR-WIND" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
+            <DataLocation Name="TCAC1-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-WIND DIRECTION/DIR-WIND-RADIANS/01DEC2015/1HOUR/232.5.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND-RADIANS" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
@@ -200,8 +195,8 @@
         <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/SRO//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="SRO" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="TCAC1-SOLAR RADIATION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-SOLAR RADIATION/IRRAD-SOLAR/01DEC2017/1HOUR/MERGEDFROM_MR SAC.-CLEAR CR. TO SAC R./" ComputeType="Computed" Parameter="IRRAD-SOLAR" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
+            <DataLocation Name="TCAC1-SOLAR RADIATION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-SOLAR RADIATION/IRRAD-SOLAR/01DEC2015/1HOUR/232.5.135.1.1/" ComputeType="Computed" Parameter="IRRAD-SOLAR" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
@@ -303,13 +298,8 @@
         <DataLocation Name="Branch 1 Struct Withdrawal 22" Class="hec2.model.DataLocation" DssPath="/W2:Qout_16_051822.npt/Branch 1 Struct Withdrawal 22/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 1 Struct Withdrawal 22/" ComputeType="Computed" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Shasta Prescribed" Program="CeQualW2" />
         </DataLocation>
-        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST_16.npt/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST_16.npt/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Shasta Prescribed" Program="CeQualW2" />
-          <DownStreamLocation>
-            <DataLocation Name="KRDD-WIND SPEED" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND SPEED/SPEED-WIND/01DEC2015/1HOUR/235.40.133.1.1/" ComputeType="Computed" Parameter="SPEED-WIND" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
         </DataLocation>
         <DataLocation Name="Branch 4 Inflow" Class="hec2.model.DataLocation" DssPath="/W2:qin_br4_16.npt/Branch 4 Inflow/Flow-QIN//1HOUR/alt:ap:CeQualW2-Branch 4 Inflow/" ComputeType="Computed" Model="DSS File" Parameter="Flow-QIN" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Shasta Prescribed" Program="CeQualW2" />
@@ -387,7 +377,7 @@
         <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST_16.npt/WB 1 Met/PHI//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="PHI" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Shasta Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="KRDD-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND DIRECTION/DIR-WIND-DEG/01DEC2015/1HOUR/235.40.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND-DEG" OutOfDate="false" PrevModelIndex="0">
+            <DataLocation Name="KRDD-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND DIRECTION/DIR-WIND/01DEC2015/1HOUR/235.40.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
@@ -551,18 +541,13 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Trinity Prescribed" Program="CeQualW2" />
-          <DownStreamLocation>
-            <DataLocation Name="TCAC1-WIND SPEED" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-WIND SPEED/SPEED-WIND/01DEC2015/1HOUR/232.5.133.1.1/" ComputeType="Computed" Parameter="SPEED-WIND" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
         </DataLocation>
         <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:TrinityCamp_met.csv/WB 1 Met/PHI//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="PHI" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Trinity Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="TCAC1-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-WIND DIRECTION/DIR-WIND/01DEC2015/1HOUR/232.5.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND" OutOfDate="false" PrevModelIndex="0">
+            <DataLocation Name="TCAC1-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-LEWISTON RES./TCAC1-WIND DIRECTION/DIR-WIND-RADIANS/01DEC2015/1HOUR/232.5.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND-RADIANS" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
@@ -668,7 +653,7 @@
         <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST_16.npt/WB 1 Met/PHI//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="PHI" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Keswick Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="KRDD-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND DIRECTION/DIR-WIND-DEG/01DEC2015/1HOUR/235.40.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND-DEG" OutOfDate="false" PrevModelIndex="0">
+            <DataLocation Name="KRDD-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND DIRECTION/DIR-WIND/01DEC2015/1HOUR/235.40.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
@@ -790,18 +775,13 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST.npt/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST.npt/WB 1 Met/WS//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="" Parameter="WS" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
-          <DownStreamLocation>
-            <DataLocation Name="KRDD-WIND SPEED" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND SPEED/SPEED-WIND/01DEC2015/1HOUR/235.40.133.1.1/" ComputeType="Computed" Parameter="SPEED-WIND" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
         </DataLocation>
         <DataLocation Name="WB 1 Met" Class="hec2.model.DataLocation" DssPath="/W2:met_PST.npt/WB 1 Met/PHI//1HOUR/alt:ap:CeQualW2-WB 1 Met/" ComputeType="Computed" Model="DSS File" Parameter="PHI" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="KRDD-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND DIRECTION/DIR-WIND-DEG/01DEC2015/1HOUR/235.40.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND-DEG" OutOfDate="false" PrevModelIndex="0">
+            <DataLocation Name="KRDD-WIND DIRECTION" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND DIRECTION/DIR-WIND/01DEC2015/1HOUR/235.40.133.1.2/" ComputeType="Computed" Parameter="DIR-WIND" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>

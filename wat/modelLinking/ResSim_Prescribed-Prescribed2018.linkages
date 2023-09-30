@@ -910,14 +910,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ-Whiskeytown Met-Humidity" Class="hec2.model.DataLocation" Description="" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-DEW POINT/TEMP-DEWPOINT//1HOUR/235.40.51.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Humidity" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="KRDD-DEW POINT" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-DEW POINT/TEMP-DEWPOINT//1HOUR/235.40.51.1.1/" ComputeType="Computed" Parameter="TEMP-DEWPOINT" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="WQ-Sacramento R Met-Shortwave Radiation" Class="hec2.model.DataLocation" Description="" DssPath="/MR SAC.-CLEAR CR. TO SAC R./RRAC1-SOLAR RADIATION/IRRAD-SOLAR//1HOUR/235.41.135.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Shortwave Radiation" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
@@ -1067,6 +1059,14 @@
           <DownStreamLocation>
             <DataLocation Name="KRDD-WIND SPEED" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND SPEED/SPEED-WIND//1HOUR/235.40.133.1.1/" ComputeType="Computed" Parameter="SPEED-WIND" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ-Whiskeytown Met-Humidity" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/REDDING_KRDD/RELHUM//1HOUR/USBR_DERIVED/" ComputeType="Computed" Model="DSS File" Parameter="Humidity" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="REDDING_KRDD" Class="hec2.model.DssDataLocation" DssPath="/USBR/REDDING_KRDD/RELHUM//1HOUR/USBR_DERIVED/" ComputeType="Computed" Parameter="RELHUM" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
