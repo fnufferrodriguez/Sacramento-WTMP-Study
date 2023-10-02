@@ -117,7 +117,9 @@
         <BcData>APR50_WY2018v-Historical-2018</BcData>
         <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="0" Step="10" />
+          <intArray Length="2" Step="10">
+            <I Range="0-2" Data="1,4" />
+          </intArray>
         </ComputedMembers>
         <MembersToCompute>1</MembersToCompute>
       </EnsembleSet>
@@ -130,7 +132,7 @@
             <I Range="0-1" Data="1" />
           </intArray>
         </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
+        <MembersToCompute>1,4</MembersToCompute>
       </EnsembleSet>
     </Simulation>
     <Simulation>
