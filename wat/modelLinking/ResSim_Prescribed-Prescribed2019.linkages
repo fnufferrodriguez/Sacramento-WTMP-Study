@@ -8,6 +8,25 @@
       </Description>
       <DataLocations />
     </ModelAlternative>
+    <ModelAlternative Program="Scripting" Name="Post-Process_ResSim_SacTrn" File="scripting/Post-Process_ResSim_SacTrn.scAlt">
+      <Description>
+        <desc cnt="0" value="Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
+      </Description>
+      <DataLocations>
+        <DataLocation Name="WQ_BOUND_TEMP_SRC_CCTUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WQ_BOUND_TEMP_SRC_CCTUNNEL/DEGC//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="DEGC" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+        </DataLocation>
+        <DataLocation Name="LEWISTON RESERVOIR-TUNNEL" Class="hec2.model.DssDataLocation" DssPath="//LEWISTON RESERVOIR-TUNNEL/TEMP-WATER TEMPERATURE//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="TEMP-WATER TEMPERATURE" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+        </DataLocation>
+        <DataLocation Name="WQ_BOUND_TEMP_SRC_SCTUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WQ_BOUND_TEMP_SRC_SCTUNNEL/DEGC//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="DEGC" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+        </DataLocation>
+        <DataLocation Name="WHISKEYTOWN LAKE-TUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WHISKEYTOWN LAKE-TUNNEL/TEMP-WATER TEMPERATURE//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="TEMP-WATER TEMPERATURE" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+        </DataLocation>
+      </DataLocations>
+    </ModelAlternative>
     <ModelAlternative Program="ResSim" Name="RSSacTrnPO" File="rss/RSSacTrnPO.ralt">
       <Description />
       <DataLocations>
@@ -891,14 +910,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ-Whiskeytown Met-Humidity" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/REDDING_KRDD/RELHUM//1HOUR/USBR_DERIVED/" ComputeType="Computed" Model="DSS File" Parameter="Humidity" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="REDDING_KRDD" Class="hec2.model.DssDataLocation" DssPath="/USBR/REDDING_KRDD/RELHUM//1HOUR/USBR_DERIVED/" ComputeType="Computed" Parameter="RELHUM" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="WQ-Sacramento R Met-Shortwave Radiation" Class="hec2.model.DataLocation" Description="" DssPath="/MR SAC.-CLEAR CR. TO SAC R./RRAC1-SOLAR RADIATION/IRRAD-SOLAR//1HOUR/235.41.135.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Shortwave Radiation" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
@@ -1047,6 +1058,14 @@
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
             <DataLocation Name="KRDD-WIND SPEED" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-WIND SPEED/SPEED-WIND//1HOUR/235.40.133.1.1/" ComputeType="Computed" Parameter="SPEED-WIND" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ-Whiskeytown Met-Humidity" Class="hec2.model.DataLocation" Description="" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-/RELHUM-FROM-AT-DP//1HOUR/235.40.53.1.1-DERIVED/" ComputeType="Computed" Model="DSS File" Parameter="Humidity" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="KRDD-" Class="hec2.model.DssDataLocation" DssPath="/MR SAC.-CLEAR CR. TO SAC R./KRDD-/RELHUM-FROM-AT-DP//1HOUR/235.40.53.1.1-DERIVED/" ComputeType="Computed" Parameter="RELHUM-FROM-AT-DP" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnMet.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
