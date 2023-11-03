@@ -15,9 +15,9 @@
   <TemperatureTargetSets>
     <TemperatureTargetSet Name="SHASTA - TIER 1" user-defined="false">
       <Description />
-      <file-path>forecast\CVP-ops\TempTarget-weekly.dss</file-path>
+      <file-path>forecast\CVP-ops\TempTarget-weekly-F.dss</file-path>
       <Output-DSS-File>forecast\simGroups\F18-04-test\SHASTA - TIER 1.dss</Output-DSS-File>
-      <River-Location Name="Above Clear Creek" Index="2">
+      <River-Location Name="At Shasta Dam" Index="0">
         <Description />
       </River-Location>
       <dss-pathnames>
@@ -32,27 +32,6 @@
         <dss-pathname>//SHASTA/TEMP-WATER-TARGET//1Hour/C:000009|TIER 1/</dss-pathname>
         <dss-pathname>//SHASTA/TEMP-WATER-TARGET//1Hour/C:000010|TIER 1/</dss-pathname>
         <dss-pathname>//SHASTA/TEMP-WATER-TARGET//1Hour/C:000011|TIER 1/</dss-pathname>
-      </dss-pathnames>
-    </TemperatureTargetSet>
-    <TemperatureTargetSet Name="SHASTA - TIER 2" user-defined="false">
-      <Description />
-      <file-path>forecast\CVP-ops\TTSP.dss</file-path>
-      <Output-DSS-File>forecast\simGroups\F18-04-test\SHASTA - TIER 2.dss</Output-DSS-File>
-      <River-Location Name="Above Clear Creek" Index="2">
-        <Description />
-      </River-Location>
-      <dss-pathnames>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000001|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000002|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000003|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000004|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000005|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000006|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000007|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000008|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000009|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000010|USER-DEFINED/</dss-pathname>
-        <dss-pathname>///TEMP-WATER-TARGET//1WEEK/C:000011|USER-DEFINED/</dss-pathname>
       </dss-pathnames>
     </TemperatureTargetSet>
   </TemperatureTargetSets>
@@ -212,23 +191,16 @@
   <EnsembleSets>
     <Simulation>
       ResSim-F18-04-test
-      <EnsembleSet Name="APR90_WY2018v-Historical-2018-SHASTA - TIER 1">
+      <EnsembleSet Name="APR50_WY2018v-Historical-2018-SHASTA - TIER 1">
         <Description />
-        <BcData>APR90_WY2018v-Historical-2018</BcData>
+        <BcData>APR50_WY2018v-Historical-2018</BcData>
         <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="0" Step="10" />
+          <intArray Length="7" Step="10">
+            <I Range="0-7" Data="1,2,3,4,5,6,7" />
+          </intArray>
         </ComputedMembers>
-        <MembersToCompute>1-6</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR90_WY2018v-Warm Summer-2017-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR90_WY2018v-Warm Summer-2017</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1-6</MembersToCompute>
+        <MembersToCompute>7</MembersToCompute>
       </EnsembleSet>
       <EnsembleSet Name="APR50_WY2018v-Test-2011-SHASTA - TIER 1">
         <Description />
@@ -241,84 +213,8 @@
         </ComputedMembers>
         <MembersToCompute>1-6</MembersToCompute>
       </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Test-2019-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Test-2019</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Test-2000-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Test-2000</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Test-2004-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Test-2004</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Test-2006-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Test-2006</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Test-2008-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Test-2008</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Test-2015-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Test-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
     </Simulation>
-    <Simulation>
-      W2 Shasta-F18-04-test
-      <EnsembleSet Name="APR90_WY2018v-Historical-2018-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR90_WY2018v-Historical-2018</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="8" Step="10">
-            <I Range="0-8" Data="1,3,4,7,9,2,5,6" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1-6</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-Warm Summer-2017-SHASTA - TIER 1">
-        <Description />
-        <BcData>APR50_WY2018v-Warm Summer-2017</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>W2 Shasta-F18-04-test</Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-F18-04-test">

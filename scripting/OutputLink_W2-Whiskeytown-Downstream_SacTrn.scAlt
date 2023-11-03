@@ -17,7 +17,7 @@
     <DataLocation Name="DataLocation2" Class="hec2.model.DataLocation" DssPath="//DataLocation2/Flow//1HOUR/alt:ap:Scripting-OutputLink_W2-Whiskeyt/" ComputeType="Computed" Model="DSS File" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Whiskeytown-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="SPC_DEBRISDAM_CMS" Class="hec2.model.DssDataLocation" DssPath="/USBR_REGULARTIMES_FULLLINEARINTERP/SPC_DEBRISDAM_CMS/FLOW/01JAN2004/1HOUR/GRAB2XLS/" ComputeType="Computed" Parameter="FLOW" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="SPC_DEBRISDAM_CMS" Class="hec2.model.DssDataLocation" DssPath="/USBR_REGULARTIMES_FULLLINEARINTERP/SPC_DEBRISDAM_CMS/FLOW//1HOUR/GRAB2XLS/" ComputeType="Computed" Parameter="FLOW" OutOfDate="false" PrevModelIndex="0">
           <DssFile>shared/WTMP_SacTrn_Historical.dss</DssFile>
         </DataLocation>
       </DownStreamLocation>
