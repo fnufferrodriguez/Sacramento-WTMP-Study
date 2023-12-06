@@ -131,9 +131,21 @@ def make_ops_tsc(location_name, water_year, start_month, ts_line, data_type=None
 
 	return rv_tsc
 
+'''
+get a value from a time series container at a given time
+	tsc_in -- the time series container
+	jtime -- the time of the value you're looking for. 
+The jtime value has to be in the same units as the times array in the container.
+'''
 def getValueAt(tsc_in, jtime):
-	if jtime < tsc_in.times[0] or jtime > tsc_in.times[-1]:
-		raise ValueError("time out of range")
+	if jtime < tsc_in.times[0]:
+		# edge case for beginning of first interval
+		if (jtime + tsc_in.interval >= tsc_in.times[0] and
+			not tsc_in.type.upper().startswith("INST")):
+				return tsc_in.values[0]
+		raise ValueError("Time of request is earlier than the first time in the container.")
+	if jtime > tsc_in.times[-1]:
+		raise ValueError("Time of request is later than the last time in the container.")
 	prev_time = tsc_in.times[0]
 	prev_value = tsc_in.values[0]
 	if jtime == prev_time:
@@ -225,8 +237,9 @@ def uniform_transform_monthly_to_daily(tsmath_months, currentAlternative=None):
 	#output time series will begin on the first day of the first month in the monthly input ts
 	start_time_out = HecTime()
 	start_time_out.setYearMonthDay(start_time_in.year(), start_time_in.month(), 1, 1440)
+	#start_time_out.setYearMonthDay(start_time_in.year(), start_time_in.month(), 1, 0)
 	end_time_in = HecTime(tsmath_months.lastValidDate(), HecTime.MINUTE_INCREMENT)
-	# print "hourly start time = " + start_time_out.date(4) + ' ' + str(start_time_out.minutesSinceMidnight())
+	print "hourly start time = " + start_time_out.date(4) + ' ' + str(start_time_out.minutesSinceMidnight())
 
 	# is the input volumes or flows?
 	input_is_acrefeet = False
@@ -479,10 +492,10 @@ Backward moving average
 Because DSSMath doesn't have a function for this...
 '''
 def backwardsMovingAverage(tsmath_in, num_periods):
-    rv_tsc = tsmath_in.getData()
+    rv_tsc = tsmath_in.getData() # getData() returns a copy of the tsMath's time-series container
     rv_parts = rv_tsc.fullName.strip('/').split('/')
     i = 0; j = 0
-    in_vals = tsmath_in.getContainer().values
+    in_vals = tsmath_in.getContainer().values # getContainer() returns access to the time-series container in place
     if DEBUG:
         print "Input TSMath for moving average contains %d values."%(tsmath_in.getContainer().numberValues)
     out_vals =[]
