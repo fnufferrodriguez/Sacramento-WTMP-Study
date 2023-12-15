@@ -1,8 +1,8 @@
 WorkspaceName=WTMP_SacramentoTrinity
 WorkspaceDescription=Upper Sacramento and Trinity River models including Shasta Lake and Keswick Reservoir on the Sacramento River, Whiskeytown Lake on Clear Creek, and Trinity Lake and Lewiston Reservoir on the Trinity River. Includes interbasin transfer from Lewiston to Whiskeytown and Whiskeytown to Keswick.
 Version=1001
-AppVersion=4.0.1.20-Beta
-ModifiedTime=1701827675035
+AppVersion=4.0.1.21-Beta
+ModifiedTime=1702667146124
 UnitSystemID=1
 GmtOffset=0
 StreamAlignmentUnits=Feet
@@ -29,7 +29,7 @@ Shown=false
 Class=hec.map.aishape.AiShapeMap
 MaxScaleValue=2147483647
 MinScaleValue=-2147483648
-ModifiedTime=1701827675035
+ModifiedTime=1702667146124
 MapEnd
 
 ManagerProxyBegin

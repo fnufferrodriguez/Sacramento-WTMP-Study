@@ -95,14 +95,12 @@ def make_ops_tsc(location_name, water_year, start_month, ts_line, data_type=None
 			i_month = next_month(i_month)
 			if (i_month - last_month) < 0:
 				start_year += 1
-		except ValueError:
-			# conversion to float failed, so the token is assumed to be the paramter (C Part)
-			# of the time series unless we've already got one
+		except:
 			if len(param) == 0:
 				param = token.strip().upper()
 				if currentAlternative:
 					currentAlternative.addComputeMessage("making a time series of %s at %s ..."%(param, location_name))
-				if param.upper().strip(')').endswith("CFS") or param.upper().endswith("AFRP"):
+				if param.upper().strip(')').endswith("CFS"):
 					param = "FLOW-" + param
 					data_type = "PER-AVER"
 					data_units = "CFS"
@@ -136,7 +134,7 @@ def make_ops_tsc(location_name, water_year, start_month, ts_line, data_type=None
 '''
 get a value from a time series container at a given time
 	tsc_in -- the time series container
-	jtime -- the time of the value you're looking for.
+	jtime -- the time of the value you're looking for. 
 The jtime value has to be in the same units as the times array in the container.
 '''
 def getValueAt(tsc_in, jtime):
