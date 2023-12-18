@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<WatSimulation SimulationName="W2 5-Res Prescribed-Prescribed2016" Description="" FPart="W2 5-Res P:2018" HasComputed="true" ComputeError="true" Parent="W2 5-Res Prescribed-Prescribed2016" LastComputedBy="benjamin" LastComputedDate="1702667047508" IsFrmSimulation="false">
+<WatSimulation SimulationName="W2 5-Res Prescribed-Prescribed2016" Description="" FPart="W2 5-Res P:2018" HasComputed="false" ComputeError="true" Parent="W2 5-Res Prescribed-Prescribed2016" LastComputedBy="benjamin" LastComputedDate="1702676400721" IsFrmSimulation="false">
   <ModelAlternatives ModelAlternativeCount="11">
     <ModelAlternative0 Program="Scripting" Name="Pre-Process_W2_5-Res_Prescribed_SacTrn" File="scripting/Pre-Process_W2_5-Res_Prescribed_SacTrn.scAlt">
       <Description>
@@ -15,7 +15,7 @@
       <Description>
         <desc cnt="0" value="Output processing from W2 Trinity Lake model into boundary conditions for W2 Lewiston Reservoir model" />
       </Description>
-      <LastComputeTime Date="15 December 2023, 19:04:07" />
+      <LastComputeTime Date="15 December 2023, 19:04" />
     </ModelAlternative2>
     <ModelAlternative3 Program="CeQualW2" Name="W2 Lewiston Prescribed" File="CeQual-W2/W2 Lewiston Prescribed/W2 Lewiston Prescribed/W2_Lewiston_Prescribed.w2Alt">
       <Description />
@@ -25,7 +25,7 @@
       <Description>
         <desc cnt="0" value="Postprocess output from W2 Leiston Reservoir model for use my downstream componetents: 1) Flow-weighed averaging of Lewiston Dam outputs; 2) Tunnel heating in the Clear Creek tunnel to Whiskeytown Reservoir." />
       </Description>
-      <LastComputeTime Date="14 December 2023, 23:39" />
+      <LastComputeTime Date="15 December 2023, 23:55" />
     </ModelAlternative4>
     <ModelAlternative5 Program="CeQualW2" Name="W2 Whiskeytown Prescribed" File="CeQual-W2/W2 Whiskeytown Prescribed/W2 Whiskeytown Prescribed/W2_Whiskeytown_Prescribed.w2Alt">
       <Description />
@@ -56,10 +56,6 @@
       <LastComputeTime Date="3 October 2023, 14:42" />
     </ModelAlternative10>
   </ModelAlternatives>
-  <SkipModelAltCompute>
-    <SkipModelAlt>Scripting-Pre-Process_W2_5-Res_Prescribed_SacTrn</SkipModelAlt>
-    <SkipModelAlt>CeQualW2-W2 Trinity Prescribed</SkipModelAlt>
-  </SkipModelAltCompute>
   <TimeWindowManager Class="hec2.plugin.timewindow.TimeWindowManagerImpl" />
 </WatSimulation>
 

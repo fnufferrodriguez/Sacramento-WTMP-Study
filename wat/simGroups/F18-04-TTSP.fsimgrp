@@ -11,6 +11,10 @@
       <Name>W2 Shasta-F18-04-TTSP</Name>
       <Class>hec2.wat.model.WatSimulation</Class>
     </Simulation>
+    <Simulation>
+      <Name>W2 5-Res-F18-04-TTSP</Name>
+      <Class>hec2.wat.model.WatSimulation</Class>
+    </Simulation>
   </Simulations>
   <TemperatureTargetSets>
     <TemperatureTargetSet Name="SHASTA - TIER 1" user-defined="false">
@@ -79,19 +83,34 @@
   </TemperatureTargetSets>
   <InitialConditions>
     <Reservoir Name="Keswick Reservoir">
-      <Profile Name="2018-04-01" />
+      <Profile Name="2018-04-01">
+        <Output-DSS-File>shared/Keswick_R1_2010_2017-2020.dss</Output-DSS-File>
+        <DSS-Pathname>//Keswick Reservoir/DEPTH-TEMP//2018-04-01//</DSS-Pathname>
+      </Profile>
     </Reservoir>
     <Reservoir Name="Whiskeytown Lake">
-      <Profile Name="2018-04-03" />
+      <Profile Name="2018-04-03">
+        <Output-DSS-File>shared/whiskeytown_1Prof.dss</Output-DSS-File>
+        <DSS-Pathname>//Whiskeytown Lake/DEPTH-TEMP//2018-04-03//</DSS-Pathname>
+      </Profile>
     </Reservoir>
     <Reservoir Name="Shasta Lake">
-      <Profile Name="2018-04-17" />
+      <Profile Name="2018-04-17">
+        <Output-DSS-File>shared/shasta_profs_watercourse_all.dss</Output-DSS-File>
+        <DSS-Pathname>//Shasta Lake/DEPTH-TEMP//2018-04-17//</DSS-Pathname>
+      </Profile>
     </Reservoir>
     <Reservoir Name="Lewiston Reservoir">
-      <Profile Name="2012-04-25" />
+      <Profile Name="2012-04-25">
+        <Output-DSS-File>shared/lewiston_upper_curtain_profiles.dss</Output-DSS-File>
+        <DSS-Pathname>//Lewiston Reservoir/DEPTH-TEMP//2012-04-25//</DSS-Pathname>
+      </Profile>
     </Reservoir>
     <Reservoir Name="Trinity Lake">
-      <Profile Name="2018-04-04" />
+      <Profile Name="2018-04-04">
+        <Output-DSS-File>shared/TrinityProf.dss</Output-DSS-File>
+        <DSS-Pathname>//Trinity Lake/DEPTH-TEMP//2018-04-04//</DSS-Pathname>
+      </Profile>
     </Reservoir>
   </InitialConditions>
   <Operations>
@@ -317,7 +336,9 @@
         <BcData>APR90_WY2018v-H-2004</BcData>
         <TemperatureTargetSet>SHASTA - TIER 4</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="0" Step="10" />
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="1" />
+          </intArray>
         </ComputedMembers>
         <MembersToCompute>1</MembersToCompute>
       </EnsembleSet>
@@ -395,6 +416,18 @@
         <MembersToCompute>1,5,11</MembersToCompute>
       </EnsembleSet>
     </Simulation>
+    <Simulation>
+      W2 5-Res-F18-04-TTSP
+      <EnsembleSet Name="APR50_WY2018v-H-2006-SHASTA - TIER 1">
+        <Description />
+        <BcData>APR50_WY2018v-H-2006</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="0" Step="10" />
+        </ComputedMembers>
+        <MembersToCompute>1</MembersToCompute>
+      </EnsembleSet>
+    </Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-F18-04-TTSP">
@@ -433,6 +466,12 @@
       <EnsembleSet Name="APR90_WY2018v-H-2017-SHASTA - TIER 8">
         <CollectionStart>2500</CollectionStart>
         <CollectionEnd>2999</CollectionEnd>
+      </EnsembleSet>
+    </Simulation>
+    <Simulation Name="W2 5-Res-F18-04-TTSP">
+      <EnsembleSet Name="APR50_WY2018v-H-2006-SHASTA - TIER 1">
+        <CollectionStart>0</CollectionStart>
+        <CollectionEnd>499</CollectionEnd>
       </EnsembleSet>
     </Simulation>
   </EnsembleSetIndexing>

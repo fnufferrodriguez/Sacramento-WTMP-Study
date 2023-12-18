@@ -1635,11 +1635,21 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="Branch 3 Struct Withdrawal 1" Class="hec2.model.DataLocation" DssPath="/W2:Qout_br3.npt/Branch 3 Struct Withdrawal 1/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 3 Struct Withdrawal 1/" ComputeType="Computed" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Branch 3 Struct Withdrawal 1" Class="hec2.model.DataLocation" DssPath="/W2:Qout_br3.npt/Branch 3 Struct Withdrawal 1/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 3 Struct Withdrawal 1/" ComputeType="Computed" Model="DSS File" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
+          <DownStreamLocation>
+            <DataLocation Name="ZEROS" Class="hec2.model.DssDataLocation" DssPath="//ZEROS/flow//1Day/ZEROS/" ComputeType="Computed" Parameter="flow" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="Branch 3 Struct Withdrawal 2" Class="hec2.model.DataLocation" DssPath="/W2:Qout_br3.npt/Branch 3 Struct Withdrawal 2/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 3 Struct Withdrawal 2/" ComputeType="Computed" Model="" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Branch 3 Struct Withdrawal 2" Class="hec2.model.DataLocation" DssPath="/W2:Qout_br3.npt/Branch 3 Struct Withdrawal 2/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 3 Struct Withdrawal 2/" ComputeType="Computed" Model="DSS File" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
+          <DownStreamLocation>
+            <DataLocation Name="WHI-Outlet Release" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Whiskeytown Lake/WHI-Outlet Release/Flow//1Hour/233.14.125.2.1/" ComputeType="Computed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
         </DataLocation>
         <DataLocation Name="Branch 3 Struct Withdrawal 3" Class="hec2.model.DataLocation" DssPath="/W2:Qout_br3.npt/Branch 3 Struct Withdrawal 3/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 3 Struct Withdrawal 3/" ComputeType="Computed" Model="DSS File" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScriptingAlt Name="Pre-Process_W2_5-Res_SacTrn">
+  <Description>
+    <desc cnt="0" value="Process forecast data for use by W2-5Res coupled to a ResSim river model" />
+  </Description>
+  <ScriptFile>scripts/Pre-Process_W2_5-Res_SacTrn.py</ScriptFile>
+  <TimeStep>1HOUR</TimeStep>
+</ScriptingAlt>
+

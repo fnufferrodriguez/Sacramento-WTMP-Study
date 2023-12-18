@@ -990,6 +990,14 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
+        <DataLocation Name="Global-Downstream_Control_Loc" Class="hec2.model.ScalarDataLocation" DssPath="//Downstream_Control_Loc///Integer/RSSacTrn-WAT-ResSim Only-Deterministic/" ComputeType="Computed" Model="DSS File" Parameter="Code-Integer" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrn" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Downstream_Control_Loc" Class="hec2.model.DssDataLocation" DssPath="//Downstream_Control_Loc///Integer/RSSacTrn-WAT-ResSim Only-Deterministic/" ComputeType="Computed" Model="DSS File" Parameter="" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>runs/ResSim-F18-03/ResSim-F18-03.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
       </DataLocations>
     </ModelAlternative>
   </Name>
