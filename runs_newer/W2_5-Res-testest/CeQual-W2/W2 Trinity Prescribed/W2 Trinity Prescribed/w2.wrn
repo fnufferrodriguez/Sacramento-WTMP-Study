@@ -1,0 +1,37 @@
+Computational warning at Julian day = 66.206
+ timestep = .088 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 66.455
+ timestep = .076 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 66.622
+ timestep = .075 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 66.916
+ timestep = .063 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 67.042
+ timestep = .097 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 67.205
+ timestep = .096 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 67.290
+ timestep = .067 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 67.415
+ timestep = .078 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 67.708
+ timestep = .097 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 68.082
+ timestep = .083 sec: DLT<DLTMIN set DLT=DLTMIN
+
+ *************    Add layer 16 at Julian day = 73.191   NIT = 2953  IZMIN =52*************
+Computational warning at Julian day = 74.250
+ timestep = .083 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 74.957
+ timestep = .078 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 76.292
+ timestep = .091 sec: DLT<DLTMIN set DLT=DLTMIN
+Computational warning at Julian day = 76.542
+ timestep = .086 sec: DLT<DLTMIN set DLT=DLTMIN
+
+ *************    Add layer 15 at Julian day = 90.417   NIT = 5995  IZMIN =9*************
+
+                  Add segments 55 through 55
+
+ *************    Add layer 14 at Julian day = 107.025   NIT = 9164  IZMIN =52*************
+ ***RESTART*** APPENDING ON JDAY   61.0000000000000     

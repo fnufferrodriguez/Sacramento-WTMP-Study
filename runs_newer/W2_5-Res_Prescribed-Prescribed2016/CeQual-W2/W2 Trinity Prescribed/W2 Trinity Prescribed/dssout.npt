@@ -1,0 +1,79 @@
+DSSOUT.NPT (dssout.exe control file to import CE-QUAL-W2 output files into DSS)
+DSS FILE FOR OUTPUT
+"J:\Ben\git\WTMP_SacramentoTrinity_working\runs\W2_5-Res_Prescribed-Prescribed2016\W2_5-Res_Prescribed-Prescribed2016"
+NUMBER OF TIME SERIES TO WRITE TO DSS
+9
+YEAR OF START
+2016
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+qwo_52.csv
+DSS B PART
+Seg 52 Withdrawal
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+cms
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+two_52.csv
+DSS B PART
+Seg 52 Withdrawal
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+C
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+qwo_wd1_seg52.csv
+DSS B PART
+Seg 52 Withdrawal
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+cms
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+two_wd1_seg52.csv
+DSS B PART
+Seg 52 Withdrawal
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+C
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+qwo_wd2_seg52.csv
+DSS B PART
+Seg 52 Withdrawal
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+cms
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+two_wd2_seg52.csv
+DSS B PART
+Seg 52 Withdrawal
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+C
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+tsr_TRI_1m_1_seg52.csv
+DSS B PART
+TSR Seg 52 Layer 80
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+s
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+tsr_TRI_1m_2_seg52.csv
+DSS B PART
+TSR Seg 52 Layer 116
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+s
+CE-QUAL-W2 OUTPUT FILE TO WRITE TO DSS
+tsr_TRI_1m_3_seg52.csv
+DSS B PART
+TSR Seg 52 Depth 0.00
+DSS F PART
+W2 5-Res P:2018:CeQualW2-W2 Trinity Prescribed
+UNITS
+s
