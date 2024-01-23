@@ -173,7 +173,7 @@
             <I Range="0-1" Data="1" />
           </intArray>
         </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
+        <MembersToCompute>2</MembersToCompute>
       </EnsembleSet>
     </Simulation>
     <Simulation>

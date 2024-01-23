@@ -1274,11 +1274,11 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ-Whiskeytown Dam" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/WHI DAM OUTFLOW-C/TEMP-WATER//1HOUR/GRAB2PROCESSED-LINEARINTERP-MERGED/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown Prescribed" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="WQ-Whiskeytown Dam" Class="hec2.model.DataLocation" Description="" DssPath="/USBR/WHI DAM OUTFLOW-C/TEMP-WATER//1HOUR/GRAB2PROCESSED-LINEARINTERP-MERGED/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnRv" Program="ResSim" />
           <DownStreamLocation>
-            <DataLocation Name="Seg 109 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_109.csv/Seg 109 Withdrawal/Temp-TWO//1HOUR/C:000000|altName:apName:CeQualW2-W2 Whiskeytown Prescri/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
-              <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
+            <DataLocation Name="Seg 109 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_109.csv/Seg 109 Withdrawal/Temp-TWO//1HOUR/C:000000|altName:apName:CeQualW2-W2 Whiskeytown/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
+              <ModelAlternative Name="W2 Whiskeytown" Program="CeQualW2" />
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>

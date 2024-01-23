@@ -9,7 +9,7 @@
     <DataLocation Name="Seg113_Struct_1_Flow" Class="hec2.model.DataLocation" DssPath="//Seg113_Struct_1_Flow/Flow//1HOUR/alt:ap:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Model="CeQualW2-W2 Lewiston Prescribed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Lewiston-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 113 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:qwo_113.csv/Seg 113 Withdrawal/Flow-QWD//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Flow-QWD" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Seg 113 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:qwo_113.csv/Seg 113 Withdrawal/Flow-QWD//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Flow-QWD" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
@@ -17,7 +17,7 @@
     <DataLocation Name="Seg113_Struct_1_Temp" Class="hec2.model.DataLocation" DssPath="//Seg113_Struct_1_Temp/Temp//1HOUR/alt:ap:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Model="CeQualW2-W2 Lewiston Prescribed" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Lewiston-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 113 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_113.csv/Seg 113 Withdrawal/Temp-TWO//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Seg 113 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_113.csv/Seg 113 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
@@ -25,7 +25,7 @@
     <DataLocation Name="Seg112_Flow" Class="hec2.model.DataLocation" DssPath="//Seg112_Flow/Flow//1HOUR/alt:ap:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Model="CeQualW2-W2 Lewiston Prescribed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Lewiston-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 112 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:qwo_112.csv/Seg 112 Withdrawal/Flow-QWD//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Flow-QWD" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Seg 112 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:qwo_112.csv/Seg 112 Withdrawal/Flow-QWD//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Flow-QWD" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
@@ -33,7 +33,7 @@
     <DataLocation Name="Seg112_Temp" Class="hec2.model.DataLocation" DssPath="//Seg112_Temp/Temp//1HOUR/alt:ap:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Model="CeQualW2-W2 Lewiston Prescribed" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Lewiston-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 112 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_112.csv/Seg 112 Withdrawal/Temp-TWO//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Seg 112 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_112.csv/Seg 112 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
@@ -41,7 +41,7 @@
     <DataLocation Name="seg_111" Class="hec2.model.DataLocation" DssPath="//seg_111/Temp//1HOUR/alt:ap:Scripting-OutputLink_W2-Lewiston/" ComputeType="Computed" Model="CeQualW2-W2 Lewiston Prescribed" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Lewiston-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 111 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_111.csv/Seg 111 Withdrawal/Temp-TWO//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Seg 111 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_111.csv/Seg 111 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Lewiston Prescribed/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Lewiston Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
