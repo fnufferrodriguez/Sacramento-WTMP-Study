@@ -1,2 +1,0 @@
-location,parameter,dss file,dss path
-

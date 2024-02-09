@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SimulationGroup Name="Prescribed2018">
   <Description />
-  <AnalysisPeriod>tendays17</AnalysisPeriod>
+  <AnalysisPeriod>2018</AnalysisPeriod>
   <Simulations>
     <Simulation>
       <Name>W2 5-Res Prescribed-Prescribed2018</Name>
