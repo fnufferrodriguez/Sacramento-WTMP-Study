@@ -11,9 +11,9 @@
       <Description />
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative1>
-    <ModelAlternative2 Program="Scripting" Name="Post-Process_ResSim_SacTrn" File="scripting/Post-Process_ResSim_SacTrn.scAlt">
+    <ModelAlternative2 Program="Scripting" Name="Post-Process_ResSim_SacTrnPO" File="scripting/Post-Process_ResSim_SacTrnPO.scAlt">
       <Description>
-        <desc cnt="0" value="Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
+        <desc cnt="0" value=" Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
       </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative2>

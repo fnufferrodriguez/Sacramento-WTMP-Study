@@ -27,6 +27,45 @@
         </DataLocation>
       </DataLocations>
     </ModelAlternative>
+    <ModelAlternative Program="Scripting" Name="Post-Process_ResSim_SacTrnPO" File="scripting/Post-Process_ResSim_SacTrnPO.scAlt">
+      <Description>
+        <desc cnt="0" value=" Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
+      </Description>
+      <DataLocations>
+        <DataLocation Name="WQ_BOUND_TEMP_SRC_CCTUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WQ_BOUND_TEMP_SRC_CCTUNNEL/DEGC//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Model="ResSim-RSSacTrnPO" Parameter="DEGC" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+          <DownStreamLocation>
+            <DataLocation Name="wq_bound_temp_src_CCtunnel" Class="hec2.model.DataLocation" DssPath="//wq_bound_temp_src_CCtunnel/degC//1HOUR/C:000000|altName:apName:ResSim-RSSacTrnPO/" ComputeType="Computed" Parameter="State Variable" OutOfDate="false" PrevModelIndex="0">
+              <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="LEWISTON RESERVOIR-TUNNEL" Class="hec2.model.DssDataLocation" DssPath="//LEWISTON RESERVOIR-TUNNEL/TEMP-WATER TEMPERATURE//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Model="ResSim-RSSacTrnPO" Parameter="TEMP-WATER TEMPERATURE" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+          <DownStreamLocation>
+            <DataLocation Name="Lewiston Reservoir-Tunnel" Class="hec2.model.DataLocation" DssPath="//Lewiston Reservoir-Tunnel/Temp-Water Temperature//1HOUR/C:000000|altName:apName:ResSim-RSSacTrnPO/" ComputeType="Computed" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+              <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ_BOUND_TEMP_SRC_SCTUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WQ_BOUND_TEMP_SRC_SCTUNNEL/DEGC//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Model="ResSim-RSSacTrnPO" Parameter="DEGC" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+          <DownStreamLocation>
+            <DataLocation Name="wq_bound_temp_src_SCtunnel" Class="hec2.model.DataLocation" DssPath="//wq_bound_temp_src_SCtunnel/degC//1HOUR/C:000000|altName:apName:ResSim-RSSacTrnPO/" ComputeType="Computed" Parameter="State Variable" OutOfDate="false" PrevModelIndex="0">
+              <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WHISKEYTOWN LAKE-TUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WHISKEYTOWN LAKE-TUNNEL/TEMP-WATER TEMPERATURE//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Model="ResSim-RSSacTrnPO" Parameter="TEMP-WATER TEMPERATURE" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="Post-Process_ResSim_SacTrn" Program="Scripting" />
+          <DownStreamLocation>
+            <DataLocation Name="Whiskeytown Lake-Tunnel" Class="hec2.model.DataLocation" DssPath="//Whiskeytown Lake-Tunnel/Temp-Water Temperature//1HOUR/C:000000|altName:apName:ResSim-RSSacTrnPO/" ComputeType="Computed" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+              <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+      </DataLocations>
+    </ModelAlternative>
     <ModelAlternative Program="ResSim" Name="RSSacTrnPO" File="rss/RSSacTrnPO.ralt">
       <Description />
       <DataLocations>
@@ -886,30 +925,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ(IC)-Shasta Lake-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2006-05-04//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Shasta Lake" Class="hec2.model.DssDataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2006-05-04//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/shasta_profs_watercourse_all.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="WQ(IC)-Shasta Lake-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2006-05-04//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Shasta Lake" Class="hec2.model.DssDataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2006-05-04//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/shasta_profs_watercourse_all.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="WQ(IC)-Trinity Lake-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2016-01-27//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Trinity Lake" Class="hec2.model.DssDataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2016-01-27//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/TrinityProf.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="WQ(IC)-Keswick Reservoir-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Keswick Reservoir/DEPTH-TEMP//2010-01-21//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
@@ -918,35 +933,11 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="WQ(IC)-Whiskeytown Lake-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2016-01-21//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Whiskeytown Lake" Class="hec2.model.DssDataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2016-01-21//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/whiskeytown_1Prof.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="WQ(IC)-Whiskeytown Lake-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2016-01-21//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Whiskeytown Lake" Class="hec2.model.DssDataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2016-01-21//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/whiskeytown_1Prof.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="WQ(IC)-Keswick Reservoir-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Keswick Reservoir/DEPTH-TEMP//2010-01-21//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
             <DataLocation Name="Keswick Reservoir" Class="hec2.model.DssDataLocation" DssPath="//Keswick Reservoir/DEPTH-TEMP//2010-01-21//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/Keswick_R1_2010_2017-2020.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="WQ(IC)-Trinity Lake-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2016-01-27//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="Trinity Lake" Class="hec2.model.DssDataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2016-01-27//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/TrinityProf.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
@@ -1102,22 +1093,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="RM18.3-Whiskeytown-Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_CalVal.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-TCD_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="SHA-Calc-Calculated Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="Global-Total_TCDU_gates_open" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-TCD-Top Gate Sum/count-gate//1Hour/Derived/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
@@ -1134,6 +1109,22 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
+        <DataLocation Name="Global-TCD_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="SHA-Calc-Calculated Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="RM18.3-Whiskeytown-Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrn_CalVal.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
         <DataLocation Name="Global-Total_TCDM_gates_open" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-TCD-Middle Gate Sum/count-gate//1Hour/Derived/" ComputeType="Computed" Model="DSS File" Parameter="Count" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
@@ -1147,6 +1138,54 @@
           <DownStreamLocation>
             <DataLocation Name="SHA-TCD-Side Gate Sum" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-TCD-Side Gate Sum/count-gate//1Hour/Derived/" ComputeType="Computed" Parameter="count-gate" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ(IC)-Shasta Lake-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2021-01-12//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Shasta Lake" Class="hec2.model.DssDataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2021-01-12//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/shasta_profs_watercourse_all.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ(IC)-Trinity Lake-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2021-01-19//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Trinity Lake" Class="hec2.model.DssDataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2021-01-19//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/TrinityProf.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ(IC)-Whiskeytown Lake-Sediment_Temperature" Class="hec2.model.DataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2021-01-13//" ComputeType="Computed" Model="DSS File" Parameter="Sediment Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Whiskeytown Lake" Class="hec2.model.DssDataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2021-01-13//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/whiskeytown_1Prof.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ(IC)-Whiskeytown Lake-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2021-01-13//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Whiskeytown Lake" Class="hec2.model.DssDataLocation" DssPath="//Whiskeytown Lake/DEPTH-TEMP//2021-01-13//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/whiskeytown_1Prof.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ(IC)-Shasta Lake-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2021-01-12//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Shasta Lake" Class="hec2.model.DssDataLocation" DssPath="//Shasta Lake/DEPTH-TEMP//2021-01-12//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/shasta_profs_watercourse_all.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="WQ(IC)-Trinity Lake-Water_Temperature" Class="hec2.model.DataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2021-01-19//" ComputeType="Computed" Model="DSS File" Parameter="Water Temperature" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="Trinity Lake" Class="hec2.model.DssDataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2021-01-19//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/TrinityProf.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>

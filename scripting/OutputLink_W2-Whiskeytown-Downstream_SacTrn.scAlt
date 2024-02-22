@@ -6,27 +6,27 @@
   <ScriptFile>scripts/OutputLink_W2-Whiskeytown-Downstream_SacTrn.py</ScriptFile>
   <TimeStep>1HOUR</TimeStep>
   <DataLocations>
-    <DataLocation Name="DataLocation1" Class="hec2.model.DataLocation" DssPath="//DataLocation1/Flow//1HOUR/alt:ap:Scripting-OutputLink_W2-Whiskeyt/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
+    <DataLocation Name="DataLocation1" Class="hec2.model.DataLocation" DssPath="//DataLocation1/Flow//1HOUR/alt:ap:Scripting-OutputLink_W2-Whiskeyt/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown Prescribed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Whiskeytown-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 79 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:qwo_79.csv/Seg 79 Withdrawal/Flow-QWD//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Whiskeytown/" ComputeType="Computed" Parameter="Flow-QWD" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="W2 Whiskeytown" Program="CeQualW2" />
+        <DataLocation Name="Seg 79 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:qwo_79.csv/Seg 79 Withdrawal/Flow-QWD//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Whiskeytown Prescri/" ComputeType="Computed" Parameter="Flow-QWD" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
     </DataLocation>
     <DataLocation Name="DataLocation2" Class="hec2.model.DataLocation" DssPath="//DataLocation2/Flow//1HOUR/alt:ap:Scripting-OutputLink_W2-Whiskeyt/" ComputeType="Computed" Model="DSS File" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Whiskeytown-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="ZEROS" Class="hec2.model.DssDataLocation" DssPath="//ZEROS/flow//1Hour/ZEROS/" ComputeType="Computed" Parameter="flow" OutOfDate="false" PrevModelIndex="0">
-          <DssFile>shared/WTMP_SacTrn_Forecast.dss</DssFile>
+        <DataLocation Name="Spring Creek Debris Dam (SPR)-Dam Total Release" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Keswick Res./Spring Creek Debris Dam (SPR)-Dam Total Release/Flow//1Hour/234.2.125.1.1/" ComputeType="Computed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
+          <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
         </DataLocation>
       </DownStreamLocation>
     </DataLocation>
-    <DataLocation Name="SpringCreekInflow" Class="hec2.model.DataLocation" DssPath="//SpringCreekInflow/Temp//1HOUR/alt:ap:Scripting-OutputLink_W2-Whiskeyt/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
+    <DataLocation Name="SpringCreekInflow" Class="hec2.model.DataLocation" DssPath="//SpringCreekInflow/Temp//1HOUR/alt:ap:Scripting-OutputLink_W2-Whiskeyt/" ComputeType="Computed" Model="CeQualW2-W2 Whiskeytown Prescribed" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="OutputLink_W2-Whiskeytown-Downstream_SacTrn" Program="Scripting" />
       <DownStreamLocation>
-        <DataLocation Name="Seg 79 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_79.csv/Seg 79 Withdrawal/Temp-TWO//1HOUR/W2 5-Res:2018-03-FC:CeQualW2-W2 Whiskeytown/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="W2 Whiskeytown" Program="CeQualW2" />
+        <DataLocation Name="Seg 79 Withdrawal" Class="hec2.model.DataLocation" DssPath="/W2:two_79.csv/Seg 79 Withdrawal/Temp-TWO//1HOUR/W2 5-Res P:2018:CeQualW2-W2 Whiskeytown Prescri/" ComputeType="Computed" Parameter="Temp-TWO" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="W2 Whiskeytown Prescribed" Program="CeQualW2" />
         </DataLocation>
       </DownStreamLocation>
     </DataLocation>

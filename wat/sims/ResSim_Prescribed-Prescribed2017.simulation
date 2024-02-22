@@ -5,17 +5,17 @@
       <Description>
         <desc cnt="0" value="Pre-process DMS prescribed data into required ResSim-specific records" />
       </Description>
-      <LastComputeTime Date="29 January 2024, 21:07:09" />
+      <LastComputeTime Date="29 January 2024, 21:07" />
     </ModelAlternative0>
     <ModelAlternative1 Program="ResSim" Name="RSSacTrnPO" File="rss/RSSacTrnPO.ralt">
       <Description />
-      <LastComputeTime Date="29 January 2024, 21:11:28" />
+      <LastComputeTime Date="29 January 2024, 21:11" />
     </ModelAlternative1>
-    <ModelAlternative2 Program="Scripting" Name="Post-Process_ResSim_SacTrn" File="scripting/Post-Process_ResSim_SacTrn.scAlt">
+    <ModelAlternative2 Program="Scripting" Name="Post-Process_ResSim_SacTrnPO" File="scripting/Post-Process_ResSim_SacTrnPO.scAlt">
       <Description>
-        <desc cnt="0" value="Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
+        <desc cnt="0" value=" Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
       </Description>
-      <LastComputeTime Date="29 January 2024, 21:11:28" />
+      <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative2>
   </ModelAlternatives>
   <TimeWindowManager Class="hec2.plugin.timewindow.TimeWindowManagerImpl" />

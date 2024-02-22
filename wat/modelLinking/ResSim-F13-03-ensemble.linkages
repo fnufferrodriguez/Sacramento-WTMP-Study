@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ModelLinking>
   <Name>
-    ResSim-F18-04-TTSP
+    ResSim-F13-03-ensemble
     <ModelAlternative Program="Scripting" Name="Pre-Process_ResSim_SacTrn" File="scripting/Pre-Process_ResSim_SacTrn.scAlt">
       <Description>
         <desc cnt="0" value="Pre-process any data into required ResSim-specific records for forecast simulations" />
@@ -1141,7 +1141,7 @@
         <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/USBR/SHASTA/TEMP-WATER-TARGET//1HOUR/sactrn_bc_script/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrn" Program="ResSim" />
           <DownStreamLocation>
-            <DataLocation Name="SHASTA" Class="hec2.model.DssDataLocation" DssPath="/USBR/SHASTA/TEMP-WATER-TARGET//1HOUR/sactrn_bc_script/" ComputeType="Computed" Parameter="TEMP-WATER-TARGET" OutOfDate="false" PrevModelIndex="0">
+            <DataLocation Name="SHASTA" Class="hec2.model.DssDataLocation" DssPath="/USBR/SHASTA/TEMP-WATER-TARGET//1HOUR/sactrn_bc_script/" ComputeType="Computed" Model="DSS File" Parameter="TEMP-WATER-TARGET" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/WTMP_SacTrn_Forecast.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>

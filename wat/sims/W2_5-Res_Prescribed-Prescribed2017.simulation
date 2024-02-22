@@ -5,7 +5,7 @@
       <Description>
         <desc cnt="0" value="Prepare input data for W2 models(s), for all 5 Sacramento/Trinity system reservoirs.  1) Determine simulation year and copy W2 configuration files from shared/W2_annual_configs, if it exists" />
       </Description>
-      <LastComputeTime Date="7 February 2024, 06:12:55" />
+      <LastComputeTime Date="7 February 2024, 06:12" />
     </ModelAlternative0>
     <ModelAlternative1 Program="CeQualW2" Name="W2 Trinity Prescribed" File="CeQual-W2/W2 Trinity Prescribed/W2 Trinity Prescribed/W2_Trinity_Prescribed.w2Alt">
       <Description />
@@ -49,23 +49,13 @@
       <Description>
         <desc cnt="0" value="Pre-process DMS prescribed data into required ResSim-specific records" />
       </Description>
-      <LastComputeTime Date="7 February 2024, 06:13:09" />
+      <LastComputeTime Date="7 February 2024, 06:13" />
     </ModelAlternative9>
     <ModelAlternative10 Program="ResSim" Name="RSSacTrnRv" File="rss/RSSacTrnRv.ralt">
       <Description />
-      <LastComputeTime Date="7 February 2024, 06:16:08" />
+      <LastComputeTime Date="7 February 2024, 06:16" />
     </ModelAlternative10>
   </ModelAlternatives>
-  <SkipModelAltCompute>
-    <SkipModelAlt>Scripting-OutputLink_W2-Trinity-W2-Lewiston_SacTrn</SkipModelAlt>
-    <SkipModelAlt>CeQualW2-W2 Whiskeytown Prescribed</SkipModelAlt>
-    <SkipModelAlt>Scripting-OutputLink_W2-Whiskeytown-Downstream_SacTrn</SkipModelAlt>
-    <SkipModelAlt>CeQualW2-W2 Trinity Prescribed</SkipModelAlt>
-    <SkipModelAlt>CeQualW2-W2 Lewiston Prescribed</SkipModelAlt>
-    <SkipModelAlt>CeQualW2-W2 Shasta Prescribed</SkipModelAlt>
-    <SkipModelAlt>CeQualW2-W2 Keswick Prescribed</SkipModelAlt>
-    <SkipModelAlt>Scripting-OutputLink_W2-Lewiston-Downstream_SacTrn</SkipModelAlt>
-  </SkipModelAltCompute>
   <TimeWindowManager Class="hec2.plugin.timewindow.TimeWindowManagerImpl" />
 </WatSimulation>
 
