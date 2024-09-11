@@ -11,19 +11,12 @@ from hec.script import MessageBox
 
 import usbr.wat.plugins.actionpanel.model.forecast as fc
 
-import java.lang
-import java.io.File
-import java.io.FileInputStream
-from org.apache.poi.xssf.usermodel import XSSFWorkbook
-from org.apache.poi.hssf.usermodel import HSSFWorkbook
-from org.apache.poi.ss import usermodel as SSUsermodel
-
 sys.path.append(os.path.join(Project.getCurrentProject().getWorkspacePath(), "forecast", "scripts"))
 
 import CVP_ops_tools as CVP
 reload(CVP)
 
-DEBUG = False
+DEBUG = True
 
 '''Accepts parameters for WTMP forecast runs to form boundary condition data sets.'''
 def build_BC_data_sets(AP_start_time, AP_end_time, BC_F_part, BC_output_DSS_filename, ops_file_name, DSS_map_filename,
@@ -83,12 +76,11 @@ def build_BC_data_sets(AP_start_time, AP_end_time, BC_F_part, BC_output_DSS_file
 	print "Flow pattern config file: %s"%flow_pattern_config_filename
 	print "Boundary Condition output DSS file: %s"%BC_output_DSS_filename
 	print "Met data output DSS file: %s"%met_output_DSS_filename
-
+	print "Location/Path map file: %s"%DSS_map_filename
 
 	if AP_start_time.month() < 10:
 		target_year = AP_start_time.year()
 	else:
-
 		target_year = AP_end_time.year()
 
 	print "\nPreparing Meteorological Data..."
@@ -264,7 +256,6 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	print "  Forecast time window start: %s"%(start_time.dateAndTime(4))
 	print "  Forecast time window end: %s"%(end_time.dateAndTime(4))
 
-
 	forecast_locations = ["Trinity/Clair Engle", "Whiskeytown", "Shasta", "Oroville", "Folsom", "New Melones", " SAN LUIS/O'NEILL", "DELTA"]
 	active_locations = ["Trinity/Clair Engle", "Whiskeytown", "Shasta"]
 
@@ -272,16 +263,32 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 
 	if ops_file_name.endswith(".xls") or ops_file_name.endswith(".xlsx"):
 		try:
-			ops_data = import_CVP_Ops_xls(ops_file_name, forecast_locations)
+			ops_data = CVP.import_CVP_Ops_xls(ops_file_name, forecast_locations)
 		except Exception as e:
 			print "Failed to read operations file:%s"%ops_file_name
 			print "\t%s"%str(e)
 			return None
 	else:
-		ops_data = import_CVP_Ops_csv(ops_file_name, forecast_locations)
-	if DEBUG:
-		for key in ops_data.keys():
+		ops_data = CVP.import_CVP_Ops_csv(ops_file_name, forecast_locations)
+
+	profile_date = None
+
+	for key in ops_data.keys():
+		if DEBUG:
 			print "ops_data key: %s"%(key)
+		if ops_data[key][1].strip().upper().startswith("PROFILEDATE"):
+			profile_date = ops_data[key][1].split(':')[1].strip()
+			del ops_data[key][1]
+
+	if profile_date:
+		try:
+			date_parts = profile_date.split('-', 2)
+			profile_date = "%s%s20%s"%(date_parts[0],date_parts[1],date_parts[2])
+		except Exception as e:
+			print "Failed to read profile date from string:%s"%profile_date
+			print "\t%s"%str(e)
+			return None
+		print "Profile date: %s"%profile_date
 
 	shasta_ts_list = []
 	shasta_calendar = ops_data["Shasta"][0].split(',')
@@ -293,7 +300,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		data_year = target_year
 		try:
 			early_val = float(line.split(',')[start_index - 1].strip())
-			data_month = CVP.month_TLA[CVP.last_month(CVP.month_index(start_month))]
+			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(start_month))]
 			if data_month == "DEC":
 				data_year -= 1
 		except:
@@ -303,7 +310,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		shasta_ts_list.append(CVP.make_ops_tsc("SHASTA", data_year, data_month, line, ops_label=ops_import_F_part))
 
 	whiskeytown_ts_list = []
-	whiskeytown_calendar = ops_data["Shasta"][0].split(',')
+	whiskeytown_calendar = ops_data["Whiskeytown"][0].split(',')
 	whiskeytown_start_index = int(whiskeytown_calendar[0])
 	whiskeytown_start_month = whiskeytown_calendar[start_index + 1].strip().upper()
 	if DEBUG: print "\n Whiskeytown start month: %s; Start index: %d"%(whiskeytown_start_month, whiskeytown_start_index)
@@ -312,7 +319,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		data_year = target_year
 		try:
 			early_val = float(line.split(',')[whiskeytown_start_index - 1].strip())
-			data_month = CVP.month_TLA[CVP.last_month(CVP.month_index(whiskeytown_start_month))]
+			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(whiskeytown_start_month))]
 			if data_month == "DEC":
 				data_year -= 1
 		except:
@@ -322,7 +329,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		whiskeytown_ts_list.append(CVP.make_ops_tsc("Whiskeytown", data_year, data_month, line, ops_label=ops_import_F_part))
 
 	trinity_ts_list = []
-	trinity_calendar = ops_data["Shasta"][0].split(',')
+	trinity_calendar = ops_data["Trinity/Clair Engle"][0].split(',')
 	trinity_start_index = int(trinity_calendar[0])
 	trinity_start_month = trinity_calendar[start_index + 1].strip().upper()
 	if DEBUG: print "\n Trinity start month: %s; Start index: %d"%(trinity_start_month, trinity_start_index)
@@ -333,7 +340,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			if len(line.split(',')[0]) ==0:
 				continue
 			early_val = float(line.split(',')[trinity_start_index - 1].strip())
-			data_month = CVP.month_TLA[CVP.last_month(CVP.month_index(trinity_start_month))]
+			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(trinity_start_month))]
 			if data_month == "DEC":
 				data_year -= 1
 		except:
@@ -395,14 +402,22 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 
 	tsm_list = []
 	balance_list = []
-
+	ops_start_date = HecTime()
+	ops_end_date = HecTime()
+	days_in_first_month = None
+	if profile_date:
+		ops_start_date.set(profile_date, "2400")
+		days_in_first_month = 1 + CVP.get_days_in_month(CVP.month_index(start_month), ops_start_date.year()) - ops_start_date.day()
+	else:
+		ops_start_date.set("01%s%d"%(start_month, target_year), "2400")
+	ops_end_date.set(trinity_ts_list[0].getHecTime(trinity_ts_list[0].numberValues - 1))
 	########################
 	# Trinity-Clair Engle and Lewiston
 	# data from CVP spreadsheet
 	########################
 	print "TS Location = %s"%(trinity_ts_list[0].location.upper())
 	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1DAY", "0M", 0.0)
 	tsmath_acc_dep.setUnits("CFS")
@@ -413,7 +428,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
 	tsmath_acc_dep.setVersion(BC_F_part)
 	tsmath_bal_trnty = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1MONTH", "0M", 0.0)
 	tsmath_bal_trnty.setUnits("AC-FT")
@@ -435,7 +450,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			print "reading pattern from file: " + pattern_DSS_file_name
 			print "\tDSS path:" + trinity_pattern_path
 			tsmath_pattern = patternDSS.read(trinity_pattern_path)
-			tsmath_trinity_inflow_daily = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
+			tsmath_trinity_inflow_daily = CVP.weight_transform_monthly_to_daily(
+				tsmath_flow_monthly, tsmath_pattern, start_day_count=days_in_first_month)
 			tsmath_trinity_inflow_daily.setPathname(ts.fullName)
 			tsmath_trinity_inflow_daily.setWatershed("TRINITY RIVER")
 			tsmath_trinity_inflow_daily.setLocation("TRINITY LAKE")
@@ -461,12 +477,16 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_evap_monthly)
 			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsmath_evap_monthly)
 			tsmath_acc_dep = tsmath_acc_dep.subtract(
-				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
+				CVP.uniform_transform_monthly_to_daily(
+				tsmath_evap_monthly, start_day_count=days_in_first_month))
+			tsm_list.append(CVP.uniform_transform_monthly_to_daily(
+				tsmath_evap_monthly, start_day_count=days_in_first_month))
 		elif ts.parameter.upper() == "TOTAL RELEASE":
 			tsmath_trinity_release_monthly = tsm
 			tsmath_trinity_release_monthly.setParameterPart("VOLUME-RELEASE")
 			tsm_list.append(tsmath_trinity_release_monthly)
-			tsmath_trinity_release = CVP.uniform_transform_monthly_to_hourly(tsmath_trinity_release_monthly)
+			tsmath_trinity_release = CVP.uniform_transform_monthly_to_hourly(
+				tsmath_trinity_release_monthly, start_day_count=days_in_first_month)
 			tsmath_trinity_release.setWatershed("TRINITY RIVER")
 			tsmath_trinity_release.setLocation("TRINITY LAKE")
 			tsmath_trinity_release.setParameterPart("FLOW-RELEASE")
@@ -484,7 +504,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_lewiston_release_monthly.setParameterPart("VOLUME-RIVER RELEASE")
 			tsm_list.append(tsmath_lewiston_release_monthly)
 			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsmath_lewiston_release_monthly)
-			tsmath_lewiston_release = CVP.uniform_transform_monthly_to_daily(tsmath_lewiston_release_monthly)
+			tsmath_lewiston_release = CVP.uniform_transform_monthly_to_daily(
+				tsmath_lewiston_release_monthly, start_day_count=days_in_first_month)
 			tsmath_lewiston_release.setWatershed("TRINITY RIVER")
 			tsmath_lewiston_release.setLocation("LEWISTON RESERVOIR")
 			tsmath_lewiston_release.setParameterPart("FLOW-RIVER RELEASE")
@@ -498,7 +519,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_carr_release_monthly.setParameterPart("VOLUME-CLEAR CREEK DIVERSION")
 			tsm_list.append(tsmath_carr_release_monthly)
 			tsmath_bal_trnty = tsmath_bal_trnty.subtract(tsmath_carr_release_monthly)
-			tsmath_carr_release = CVP.uniform_transform_monthly_to_hourly(tsm)
+			tsmath_carr_release = CVP.uniform_transform_monthly_to_hourly(
+				tsm, start_day_count=days_in_first_month)
 			tsmath_carr_release.setWatershed("CLEAR CREEK")
 			tsmath_carr_release.setLocation("CARR POWERHOUSE")
 			tsmath_carr_release.setParameterPart("FLOW-RELEASE")
@@ -507,6 +529,43 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_carr_release)
 		else:
 			tsm_list.append(tsm)
+
+	# Trinity storage changes due to:
+	#	In:
+	#		Trinity inflow : tsmath_trinity_inflow_daily
+	#	Out:
+	#		Trinity dam releases: tsmath_release_daily
+	#		Net evaporation, leakage, other: tsmath_acc_dep
+
+	tsmath_storage_daily = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(ops_start_date.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1DAY", "0M", 0.0)
+	tsmath_storage_daily.setUnits("AC-FT")
+	tsmath_storage_daily.setType("INST-VAL")
+	tsmath_storage_daily.setTimeInterval("1DAY")
+	tsmath_storage_daily.setWatershed("TRINITY RIVER")
+	tsmath_storage_daily.setLocation("TRINITY LAKE")
+	tsmath_storage_daily.setParameterPart("STORAGE-CVP")
+	tsmath_storage_daily.setVersion(BC_F_part)
+	tsmath_storage_daily.getContainer().values[0] = tsmath_storage_monthly.getContainer().values[0]
+	tsmath_release_daily = CVP.uniform_transform_monthly_to_daily(
+		tsmath_trinity_release_monthly, start_day_count=days_in_first_month)
+
+	j = 1
+	search_time = HecTime()
+	for i in range(1, len(tsmath_storage_daily.getContainer().values)):
+		if tsmath_storage_daily.getContainer().times[i] >= tsmath_storage_monthly.getContainer().times[j]:
+			tsmath_storage_daily.getContainer().values[i] = tsmath_storage_monthly.getContainer().values[j]
+			j += 1
+		else:
+			search_time.set(tsmath_storage_daily.getContainer().times[i])
+			tsmath_storage_daily.getContainer().values[i] = (
+				tsmath_storage_daily.getContainer().values[i-1] + 1.98347*(
+				tsmath_trinity_inflow_daily.getContainer().getValue(search_time)
+				- tsmath_release_daily.getContainer().getValue(search_time)
+				+ tsmath_acc_dep.getContainer().getValue(search_time)))
+	tsm_list.append(tsmath_storage_daily)
 	tsm_list.append(tsmath_acc_dep)
 	tsm_list.append(tsmath_bal_trnty)
 	balance_list.append(tsmath_bal_trnty)
@@ -568,7 +627,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	########################
 	print "TS Location = %s"%(whiskeytown_ts_list[0].location.upper())
 	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1DAY", "0M", 0.0)
 	tsmath_acc_dep.setUnits("CFS")
@@ -579,7 +638,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
 	tsmath_acc_dep.setVersion(BC_F_part)
 	tsmath_bal_whsky = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1MONTH", "0M", 0.0)
 	tsmath_bal_whsky.setUnits("AC-FT")
@@ -602,7 +661,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			print "reading pattern from file: " + pattern_DSS_file_name
 			print "\t" + whiskeytown_pattern_path
 			tsmath_pattern = patternDSS.read(whiskeytown_pattern_path)
-			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
+			tsmath_weighted = CVP.weight_transform_monthly_to_daily(
+				tsmath_flow_monthly, tsmath_pattern, start_day_count=days_in_first_month)
 			tsmath_weighted.setPathname(ts.fullName)
 			tsmath_weighted.setTimeInterval("1DAY")
 			tsmath_weighted.setParameterPart("FLOW-IN")
@@ -624,7 +684,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_sp_cr_monthly = tsm
 			tsm_list.append(tsmath_sp_cr_monthly)
 			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsmath_sp_cr_monthly)
-			tsmath_sp_cr = CVP.uniform_transform_monthly_to_hourly(tsm)
+			tsmath_sp_cr = CVP.uniform_transform_monthly_to_hourly(
+				tsm, start_day_count=days_in_first_month)
 			tsmath_sp_cr.setPathname(ts.fullName)
 			tsmath_sp_cr.setLocation("SPRING CREEK")
 			tsmath_sp_cr.setTimeInterval("1HOUR")
@@ -637,13 +698,15 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_evap_monthly)
 			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsmath_evap_monthly)
 			tsmath_acc_dep = tsmath_acc_dep.subtract(
-				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
+				CVP.uniform_transform_monthly_to_daily(
+				tsmath_evap_monthly, start_day_count=days_in_first_month))
 		elif "CLEAR CREEK" in ts.parameter.upper() and "TAF" in ts.parameter.upper():
 			tsmath_release_monthly = tsm
 			tsmath_release_monthly.setLocation("WHISKEYTOWN DAM")
 			tsm_list.append(tsmath_release_monthly)
 			tsmath_bal_whsky = tsmath_bal_whsky.subtract(tsmath_release_monthly)
-			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
+			tsmath_release = CVP.uniform_transform_monthly_to_hourly(
+				tsmath_release_monthly, start_day_count=days_in_first_month)
 			tsmath_release.setPathname(tsmath_release_monthly.getContainer().fullName)
 			tsmath_release.setLocation("WHISKEYTOWN DAM")
 			tsmath_release.setTimeInterval("1HOUR")
@@ -652,6 +715,52 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_release)
 		else:
 			tsm_list.append(tsm)
+
+	# Whiskeytown storage changes due to:
+	#	In:
+	#		Clear Creek inflow: tsmath_weighted
+	#		Carr Powerhouse releases: tsmath_carr_release_daily
+	#	Out:
+	#		Whiskeytown dam releases: tsmath_release_daily
+	#		Spring Creek Tunnel releases: tsmath_sp_cr_daily
+	#		Net evaporation, leakage, other: tsmath_acc_dep
+
+	tsmath_storage_daily = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(ops_start_date.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1DAY", "0M", 0.0)
+	tsmath_storage_daily.setUnits("AC-FT")
+	tsmath_storage_daily.setType("INST-VAL")
+	tsmath_storage_daily.setTimeInterval("1DAY")
+	tsmath_storage_daily.setWatershed("CLEAR CREEK")
+	tsmath_storage_daily.setLocation("WHISKEYTOWN LAKE")
+	tsmath_storage_daily.setParameterPart("STORAGE-CVP")
+	tsmath_storage_daily.setVersion(BC_F_part)
+	tsmath_storage_daily.getContainer().values[0] = tsmath_storage_monthly.getContainer().values[0]
+	tsmath_release_daily = CVP.uniform_transform_monthly_to_daily(
+		tsmath_release_monthly, start_day_count=days_in_first_month)
+	tsmath_sp_cr_daily = CVP.uniform_transform_monthly_to_daily(
+		tsmath_sp_cr_monthly, start_day_count=days_in_first_month)
+	tsmath_carr_release_daily = CVP.uniform_transform_monthly_to_daily(
+		tsmath_carr_release_monthly, start_day_count=days_in_first_month)
+
+	j = 1
+	search_time = HecTime()
+	for i in range(1, len(tsmath_storage_daily.getContainer().values)):
+		if tsmath_storage_daily.getContainer().times[i] >= tsmath_storage_monthly.getContainer().times[j]:
+			tsmath_storage_daily.getContainer().values[i] = tsmath_storage_monthly.getContainer().values[j]
+			j += 1
+		else:
+			search_time.set(tsmath_storage_daily.getContainer().times[i])
+			tsmath_storage_daily.getContainer().values[i] = (
+				tsmath_storage_daily.getContainer().values[i-1] + 1.98347*(
+				tsmath_weighted.getContainer().getValue(search_time)
+				+ tsmath_carr_release_daily.getContainer().getValue(search_time)
+				- tsmath_release_daily.getContainer().getValue(search_time)
+				- tsmath_sp_cr_daily.getContainer().getValue(search_time)
+				+ tsmath_acc_dep.getContainer().getValue(search_time)))
+	tsm_list.append(tsmath_storage_daily)
+
 	tsm_list.append(tsmath_acc_dep)
 	tsm_list.append(tsmath_bal_whsky)
 	balance_list.append(tsmath_bal_whsky)
@@ -662,7 +771,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	########################
 	print "TS Location = %s"%(shasta_ts_list[0].location.upper())
 	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1DAY", "0M", 0.0)
 	tsmath_acc_dep.setUnits("CFS")
@@ -673,7 +782,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_acc_dep.setParameterPart("FLOW-ACC-DEP")
 	tsmath_acc_dep.setVersion(BC_F_part)
 	tsmath_bal_shasta = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1MONTH", "0M", 0.0)
 	tsmath_bal_shasta.setUnits("AC-FT")
@@ -695,7 +804,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			print "\treading pattern from file: " + pattern_DSS_file_name
 			print "\t\t" + shasta_pattern_path
 			tsmath_pattern = patternDSS.read(shasta_pattern_path)
-			tsmath_weighted = CVP.weight_transform_monthly_to_daily(tsmath_flow_monthly, tsmath_pattern)
+			tsmath_weighted = CVP.weight_transform_monthly_to_daily(
+				tsmath_flow_monthly, tsmath_pattern, start_day_count=days_in_first_month)
 			tsmath_weighted.setPathname(ts.fullName)
 			tsmath_weighted.setTimeInterval("1DAY")
 			tsmath_weighted.setParameterPart("FLOW-IN")
@@ -719,12 +829,14 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_evap_monthly)
 			tsmath_bal_shasta = tsmath_bal_shasta.subtract(tsmath_evap_monthly)
 			tsmath_acc_dep = tsmath_acc_dep.subtract(
-				CVP.uniform_transform_monthly_to_daily(tsmath_evap_monthly))
+				CVP.uniform_transform_monthly_to_daily(
+					tsmath_evap_monthly, start_day_count=days_in_first_month))
 		elif ts.parameter.upper() == "TOTAL SHASTA RELEASE":
 			tsmath_release_monthly = tsm
 			tsm_list.append(tsmath_release_monthly)
 			tsmath_bal_shasta = tsmath_bal_shasta.subtract(tsmath_release_monthly)
-			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
+			tsmath_release = CVP.uniform_transform_monthly_to_hourly(
+				tsmath_release_monthly, start_day_count=days_in_first_month)
 			tsmath_release.setPathname(ts.fullName)
 			tsmath_release.setTimeInterval("1HOUR")
 			tsmath_release.setParameterPart("FLOW-RELEASE")
@@ -733,7 +845,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		elif ts.parameter.upper() == "FLOW-KESWICK-CFS":
 			tsmath_release_monthly = tsm
 			tsm_list.append(tsmath_release_monthly)
-			tsmath_release = CVP.uniform_transform_monthly_to_hourly(tsmath_release_monthly)
+			tsmath_release = CVP.uniform_transform_monthly_to_hourly(
+				tsmath_release_monthly, start_day_count=days_in_first_month)
 			tsmath_release.setPathname(ts.fullName)
 			tsmath_release.setTimeInterval("1HOUR")
 			tsmath_release.setParameterPart("FLOW-RELEASE-KESWICK-CFS")
@@ -741,6 +854,47 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsm_list.append(tsmath_release)
 		else:
 			tsm_list.append(tsm)
+
+	# Shasta storage changes due to:
+	#	In:
+	#		Shasta inflow: tsmath_weighted
+	#		Carr Powerhouse releases: tsmath_carr_release_daily
+	#	Out:
+	#		Shasta dam releases: tsmath_release_daily
+	#		Net evaporation, leakage, other: tsmath_acc_dep
+
+	tsmath_storage_daily = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(ops_start_date.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1DAY", "0M", 0.0)
+	tsmath_storage_daily.setUnits("AC-FT")
+	tsmath_storage_daily.setType("INST-VAL")
+	tsmath_storage_daily.setTimeInterval("1DAY")
+	tsmath_storage_daily.setWatershed("SACRAMENTO RIVER")
+	tsmath_storage_daily.setLocation("SHASTA LAKE")
+	tsmath_storage_daily.setParameterPart("STORAGE-CVP")
+	tsmath_storage_daily.setVersion(BC_F_part)
+	tsmath_storage_daily.getContainer().values[0] = tsmath_storage_monthly.getContainer().values[0]
+	tsmath_release_daily = CVP.uniform_transform_monthly_to_daily(
+		tsmath_release_monthly, start_day_count=days_in_first_month)
+
+	j = 1
+	search_time = HecTime()
+	for i in range(1, len(tsmath_storage_daily.getContainer().values)):
+		if tsmath_storage_daily.getContainer().times[i] >= tsmath_storage_monthly.getContainer().times[j]:
+			tsmath_storage_daily.getContainer().values[i] = tsmath_storage_monthly.getContainer().values[j]
+			j += 1
+		else:
+			search_time.set(tsmath_storage_daily.getContainer().times[i])
+			tsmath_storage_daily.getContainer().values[i] = (
+				tsmath_storage_daily.getContainer().values[i-1] + 1.98347*(
+				tsmath_weighted.getContainer().getValue(search_time)
+				+ tsmath_carr_release_daily.getContainer().getValue(search_time)
+				- tsmath_release_daily.getContainer().getValue(search_time)
+				- tsmath_sp_cr_daily.getContainer().getValue(search_time)
+				+ tsmath_acc_dep.getContainer().getValue(search_time)))
+	tsm_list.append(tsmath_storage_daily)
+
 
 	tsm_list.append(tsmath_acc_dep)
 	tsm_list.append(tsmath_bal_shasta)
@@ -795,7 +949,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		shift_path = token[-1].strip().split('/')
 		shift_path[6] = BC_F_part
 		tsmath_shift.getContainer().fullName = '/'.join(shift_path)
-		tsm_list.append(CVP.uniform_transform_monthly_to_daily(tsmath_shift))
+		tsm_list.append(CVP.uniform_transform_monthly_to_daily(
+			tsmath_shift, start_day_count=days_in_first_month))
 	for fname in trib_DSS_files:
 		trib_DSS_files[fname].done()
 
@@ -831,7 +986,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	########################
 
 	tsmath_zero_flow_day = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1DAY", "0M", 0.0)
 	tsmath_zero_flow_day.setUnits("CFS")
@@ -843,7 +998,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsm_list.append(tsmath_zero_flow_day)
 
 	tsmath_zero_flow_hour = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1HOUR", "0M", 0.0)
 	tsmath_zero_flow_hour.setUnits("CFS")
@@ -855,7 +1010,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsm_list.append(tsmath_zero_flow_hour)
 
 	tsmath_zero_gates_hour = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1HOUR", "0M", 0.0)
 	tsmath_zero_gates_hour.setUnits("Count")
@@ -867,7 +1022,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsm_list.append(tsmath_zero_gates_hour)
 
 	tsmath_one_gate_hour = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1HOUR", "0M", 1.0)
 	tsmath_one_gate_hour.setUnits("Count")
@@ -879,7 +1034,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsm_list.append(tsmath_one_gate_hour)
 
 	tsmath_five_gates_hour = tsmath.generateRegularIntervalTimeSeries(
-		"%s 0000"%(start_time.date(4)),
+		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
 		"1HOUR", "0M", 5.0)
 	tsmath_five_gates_hour.setUnits("Count")
@@ -904,164 +1059,3 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 
 	return rv_lines
 
-
-'''
-Imports a CVP ops spreadsheet saved as comma-separated values
-Returns a dictionary with keys that match the list of forecast locations in the second argrument
-Dictionary values are lists of CSV lines that "belong" to the location named in the key
-'''
-def import_CVP_Ops_csv(ops_fname, forecast_locations):
-	current_location = None
-	start_month = None
-	first_date_index = -1
-	location_count = 0
-	ts_count = 0
-	data_lines = []
-	rv_dictionary = {}
-	calendar = ""
-
-	with open(ops_fname) as infile:
-		num_lines = 0; num_data_lines = 0
-		for line in infile:
-			num_lines += 1
-			line_contains_months = False
-			token = line.split(',')
-			# figure out what columns our data start in, what month we're looking at, and ignore blank lines
-			# the sample spreadsheet had an unused summary block starting in column AA, which I'm ignoring
-			num_t = 0; num_val = 0
-			for t in token[:26]:
-				if len(t.strip()) > 0:
-					num_val += 1
-					if not line_contains_months and t.strip().upper() in CVP.month_TLA:
-						line_contains_months = True
-						first_date_index = num_t
-						start_month = t.strip().upper()
-						if DEBUG: print "Calendar line %s: "%(line)
-						if DEBUG: print "Found \"%s\" in column %d"%(t.strip(), num_t + 1)
-						calendar = line
-				num_t += 1
-			if num_val == 0:
-				continue # don't include this line in the result
-
-			if token[0].strip() in forecast_locations and len(calendar) > 0:
-				if location_count > 0:
-					rv_dictionary[current_location] = data_lines
-					data_lines = []
-				current_location = token[0].strip()
-				print "setting current location to %s"%(current_location)
-				data_lines.append("%d,%s"%(first_date_index, calendar))
-				location_count += 1
-				calendar = ""
-				continue
-
-			if not line_contains_months:
-				data_lines.append(line)
-				ts_count += 1
-
-	rv_dictionary[current_location] = data_lines #
-	print "Found %d forecast locations and %d time series in ops file \n\t%s."%(
-		location_count, ts_count, ops_fname)
-	return rv_dictionary
-
-
-def monthFromDateStr(str):
-	month_TLA = ["NM", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-	for token in str.split():
-		if token.strip().upper() in month_TLA:
-			return token.strip().upper()
-	return None
-
-'''
-Imports a CVP ops spreadsheet saved as XLS or XLSX format
-Returns a dictionary with keys that match the list of forecast locations in the second argrument
-Dictionary values are lists of CSV lines that "belong" to the location named in the key
-
-Excel formats are decoded by the Apache POI library. See import block at the top of the
-file. The instructional web sites below helped with interpreting values from formula cells
-https://www.baeldung.com/java-apache-poi-cell-string-value
-https://www.baeldung.com/java-read-dates-excel
-
-This script expects to use version 3.8 of the POI library. Newer versions may have API changes.
-In particular, look out for SSUsermodel.Cell.CELL_TYPE_XXX, which is a constant in v 3.8, and part
-of an enumeration in v 4.X
-'''
-def import_CVP_Ops_xls(ops_fname, forecast_locations, sheet_number=0):
-	current_location = None
-	start_month = None
-	first_date_index = -1
-	location_count = 0
-	ts_count = 0
-	data_lines = []
-	rv_dictionary = {}
-	calendar = ""
-
-	try:
-		if ops_fname.endswith(".xlsx"):
-			workbook = XSSFWorkbook(
-				java.io.FileInputStream(java.io.File(ops_fname)))
-		if ops_fname.endswith(".xls"):
-			workbook = HSSFWorkbook(
-				java.io.FileInputStream(java.io.File(ops_fname)))
-	except Exception as e:
-		raise e
-
-	sheet = workbook.getSheetAt(sheet_number)
-	formatter = SSUsermodel.DataFormatter(True)
-	num_lines = 0; num_data_lines = 0
-	for row in sheet.iterator():
-		num_lines += 1
-		line_contains_months = False
-		token = []
-		for cell in row.cellIterator():
-			# This business -- Cell.CELL_TYPE_XXX -- has been revised a couple of times
-			# between POI version 3.8 and 4.x. Watch out it doesn't bite us
-			if cell.getCellType() == SSUsermodel.Cell.CELL_TYPE_FORMULA:
-				cachedType = cell.getCachedFormulaResultType()
-				# print str(cachedType) + " : " + formatter.formatCellValue(cell)
-				if cachedType == SSUsermodel.Cell.CELL_TYPE_NUMERIC:
-					if SSUsermodel.DateUtil.isCellDateFormatted(cell):
-						token.append(monthFromDateStr(str(cell.getDateCellValue())))
-					else:
-						token.append(str(cell.getNumericCellValue()))
-				if cachedType == SSUsermodel.Cell.CELL_TYPE_STRING:
-					token.append(str(cell.getStringCellValue()))
-			else:
-				token.append(formatter.formatCellValue(cell))
-		# figure out what columns our data start in, what month we're looking at, and ignore blank lines
-		num_t = 0; num_val = 0
-		for t in token:
-			if len(t.strip()) > 0:
-				num_val += 1
-				# if there's a month label in the first 6 cells of the row, the row is a calendar line
-				if ((not line_contains_months) and
-					num_t < 6 and
-					t.strip().upper() in CVP.month_TLA):
-					line_contains_months = True
-					first_date_index = num_t
-					start_month = t.strip().upper()
-					if DEBUG: print "Calendar line %d: "%(num_lines)
-					if DEBUG: print "Found \"%s\" in column %d"%(t.strip(), num_t + 1)
-					calendar = ','.join(token)
-			num_t += 1
-		if num_val == 0:
-			continue # don't include this row in the result
-
-		if token[0].strip() in forecast_locations and len(calendar) > 0:
-			if location_count > 0:
-				rv_dictionary[current_location] = data_lines
-				data_lines = []
-			current_location = token[0].strip()
-			if DEBUG: print "setting current location to %s"%(current_location)
-			data_lines.append("%d,%s"%(first_date_index, calendar))
-			location_count += 1
-			calendar = ""
-			continue
-
-		if not line_contains_months and num_val > 10:
-			data_lines.append(','.join(token))
-			ts_count += 1
-
-	rv_dictionary[current_location] = data_lines #
-	print "Found %d forecast locations and %d time series in ops file \n\t%s."%(
-		location_count, ts_count, ops_fname)
-	return rv_dictionary
