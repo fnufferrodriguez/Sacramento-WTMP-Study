@@ -60,8 +60,8 @@
         <DataLocation Name="Branch 1 Inflow" Class="hec2.model.DataLocation" DssPath="/W2:qin_br1_16.npt/Branch 1 Inflow/Flow-QIN//1HOUR/alt:ap:CeQualW2-Branch 1 Inflow/" ComputeType="Computed" Model="DSS File" Parameter="Flow-QIN" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Shasta Prescribed" Program="CeQualW2" />
           <DownStreamLocation>
-            <DataLocation Name="Pit R. Branch-Flow" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/Pit R. Branch-Flow/Flow//1Day/Shifted-12H/" ComputeType="Computed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
+            <DataLocation Name="Pit R. Branch-Flow" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/Pit R. Branch-Flow/Flow//1Day/230.6.125.1.1/" ComputeType="Computed" Parameter="Flow" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
@@ -188,7 +188,7 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="Branch 1 Distr Trib" Class="hec2.model.DataLocation" DssPath="/W2:Qdt_br1_16_upd6.npt/Branch 1 Distr Trib/Flow-QDT//1HOUR/alt:ap:CeQualW2-Branch 1 Distr Trib/" ComputeType="Computed" Parameter="Flow-QDT" OutOfDate="false" PrevModelIndex="0">
+        <DataLocation Name="Branch 1 Distr Trib" Class="hec2.model.DataLocation" DssPath="/W2:Qdt_br1_16_upd6.npt/Branch 1 Distr Trib/Flow-QDT//1HOUR/alt:ap:CeQualW2-Branch 1 Distr Trib/" ComputeType="Computed" Model="" Parameter="Flow-QDT" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="W2 Shasta Prescribed" Program="CeQualW2" />
         </DataLocation>
         <DataLocation Name="Branch 1 Struct Withdrawal 5" Class="hec2.model.DataLocation" DssPath="/W2:Qout_16_051822.npt/Branch 1 Struct Withdrawal 5/Flow-QOT//1HOUR/alt:ap:CeQualW2-Branch 1 Struct Withdrawal 5/" ComputeType="Computed" Model="DSS File" Parameter="Flow-QOT" OutOfDate="false" PrevModelIndex="0">
