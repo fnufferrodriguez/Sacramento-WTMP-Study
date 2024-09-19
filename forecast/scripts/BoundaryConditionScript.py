@@ -125,7 +125,7 @@ position_analysis_config_filename, met_output_DSS_filename, met_F_part):
 
 	rv_lines = []
 	met_config_str = ""
-	DSSout = hec.heclib.dss.HecDss.open(met_output_DSS_filename)
+	print "Met output DSS file: %s"%(met_output_DSS_filename)
 	met_config_lines = getConfigLines(position_analysis_config_filename)
 	for line in met_config_lines[1:]:
 		token = line.strip().split(',')
@@ -142,14 +142,22 @@ position_analysis_config_filename, met_output_DSS_filename, met_F_part):
 			continue
 		#source_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), token[0].strip('\\'))
 		source_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), token[2].strip().strip('\\'))
-		DSSsource = hec.heclib.dss.HecDss.open(source_DSS_file_name)
+		ts_read = hec.heclib.dss.HecTimeSeries()
+		ts_read.setDSSFileName(source_DSS_file_name)
 		if DEBUG: print "Reading %s from DSS file %s."%(token[3].strip(), source_DSS_file_name)
 		source_path_parts = token[3].strip().strip('/').split('/', 5)
 		source_path = '/'
 		for index in (0,1,2,4,5):
 			source_path += (source_path_parts[index] + '/')
 			if index == 2: source_path += '/'
-		tsmath_source = DSSsource.read(source_path)
+		tsc_source = tscont()
+		tsc_source.fullName = source_path
+		status = ts_read.read(tsc_source, False)
+		if status < 0:
+			print "Failed to read meteorologic time series %s \n\tfrom DSS file %s"%(source_path, source_DSS_file_name)
+			ts_read.done()
+			continue
+		tsmath_source = tsmath(tsc_source)
 		time_step_label = token[3].strip().split('/')[5]
 		if DEBUG:  print "\tTime series contains %d values."%(tsmath_source.getContainer().numberValues)
 		if DEBUG:  print "\tShifting time series with shiftInTime(%s)."%("%dMo"%(diff_years*12))
@@ -183,8 +191,11 @@ position_analysis_config_filename, met_output_DSS_filename, met_F_part):
 		tsmath_shift.setUnits(tsmath_source.getUnits())
 		tsmath_shift.setPathname(tsmath_source.getContainer().fullName)
 		tsmath_shift.setVersion(met_F_part)
-		DSSout.write(tsmath_shift)
-		DSSsource.done()
+		ts_write = hec.heclib.dss.HecTimeSeries()
+		ts_write.setDSSFileName(met_output_DSS_filename)
+		ts_write.write(tsmath_shift.getData())
+		ts_write.done()
+		ts_read.done()
 
 		#met_loc, met_param = token[1].strip().split('<', 1)
 		met_loc = token[0]
@@ -290,7 +301,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			return None
 		print "Profile date: %s"%profile_date
 
-	shasta_ts_list = []
+	shasta_tsc_list = []
 	shasta_calendar = ops_data["Shasta"][0].split(',')
 	start_index = int(shasta_calendar[0])
 	start_month = shasta_calendar[start_index + 1].strip().upper()
@@ -307,9 +318,9 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			pass
 		if DEBUG: print "Start_index = %d\nData_Month = %s"%(start_index, data_month)
 		if DEBUG: print "Passing line to CVP.make_ops_tsc: %s"%(line)
-		shasta_ts_list.append(CVP.make_ops_tsc("SHASTA", data_year, data_month, line, ops_label=ops_import_F_part))
+		shasta_tsc_list.append(CVP.make_ops_tsc("SHASTA", data_year, data_month, line, ops_label=ops_import_F_part))
 
-	whiskeytown_ts_list = []
+	whiskeytown_tsc_list = []
 	whiskeytown_calendar = ops_data["Whiskeytown"][0].split(',')
 	whiskeytown_start_index = int(whiskeytown_calendar[0])
 	whiskeytown_start_month = whiskeytown_calendar[start_index + 1].strip().upper()
@@ -326,9 +337,9 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			pass
 		if DEBUG: print "Start_index = %d\nData_Month = %s"%(start_index, data_month)
 		if DEBUG: print "Passing line to CVP.make_ops_tsc: %s"%(line)
-		whiskeytown_ts_list.append(CVP.make_ops_tsc("Whiskeytown", data_year, data_month, line, ops_label=ops_import_F_part))
+		whiskeytown_tsc_list.append(CVP.make_ops_tsc("Whiskeytown", data_year, data_month, line, ops_label=ops_import_F_part))
 
-	trinity_ts_list = []
+	trinity_tsc_list = []
 	trinity_calendar = ops_data["Trinity/Clair Engle"][0].split(',')
 	trinity_start_index = int(trinity_calendar[0])
 	trinity_start_month = trinity_calendar[start_index + 1].strip().upper()
@@ -347,9 +358,9 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			pass
 		if DEBUG: print "Start_index = %d\nData_Month = %s"%(start_index, data_month)
 		if DEBUG: print "Passing line to CVP.make_ops_tsc: %s"%(line)
-		trinity_ts_list.append(CVP.make_ops_tsc("Trinity/Clair Engle", data_year, data_month, line, ops_label=ops_import_F_part))
+		trinity_tsc_list.append(CVP.make_ops_tsc("Trinity/Clair Engle", data_year, data_month, line, ops_label=ops_import_F_part))
 
-	pattern_DSS_file_name = ""
+	shasta_pattern_DSS_file_name = whiskeytown_pattern_DSS_file_name = trinity_pattern_DSS_file_name =""
 	shasta_pattern_path = whiskeytown_pattern_path = trinity_pattern_path = None
 	flow_pattern_config_lines = getConfigLines(flow_pattern_config_filename)
 	#print "Flow Pattern config file contents:"
@@ -363,23 +374,26 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			print "File %s line \n\t \"%s\"\nis not a valid ID for a flow pattern DSS record."%(flow_pattern_config_filename,line)
 			continue
 		if line.split(',')[0].strip().upper() == "SHASTA":
-			pattern_DSS_file_name = line.split(',')[1].strip().strip('\\')
+			shasta_pattern_DSS_file_name = line.split(',')[1].strip().strip('\\')
 			shasta_pattern_path = line.split(',')[2].strip()
 		if line.split(',')[0].strip().upper() == "WHISKEYTOWN":
-			pattern_DSS_file_name = line.split(',')[1].strip().strip('\\')
+			whiskeytown_pattern_DSS_file_name = line.split(',')[1].strip().strip('\\')
 			whiskeytown_pattern_path = line.split(',')[2].strip()
 		if line.split(',')[0].strip().upper() == "TRINITY-CLAIR ENGLE":
-			pattern_DSS_file_name = line.split(',')[1].strip().strip('\\')
+			trinity_pattern_DSS_file_name = line.split(',')[1].strip().strip('\\')
 			trinity_pattern_path = line.split(',')[2].strip()
-	if (len(pattern_DSS_file_name) == 0 or len(shasta_pattern_path) == 0 or
+	if (len(shasta_pattern_DSS_file_name) == 0 or len(whiskeytown_pattern_DSS_file_name) == 0 or
+		len(trinity_pattern_DSS_file_name) == 0 or len(shasta_pattern_path) == 0 or
 		len(whiskeytown_pattern_path) == 0 or len(trinity_pattern_path) == 0):
 		print "Error reading flow pattern configuration file\n\t%s"%(flow_pattern_config_filename)
 		print "Pattern DSS file or path not found."
 		return None
-	if not os.path.isabs(pattern_DSS_file_name):
-		pattern_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), pattern_DSS_file_name)
-		# print "Flow pattern for Shasta in \n\t%s"%(pattern_DSS_file_name)
-		# print "\t" + shasta_pattern_path
+	if not os.path.isabs(shasta_pattern_DSS_file_name):
+		shasta_pattern_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), shasta_pattern_DSS_file_name)
+	if not os.path.isabs(whiskeytown_pattern_DSS_file_name):
+		whiskeytown_pattern_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), whiskeytown_pattern_DSS_file_name)
+	if not os.path.isabs(trinity_pattern_DSS_file_name):
+		trinity_pattern_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), trinity_pattern_DSS_file_name)
 
 	met_DSS_file_name = ""
 	airtemp_path = ""
@@ -396,10 +410,6 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	if not os.path.isabs(met_DSS_file_name):
 		met_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), met_DSS_file_name)
 
-	outDSS = hec.heclib.dss.HecDss.open(BC_output_DSS_filename)
-	patternDSS = hec.heclib.dss.HecDss.open(pattern_DSS_file_name)
-	temperatureDSS = hec.heclib.dss.HecDss.open(met_DSS_file_name)
-
 	tsm_list = []
 	balance_list = []
 	ops_start_date = HecTime()
@@ -410,12 +420,12 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		days_in_first_month = 1 + CVP.get_days_in_month(CVP.month_index(start_month), ops_start_date.year()) - ops_start_date.day()
 	else:
 		ops_start_date.set("01%s%d"%(start_month, target_year), "2400")
-	ops_end_date.set(trinity_ts_list[0].getHecTime(trinity_ts_list[0].numberValues - 1))
+	ops_end_date.set(trinity_tsc_list[0].getHecTime(trinity_tsc_list[0].numberValues - 1))
 	########################
 	# Trinity-Clair Engle and Lewiston
 	# data from CVP spreadsheet
 	########################
-	print "TS Location = %s"%(trinity_ts_list[0].location.upper())
+	print "TS Location = %s"%(trinity_tsc_list[0].location.upper())
 	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
 		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
@@ -438,7 +448,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_bal_trnty.setLocation("TRINITY LAKE")
 	tsmath_bal_trnty.setParameterPart("VOLUME-BALANCE")
 	tsmath_bal_trnty.setVersion(BC_F_part)
-	for ts in trinity_ts_list:
+	for ts in trinity_tsc_list:
 		print "\tTS Parameter = %s"%(ts.parameter.upper())
 		tsm = tsmath(ts)
 		tsm.setWatershed("TRINITY RIVER")
@@ -447,9 +457,19 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_flow_monthly = tsm
 			tsm_list.append(tsmath_flow_monthly)
 			tsmath_bal_trnty = tsmath_bal_trnty.add(tsmath_flow_monthly)
-			print "reading pattern from file: " + pattern_DSS_file_name
+			print "reading Trinity pattern from file: " + trinity_pattern_DSS_file_name
 			print "\tDSS path:" + trinity_pattern_path
-			tsmath_pattern = patternDSS.read(trinity_pattern_path)
+			ts_read = hec.heclib.dss.HecTimeSeries()
+			ts_read.setDSSFileName(trinity_pattern_DSS_file_name)
+			tsc_pattern = tscont()
+			tsc_pattern.fullName = trinity_pattern_path
+			status = ts_read.read(tsc_pattern, False)
+			if status < 0:
+				print "Failed to read pattern time series %s \n\tfrom DSS file %s"%(tsc_pattern.fullName, trinity_dss_file_name)
+				ts_read.done()
+				continue
+			tsmath_pattern = tsmath(tsc_pattern)
+			ts_read.done()
 			tsmath_trinity_inflow_daily = CVP.weight_transform_monthly_to_daily(
 				tsmath_flow_monthly, tsmath_pattern, start_day_count=days_in_first_month)
 			tsmath_trinity_inflow_daily.setPathname(ts.fullName)
@@ -607,15 +627,23 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	if not os.path.isabs(met_DSS_file_name):
 		met_DSS_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), met_DSS_file_name)
 
-	temperatureDSS = hec.heclib.dss.HecDss.open(met_DSS_file_name)
-
 	#River, Intercept (deg C), Flow Coef (cfs), Air Temp Coef (deg C), RMS Error (deg C)
 	tributary_temp_regression_coefficients = {
 		"EF TRINITY": (2.204979, -0.00208361, 0.65876114, 2.117),
 		"STUART FORK": (1.2766113, -0.00304511, 0.60274446, 1.9729857),
 		"SWIFT CR": (1.2773657, -0.00356459,  0.6329333, 2.0825596),
 		"TRINITY RIVER": (1.968627, -0.00075939, 0.6476875, 2.102819)}
-	tsmath_airtemp = temperatureDSS.read(airtemp_path)
+
+	ts_read = hec.heclib.dss.HecTimeSeries()
+	ts_read.setDSSFileName(met_DSS_file_name)
+	tsc_airtemp = tscont()
+	tsc_airtemp.fullName = airtemp_path
+	status = ts_read.read(tsc_airtemp, False)
+	if status < 0:
+		print "Failed to read pattern time series %s \n\tfrom DSS file %s"%(tsc_pattern.fullName, whiskeytown_pattern_DSS_file_name)
+		ts_read.done()
+	tsmath_airtemp = tsmath(tsc_airtemp)
+	ts_read.done()
 	for key in tributary_temp_regression_coefficients.keys():
 		tsm = CVP.evaluate_temp_regression(names_flows[key], tsmath_airtemp, tributary_temp_regression_coefficients[key])
 		tsm.setVersion(BC_F_part)
@@ -625,7 +653,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	# Whiskeytown and Clear Creek
 	# data from CVP spreadsheet
 	########################
-	print "TS Location = %s"%(whiskeytown_ts_list[0].location.upper())
+	print "TS Location = %s"%(whiskeytown_tsc_list[0].location.upper())
 	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
 		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
@@ -649,7 +677,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_bal_whsky.setParameterPart("VOLUME-BALANCE")
 	tsmath_bal_whsky.setVersion(BC_F_part)
 	tsmath_bal_whsky = tsmath_bal_whsky.add(tsmath_carr_release_monthly)
-	for ts in whiskeytown_ts_list:
+	for ts in whiskeytown_tsc_list:
 		print "\tTS Parameter = %s"%(ts.parameter.upper())
 		tsm = tsmath(ts)
 		tsm.setWatershed("CLEAR CREEK")
@@ -658,9 +686,19 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_flow_monthly = tsm
 			tsm_list.append(tsmath_flow_monthly)
 			tsmath_bal_whsky = tsmath_bal_whsky.add(tsmath_flow_monthly)
-			print "reading pattern from file: " + pattern_DSS_file_name
+			print "reading pattern from file: " + whiskeytown_pattern_DSS_file_name
 			print "\t" + whiskeytown_pattern_path
-			tsmath_pattern = patternDSS.read(whiskeytown_pattern_path)
+			ts_read = hec.heclib.dss.HecTimeSeries()
+			ts_read.setDSSFileName(whiskeytown_pattern_DSS_file_name)
+			tsc_pattern = tscont()
+			tsc_pattern.fullName = whiskeytown_pattern_path
+			status = ts_read.read(tsc_pattern, False)
+			if status < 0:
+				print "Failed to read pattern time series %s \n\tfrom DSS file %s"%(tsc_pattern.fullName, whiskeytown_pattern_DSS_file_name)
+				ts_read.done()
+				continue
+			tsmath_pattern = tsmath(tsc_pattern)
+			ts_read.done()
 			tsmath_weighted = CVP.weight_transform_monthly_to_daily(
 				tsmath_flow_monthly, tsmath_pattern, start_day_count=days_in_first_month)
 			tsmath_weighted.setPathname(ts.fullName)
@@ -769,7 +807,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	########################
 	# Shasta/Keswick & main-stem Sacramento data from CVP spreadsheet
 	########################
-	print "TS Location = %s"%(shasta_ts_list[0].location.upper())
+	print "TS Location = %s"%(shasta_tsc_list[0].location.upper())
 	tsmath_acc_dep = tsmath.generateRegularIntervalTimeSeries(
 		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),
@@ -792,7 +830,7 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsmath_bal_shasta.setLocation("SHASTA LAKE")
 	tsmath_bal_shasta.setParameterPart("VOLUME-BALANCE")
 	tsmath_bal_shasta.setVersion(BC_F_part)
-	for ts in shasta_ts_list:
+	for ts in shasta_tsc_list:
 		print "\tTS Parameter = %s"%(ts.parameter.upper())
 		tsm = tsmath(ts)
 		tsm.setWatershed("SACRAMENTO RIVER")
@@ -801,9 +839,19 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			tsmath_flow_monthly = tsm
 			tsm_list.append(tsmath_flow_monthly)
 			tsmath_bal_shasta = tsmath_bal_shasta.add(tsmath_flow_monthly)
-			print "\treading pattern from file: " + pattern_DSS_file_name
+			print "\treading pattern from file: " + shasta_pattern_DSS_file_name
 			print "\t\t" + shasta_pattern_path
-			tsmath_pattern = patternDSS.read(shasta_pattern_path)
+			ts_read = hec.heclib.dss.HecTimeSeries()
+			ts_read.setDSSFileName(shasta_pattern_DSS_file_name)
+			tsc_pattern = tscont()
+			tsc_pattern.fullName = shasta_pattern_path
+			status = ts_read.read(tsc_pattern, False)
+			if status < 0:
+				print "Failed to read pattern time series %s \n\tfrom DSS file %s"%(tsc_pattern.fullName, shasta_pattern_DSS_file_name)
+				ts_read.done()
+				continue
+			tsmath_pattern = tsmath(tsc_pattern)
+			ts_read.done()
 			tsmath_weighted = CVP.weight_transform_monthly_to_daily(
 				tsmath_flow_monthly, tsmath_pattern, start_day_count=days_in_first_month)
 			tsmath_weighted.setPathname(ts.fullName)
@@ -924,7 +972,16 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		"Shasta-Sac-in": (1.1597557, -2.5038779e-04, 0.62590134, 1.6474143),
 		"Shasta-Pit-in": (3.2822256, -1.541817e-04, 0.55336446, 1.4528962),
 		"Shasta-McCloud-in": (1.735364, 2.1436048e-04, 0.48995328, 1.1855532)}
-	tsmath_airtemp = temperatureDSS.read(airtemp_path)
+	ts_read = hec.heclib.dss.HecTimeSeries()
+	ts_read.setDSSFileName(met_DSS_file_name)
+	tsc_airtemp = tscont()
+	tsc_airtemp.fullName = airtemp_path
+	status = ts_read.read(tsc_airtemp, False)
+	if status < 0:
+		print "Failed to read pattern time series %s \n\tfrom DSS file %s"%(tsc_pattern.fullName, whiskeytown_pattern_DSS_file_name)
+		ts_read.done()
+	tsmath_airtemp = tsmath(tsc_airtemp)
+	ts_read.done()
 	for key in tributary_temp_regression_coefficients.keys():
 		tsm = CVP.evaluate_temp_regression(names_flows[key], tsmath_airtemp, tributary_temp_regression_coefficients[key])
 		tsm.setVersion(BC_F_part)
@@ -942,9 +999,16 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 		dss_file_name = token[-2].strip()
 		if not os.path.isabs(dss_file_name):
 			dss_file_name = os.path.join(Project.getCurrentProject().getWorkspacePath(), dss_file_name)
-		if not trib_DSS_files.get(dss_file_name):
-			trib_DSS_files[dss_file_name] = hec.heclib.dss.HecDss.open(dss_file_name)
-		tsmath_avg = tsmath(trib_DSS_files[dss_file_name].get(token[-1].strip()))
+		ts_read = hec.heclib.dss.HecTimeSeries()
+		ts_read.setDSSFileName(dss_file_name)
+		tsc_avg = tscont()
+		tsc_avg.fullName = token[-1].strip()
+		status = ts_read.read(tsc_avg, False)
+		if status < 0:
+			print "Failed to read temperature time series %s \n\tfrom DSS file %s"%(tsc_avg.fullName, dss_file_name)
+			ts_read.done()
+			continue
+		tsmath_avg = tsmath(tsc_avg)
 		tsmath_shift = shift_monthly_averages(tsmath_avg, start_time, end_time)
 		shift_path = token[-1].strip().split('/')
 		shift_path[6] = BC_F_part
@@ -968,9 +1032,9 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 			balance_err = True
 			err_type_neg = True
 		if balance_err:
-			if err_type_neg: 
+			if err_type_neg:
 				exceed_list.append((tsm_bal.getContainer().location, tsm_bal.minDate()))
-			else: 
+			else:
 				exceed_list.append((tsm_bal.getContainer().location, tsm_bal.maxDate()))
 	if len(exceed_list) > 0:
 		exTime = HecTime()
@@ -1046,16 +1110,16 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	tsm_list.append(tsmath_five_gates_hour)
 
 	for tsmath_item in tsm_list:
+		ts_write = hec.heclib.dss.HecTimeSeries()
+		ts_write.setDSSFileName(BC_output_DSS_filename)
+		tsc = tsmath_item.getData()
 		rv_lines.append("%s,%s,%s,%s"%(
-			tsmath_item.getContainer().location, tsmath_item.getContainer().parameter,
+			tsc.location, tsc.parameter,
 			Project.getCurrentProject().getRelativePath(BC_output_DSS_filename),
-			tsmath_item.getContainer().fullName))
+			tsc.fullName))
 		if DEBUG: print "\t%s"%rv_lines[-1]
-		outDSS.write(tsmath_item)
-
-	outDSS.done()
-	patternDSS.done()
-	temperatureDSS.done()
+		ts_write.write(tsc)
+		ts_write.done()
 
 	return rv_lines
 
