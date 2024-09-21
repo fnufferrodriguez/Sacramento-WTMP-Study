@@ -9,3 +9,5 @@ hms/*.out
 *.access
 *.sty.access
 */.access
+.idea/
+*.iml
