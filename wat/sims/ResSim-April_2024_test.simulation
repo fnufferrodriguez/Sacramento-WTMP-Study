@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<WatSimulation SimulationName="ResSim-April_2024_test" Description="" FPart="ResSim:2018" HasComputed="true" ComputeError="false" Parent="ResSim-April_2024_test" LastComputedBy="benjamin" LastComputedDate="1725483891342" IsFrmSimulation="false">
+<WatSimulation SimulationName="ResSim-April_2024_test" Description="" FPart="ResSim:2018" HasComputed="true" ComputeError="false" Parent="ResSim-April_2024_test" LastComputedBy="benjamin" LastComputedDate="1729199228590" IsFrmSimulation="false">
   <ModelAlternatives ModelAlternativeCount="3">
     <ModelAlternative0 Program="Scripting" Name="Pre-Process_ResSim_SacTrn" File="scripting/Pre-Process_ResSim_SacTrn.scAlt">
       <Description>
         <desc cnt="0" value="Pre-process any data into required ResSim-specific records for forecast simulations" />
       </Description>
-      <LastComputeTime Date="4 September 2024, 21:01:36" />
+      <LastComputeTime Date="17 October 2024, 21:03:30" />
     </ModelAlternative0>
     <ModelAlternative1 Program="ResSim" Name="RSSacTrn" File="rss/RSSacTrn.ralt">
       <Description />
-      <LastComputeTime Date="4 September 2024, 21:04:50" />
+      <LastComputeTime Date="17 October 2024, 21:07:08" />
     </ModelAlternative1>
     <ModelAlternative2 Program="Scripting" Name="Post-Process_ResSim_SacTrn" File="scripting/Post-Process_ResSim_SacTrn.scAlt">
       <Description>
         <desc cnt="0" value="Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
       </Description>
-      <LastComputeTime Date="4 September 2024, 21:04:51" />
+      <LastComputeTime Date="17 October 2024, 21:07:08" />
     </ModelAlternative2>
   </ModelAlternatives>
   <TimeWindowManager Class="hec2.plugin.timewindow.TimeWindowManagerImpl" />

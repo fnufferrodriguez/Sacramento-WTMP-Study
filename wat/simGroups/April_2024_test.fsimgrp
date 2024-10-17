@@ -178,7 +178,9 @@
         <BcData>Apr17-H--2014</BcData>
         <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="0" Step="10" />
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="5" />
+          </intArray>
         </ComputedMembers>
         <MembersToCompute>5</MembersToCompute>
       </EnsembleSet>
