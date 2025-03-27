@@ -1,0 +1,6 @@
+WatAlternative
+Name=W2 5-Res v45 Prescribed
+Description=W2 5-ResSim with Keswick v45 Prescribed
+AlignmentName=Stream Alignment
+ConditionId=3
+NextNodeIndex=0

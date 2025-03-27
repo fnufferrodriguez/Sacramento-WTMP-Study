@@ -78,14 +78,9 @@ def build_BC_data_sets(AP_start_time, AP_end_time, BC_F_part, BC_output_DSS_file
 	print "Met data output DSS file: %s"%met_output_DSS_filename
 	print "Location/Path map file: %s"%DSS_map_filename
 
-	if AP_start_time.month() < 10:
-		target_year = AP_start_time.year()
-	else:
-		target_year = AP_end_time.year()
-
 	print "\nPreparing Meteorological Data..."
 
-	met_lines = create_positional_analysis_met_data(target_year, position_analysis_year, AP_start_time, AP_end_time,
+	met_lines = create_positional_analysis_met_data(AP_start_time.year(), position_analysis_year, AP_start_time, AP_end_time,
 		position_analysis_config_filename, met_output_DSS_filename, met_F_part)
 	with open(os.path.join(Project.getCurrentProject().getWorkspacePath(), DSS_map_filename), "w") as mapfile:
 		mapfile.write("location,parameter,dss file,dss path\n")
@@ -95,7 +90,7 @@ def build_BC_data_sets(AP_start_time, AP_end_time, BC_F_part, BC_output_DSS_file
 
 	print("Met process complete.\n\nPreparing hydro and WC boundary conditions...")
 
-	ops_lines = create_ops_BC_data(target_year, ops_file_name, AP_start_time, AP_end_time,
+	ops_lines = create_ops_BC_data(ops_file_name, AP_start_time, AP_end_time,
 		BC_output_DSS_filename, BC_F_part, ops_import_F_part, flow_pattern_config_filename, DSS_map_filename)
 	if not ops_lines:
 		return 0
@@ -261,7 +256,7 @@ def getConfigLines(fileName):
 
 
 '''Processes the contents of the CVP ops spreadsheet in to flow and water temperature BCs'''
-def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_output_DSS_filename,
+def create_ops_BC_data(ops_file_name, start_time, end_time, BC_output_DSS_filename,
 	BC_F_part, ops_import_F_part, flow_pattern_config_filename, DSS_map_filename):
 	print "Processing boundary conditions for upper Sacramento River from ops file:\n\t%s"%(ops_file_name)
 	print "  Forecast time window start: %s"%(start_time.dateAndTime(4))
@@ -294,7 +289,8 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 	if profile_date:
 		try:
 			date_parts = profile_date.split('-', 2)
-			profile_date = "%s%s20%s"%(date_parts[0],date_parts[1],date_parts[2])
+			if len(date_parts[2]) < 4: date_parts[2] = "20" + date_parts[2]
+			profile_date = "%s%s%s"%(date_parts[0],date_parts[1],date_parts[2])
 		except Exception as e:
 			print "Failed to read profile date from string:%s"%profile_date
 			print "\t%s"%str(e)
@@ -303,60 +299,66 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 
 	shasta_tsc_list = []
 	shasta_calendar = ops_data["Shasta"][0].split(',')
-	start_index = int(shasta_calendar[0])
-	start_month = shasta_calendar[start_index + 1].strip().upper()
-	if DEBUG: print "\n Shasta start month: %s; Start index: %d"%(start_month, start_index)
+	shasta_start_index = int(shasta_calendar[0])
+	shasta_start_month = shasta_calendar[shasta_start_index + 1].strip().upper()
+	if DEBUG: print "\n Shasta start month: %s; Start index: %d"%(shasta_start_month, shasta_start_index)
+
+	ops_start_date = HecTime()
+	days_in_first_month = None
+	if profile_date:
+		ops_start_date.set(profile_date, "2400")
+		days_in_first_month = 1 + CVP.get_days_in_month(CVP.month_index(shasta_start_month), ops_start_date.year()) - ops_start_date.day()
+	else:
+		ops_start_date.set("01%s%d"%(shasta_start_month, start_time.year()), "0001")
+		if ops_start_date > start_time:
+			ops_start_date.set("01%s%d"%(shasta_start_month, start_time.year()-1), "0001")
+
 	for line in ops_data["Shasta"][1:]:
-		data_month = start_month
-		data_year = target_year
-		try:
-			early_val = float(line.split(',')[start_index - 1].strip())
-			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(start_month))]
+		data_month = shasta_start_month
+		data_year = ops_start_date.year()
+		if len(line.split(',')[0]) ==0:
+			continue
+		if CVP.is_convertable_to_float(line.split(',')[shasta_start_index - 1].strip()):
+			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(shasta_start_month))]
 			if data_month == "DEC":
 				data_year -= 1
-		except:
-			pass
-		if DEBUG: print "Start_index = %d\nData_Month = %s"%(start_index, data_month)
+		if DEBUG: print "Start_index = %d\nData_Month = %s"%(shasta_start_index, data_month)
 		if DEBUG: print "Passing line to CVP.make_ops_tsc: %s"%(line)
 		shasta_tsc_list.append(CVP.make_ops_tsc("SHASTA", data_year, data_month, line, ops_label=ops_import_F_part))
 
 	whiskeytown_tsc_list = []
 	whiskeytown_calendar = ops_data["Whiskeytown"][0].split(',')
 	whiskeytown_start_index = int(whiskeytown_calendar[0])
-	whiskeytown_start_month = whiskeytown_calendar[start_index + 1].strip().upper()
+	whiskeytown_start_month = whiskeytown_calendar[whiskeytown_start_index + 1].strip().upper()
 	if DEBUG: print "\n Whiskeytown start month: %s; Start index: %d"%(whiskeytown_start_month, whiskeytown_start_index)
 	for line in ops_data["Whiskeytown"][1:]:
 		data_month = whiskeytown_start_month
-		data_year = target_year
-		try:
-			early_val = float(line.split(',')[whiskeytown_start_index - 1].strip())
+		data_year = ops_start_date.year()
+		if len(line.split(',')[0]) ==0:
+			continue
+		if CVP.is_convertable_to_float(line.split(',')[whiskeytown_start_index - 1].strip()):
 			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(whiskeytown_start_month))]
 			if data_month == "DEC":
 				data_year -= 1
-		except:
-			pass
-		if DEBUG: print "Start_index = %d\nData_Month = %s"%(start_index, data_month)
+		if DEBUG: print "Start_index = %d\nData_Month = %s"%(whiskeytown_start_index, data_month)
 		if DEBUG: print "Passing line to CVP.make_ops_tsc: %s"%(line)
 		whiskeytown_tsc_list.append(CVP.make_ops_tsc("Whiskeytown", data_year, data_month, line, ops_label=ops_import_F_part))
 
 	trinity_tsc_list = []
 	trinity_calendar = ops_data["Trinity/Clair Engle"][0].split(',')
 	trinity_start_index = int(trinity_calendar[0])
-	trinity_start_month = trinity_calendar[start_index + 1].strip().upper()
+	trinity_start_month = trinity_calendar[trinity_start_index + 1].strip().upper()
 	if DEBUG: print "\n Trinity start month: %s; Start index: %d"%(trinity_start_month, trinity_start_index)
 	for line in ops_data["Trinity/Clair Engle"][1:]:
 		data_month = trinity_start_month
-		data_year = target_year
-		try:
-			if len(line.split(',')[0]) ==0:
-				continue
-			early_val = float(line.split(',')[trinity_start_index - 1].strip())
+		data_year = ops_start_date.year()
+		if len(line.split(',')[0]) ==0:
+			continue
+		if CVP.is_convertable_to_float(line.split(',')[trinity_start_index - 1].strip()):
 			data_month = CVP.month_TLA[CVP.previous_month(CVP.month_index(trinity_start_month))]
 			if data_month == "DEC":
 				data_year -= 1
-		except:
-			pass
-		if DEBUG: print "Start_index = %d\nData_Month = %s"%(start_index, data_month)
+		if DEBUG: print "Start_index = %d\nData_Month = %s"%(trinity_start_index, data_month)
 		if DEBUG: print "Passing line to CVP.make_ops_tsc: %s"%(line)
 		trinity_tsc_list.append(CVP.make_ops_tsc("Trinity/Clair Engle", data_year, data_month, line, ops_label=ops_import_F_part))
 
@@ -412,15 +414,6 @@ def create_ops_BC_data(target_year, ops_file_name, start_time, end_time, BC_outp
 
 	tsm_list = []
 	balance_list = []
-	ops_start_date = HecTime()
-	ops_end_date = HecTime()
-	days_in_first_month = None
-	if profile_date:
-		ops_start_date.set(profile_date, "2400")
-		days_in_first_month = 1 + CVP.get_days_in_month(CVP.month_index(start_month), ops_start_date.year()) - ops_start_date.day()
-	else:
-		ops_start_date.set("01%s%d"%(start_month, target_year), "2400")
-	ops_end_date.set(trinity_tsc_list[0].getHecTime(trinity_tsc_list[0].numberValues - 1))
 	########################
 	# Trinity-Clair Engle and Lewiston
 	# data from CVP spreadsheet

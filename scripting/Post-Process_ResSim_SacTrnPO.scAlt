@@ -3,7 +3,7 @@
   <Description>
     <desc cnt="0" value=" Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
   </Description>
-  <ScriptFile>scripts/Post-Process_ResSim_SacTrn.py</ScriptFile>
+  <ScriptFile>scripts/Post-Process_ResSim_SacTrnPO.py</ScriptFile>
   <TimeStep>1HOUR</TimeStep>
   <DataLocations>
     <DataLocation Name="WQ_BOUND_TEMP_SRC_CCTUNNEL" Class="hec2.model.DssDataLocation" DssPath="//WQ_BOUND_TEMP_SRC_CCTUNNEL/DEGC//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Model="ResSim-RSSacTrnPO" Parameter="DEGC" OutOfDate="false" PrevModelIndex="0">
@@ -40,10 +40,10 @@
     </DataLocation>
   </DataLocations>
   <OutputDataLocations>
-    <DataLocation Name="LewistonTunnel_With_Heating" Class="hec2.model.DssDataLocation" DssPath="//LewistonTunnel_With_Heating/TEMP-WATER//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
+    <DataLocation Name="LewistonTunnel_With_Heating" Class="hec2.model.DssDataLocation" DssPath="//LewistonTunnel_With_Heating/TEMP-WATER//1HOUR/ResSim Pre:2016:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="Post-Process_ResSim_SacTrnPO" Program="Scripting" />
     </DataLocation>
-    <DataLocation Name="WhiskeyTownTunnel_With_Heating" Class="hec2.model.DssDataLocation" DssPath="//WhiskeyTownTunnel_With_Heating/TEMP-WATER//1HOUR/alt:ap:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
+    <DataLocation Name="WhiskeyTownTunnel_With_Heating" Class="hec2.model.DssDataLocation" DssPath="//WhiskeyTownTunnel_With_Heating/TEMP-WATER//1HOUR/ResSim Pre:2016:Scripting-Post-Process_ResSim_Sa/" ComputeType="Computed" Parameter="TEMP-WATER" OutOfDate="false" PrevModelIndex="0">
       <ModelAlternative Name="Post-Process_ResSim_SacTrnPO" Program="Scripting" />
     </DataLocation>
   </OutputDataLocations>

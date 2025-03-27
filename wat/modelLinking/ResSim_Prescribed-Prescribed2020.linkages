@@ -1069,14 +1069,6 @@
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
-        <DataLocation Name="SF Clear Creek IGO Balance" Class="hec2.model.DataLocation" DssPath="/CLEAR CR/IGO BALANCE FLOW/FLOW//1Day/ResSim_PreProcess/" ComputeType="Computed" Model="DSS File" Parameter="Known Flow" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="IGO BALANCE FLOW" Class="hec2.model.DssDataLocation" DssPath="/CLEAR CR/IGO BALANCE FLOW/FLOW//1Day/ResSim_PreProcess/" ComputeType="Computed" Parameter="FLOW" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
         <DataLocation Name="Bend Bridge Balance Flow" Class="hec2.model.DataLocation" DssPath="/SACRAMENTO R/BEND BR BALANCE FLOW/FLOW//1Day/ResSim_PreProcess/" ComputeType="Computed" Model="DSS File" Parameter="Known Flow" OutOfDate="false" PrevModelIndex="0">
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
@@ -1089,6 +1081,22 @@
           <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
           <DownStreamLocation>
             <DataLocation Name="KES-Reservoir Elevation" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Keswick Res./KES-Reservoir Elevation/Elev//1Hour/234.1.145.1.1/" ComputeType="Computed" Parameter="Elev" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="RM18.3-Whiskeytown-Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrn_CalVal.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="Global-TCD_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="SHA-Calc-Calculated Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
@@ -1106,22 +1114,6 @@
           <DownStreamLocation>
             <DataLocation Name="SHA-TCD-Bottom Gate Sum" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-TCD-Bottom Gate Sum/count-gate//1Hour/Derived/" ComputeType="Computed" Parameter="count-gate" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-TCD_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="SHA-Calc-Calculated Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Shasta Lake/SHA-Calc-Calculated Water Temp/Temp-Water//1Hour/230.14.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrnHydroTS.dss</DssFile>
-            </DataLocation>
-          </DownStreamLocation>
-        </DataLocation>
-        <DataLocation Name="Global-Whiskeytown_target" Class="hec2.model.DataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Model="DSS File" Parameter="Temp" OutOfDate="false" PrevModelIndex="0">
-          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
-          <DownStreamLocation>
-            <DataLocation Name="RM18.3-Whiskeytown-Water Temp" Class="hec2.model.DssDataLocation" DssPath="/MR Sac.-Clear Cr. to Sac R./RM18.3-Whiskeytown-Water Temp/Temp-Water//30Minute/235.54.50.1.1/" ComputeType="Computed" Parameter="Temp-Water" OutOfDate="false" PrevModelIndex="0">
-              <DssFile>shared/DMS_SacTrn_CalVal.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>
@@ -1186,6 +1178,14 @@
           <DownStreamLocation>
             <DataLocation Name="Trinity Lake" Class="hec2.model.DssDataLocation" DssPath="//Trinity Lake/DEPTH-TEMP//2021-01-19//" ComputeType="Computed" Parameter="DEPTH-TEMP" OutOfDate="false" PrevModelIndex="0">
               <DssFile>shared/TrinityProf.dss</DssFile>
+            </DataLocation>
+          </DownStreamLocation>
+        </DataLocation>
+        <DataLocation Name="SF Clear Creek IGO Balance" Class="hec2.model.DataLocation" DssPath="/CLEAR CR/IGO BALANCE FLOW/FLOW//1Hour/ResSim_PreProcess/" ComputeType="Computed" Model="DSS File" Parameter="Known Flow" OutOfDate="false" PrevModelIndex="0">
+          <ModelAlternative Name="RSSacTrnPO" Program="ResSim" />
+          <DownStreamLocation>
+            <DataLocation Name="IGO BALANCE FLOW" Class="hec2.model.DssDataLocation" DssPath="/CLEAR CR/IGO BALANCE FLOW/FLOW//1Hour/ResSim_PreProcess/" ComputeType="Computed" Parameter="FLOW" OutOfDate="false" PrevModelIndex="0">
+              <DssFile>shared/DMS_SacTrn_ResSim_Pre-Process.dss</DssFile>
             </DataLocation>
           </DownStreamLocation>
         </DataLocation>

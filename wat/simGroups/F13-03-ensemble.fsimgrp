@@ -90,35 +90,16 @@
     </Reservoir>
   </InitialConditions>
   <Operations>
-    <OperationsData Name="MAR50">
+    <OperationsData Name="Mar50">
       <Description />
       <OperationsFile>forecast/CVP-ops/MAR50_WY2018v.xlsx</OperationsFile>
     </OperationsData>
-    <OperationsData Name="MAR90">
-      <Description />
-      <OperationsFile>forecast/CVP-ops/MAR90_WY2018v.xlsx</OperationsFile>
-    </OperationsData>
   </Operations>
   <Meteorology>
-    <MeteorologyData Name="H-2010">
-      <Description />
-      <MetDataType>Historic</MetDataType>
-      <Year>2010</Year>
-    </MeteorologyData>
-    <MeteorologyData Name="H-2012">
-      <Description />
-      <MetDataType>Historic</MetDataType>
-      <Year>2012</Year>
-    </MeteorologyData>
     <MeteorologyData Name="H-2014">
       <Description />
       <MetDataType>Historic</MetDataType>
       <Year>2014</Year>
-    </MeteorologyData>
-    <MeteorologyData Name="H-2017">
-      <Description />
-      <MetDataType>Historic</MetDataType>
-      <Year>2017</Year>
     </MeteorologyData>
     <MeteorologyData Name="H-2018">
       <Description />
@@ -127,237 +108,95 @@
     </MeteorologyData>
   </Meteorology>
   <BoundaryConditions>
-    <BcData Name="MAR50-H-2010">
+    <BcData Name="Mar50-H-2014">
       <Description />
       <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR50-H-2010</f-part>
-      <Operations>MAR50</Operations>
-      <Meteorology>H-2010</Meteorology>
-    </BcData>
-    <BcData Name="MAR50-H-2012">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR50-H-2012</f-part>
-      <Operations>MAR50</Operations>
-      <Meteorology>H-2012</Meteorology>
-    </BcData>
-    <BcData Name="MAR50-H-2014">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR50-H-2014</f-part>
-      <Operations>MAR50</Operations>
+      <f-part>Mar50-H-2014</f-part>
+      <Operations>Mar50</Operations>
       <Meteorology>H-2014</Meteorology>
     </BcData>
-    <BcData Name="MAR50-H-2017">
+    <BcData Name="Mar50-H-2018">
       <Description />
       <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR50-H-2017</f-part>
-      <Operations>MAR50</Operations>
-      <Meteorology>H-2017</Meteorology>
-    </BcData>
-    <BcData Name="MAR50-H-2018">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR50-H-2018</f-part>
-      <Operations>MAR50</Operations>
-      <Meteorology>H-2018</Meteorology>
-    </BcData>
-    <BcData Name="MAR90-H-2010">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR90-H-2010</f-part>
-      <Operations>MAR90</Operations>
-      <Meteorology>H-2010</Meteorology>
-    </BcData>
-    <BcData Name="MAR90-H-2012">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR90-H-2012</f-part>
-      <Operations>MAR90</Operations>
-      <Meteorology>H-2012</Meteorology>
-    </BcData>
-    <BcData Name="MAR90-H-2014">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR90-H-2014</f-part>
-      <Operations>MAR90</Operations>
-      <Meteorology>H-2014</Meteorology>
-    </BcData>
-    <BcData Name="MAR90-H-2017">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR90-H-2017</f-part>
-      <Operations>MAR90</Operations>
-      <Meteorology>H-2017</Meteorology>
-    </BcData>
-    <BcData Name="MAR90-H-2018">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>MAR90-H-2018</f-part>
-      <Operations>MAR90</Operations>
+      <f-part>Mar50-H-2018</f-part>
+      <Operations>Mar50</Operations>
       <Meteorology>H-2018</Meteorology>
     </BcData>
   </BoundaryConditions>
   <EnsembleSets>
     <Simulation>
       ResSim-F13-03-ensemble
-      <EnsembleSet Name="MAR50-H-2010-SHASTA - TIER 1">
+      <EnsembleSet Name="Mar50-H-2014-SHASTA - TIER 1">
         <Description />
-        <BcData>MAR50-H-2010</BcData>
+        <BcData>Mar50-H-2014</BcData>
         <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
+          <intArray Length="0" Step="10" />
         </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
+        <MembersToCompute />
       </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2012-SHASTA - TIER 1">
+      <EnsembleSet Name="Mar50-H-2014-Test_constant">
         <Description />
-        <BcData>MAR50-H-2012</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2014-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR50-H-2014</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="4" Step="10">
-            <I Range="0-4" Data="1,4,8,11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1,4,8,11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2017-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR50-H-2017</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2018-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR50-H-2018</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR90-H-2010-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR90-H-2010</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR90-H-2012-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR90-H-2012</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR90-H-2014-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR90-H-2014</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR90-H-2017-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR90-H-2017</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR90-H-2018-SHASTA - TIER 1">
-        <Description />
-        <BcData>MAR90-H-2018</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2010-Test_constant">
-        <Description />
-        <BcData>MAR50-H-2010</BcData>
+        <BcData>Mar50-H-2014</BcData>
         <TemperatureTargetSet>Test_constant</TemperatureTargetSet>
         <ComputedMembers>
           <intArray Length="0" Step="10" />
         </ComputedMembers>
         <MembersToCompute />
       </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2014-Test_constant">
+      <EnsembleSet Name="Mar50-H-2014-test_early_season">
         <Description />
-        <BcData>MAR50-H-2014</BcData>
-        <TemperatureTargetSet>Test_constant</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="3" Step="10">
-            <I Range="0-3" Data="1,2,3" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>2</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="MAR50-H-2017-Test_constant">
-        <Description />
-        <BcData>MAR50-H-2017</BcData>
-        <TemperatureTargetSet>Test_constant</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="MAR90-H-2014-test_early_season">
-        <Description />
-        <BcData>MAR90-H-2014</BcData>
+        <BcData>Mar50-H-2014</BcData>
         <TemperatureTargetSet>test_early_season</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="3" Step="10">
-            <I Range="0-3" Data="1,2,3" />
+          <intArray Length="0" Step="10" />
+        </ComputedMembers>
+        <MembersToCompute />
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2018-SHASTA - TIER 1">
+        <Description />
+        <BcData>Mar50-H-2018</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="5" />
           </intArray>
         </ComputedMembers>
-        <MembersToCompute>1-3</MembersToCompute>
+        <MembersToCompute>5</MembersToCompute>
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2018-Test_constant">
+        <Description />
+        <BcData>Mar50-H-2018</BcData>
+        <TemperatureTargetSet>Test_constant</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="0" Step="10" />
+        </ComputedMembers>
+        <MembersToCompute />
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2018-test_early_season">
+        <Description />
+        <BcData>Mar50-H-2018</BcData>
+        <TemperatureTargetSet>test_early_season</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="0" Step="10" />
+        </ComputedMembers>
+        <MembersToCompute />
       </EnsembleSet>
     </Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-F13-03-ensemble">
+      <EnsembleSet Name="Mar50-H-2014-test_early_season">
+        <CollectionStart>8000</CollectionStart>
+        <CollectionEnd>8499</CollectionEnd>
+      </EnsembleSet>
       <EnsembleSet Name="MAR50-H-2010-Test_constant">
         <CollectionStart>5000</CollectionStart>
         <CollectionEnd>5499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2014-SHASTA - TIER 1">
+        <CollectionStart>7000</CollectionStart>
+        <CollectionEnd>7499</CollectionEnd>
       </EnsembleSet>
       <EnsembleSet Name="MAR50-H-2012-SHASTA - TIER 1">
         <CollectionStart>500</CollectionStart>
@@ -378,6 +217,10 @@
       <EnsembleSet Name="MAR50-H-2018-SHASTA - TIER 1">
         <CollectionStart>2000</CollectionStart>
         <CollectionEnd>2499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2018-Test_constant">
+        <CollectionStart>9000</CollectionStart>
+        <CollectionEnd>9499</CollectionEnd>
       </EnsembleSet>
       <EnsembleSet Name="MAR50-H-2014-SHASTA - TIER 1">
         <CollectionStart>1000</CollectionStart>
@@ -406,6 +249,18 @@
       <EnsembleSet Name="MAR90-H-2010-SHASTA - TIER 1">
         <CollectionStart>2500</CollectionStart>
         <CollectionEnd>2999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2018-test_early_season">
+        <CollectionStart>9500</CollectionStart>
+        <CollectionEnd>9999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2014-Test_constant">
+        <CollectionStart>7500</CollectionStart>
+        <CollectionEnd>7999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Mar50-H-2018-SHASTA - TIER 1">
+        <CollectionStart>8500</CollectionStart>
+        <CollectionEnd>8999</CollectionEnd>
       </EnsembleSet>
       <EnsembleSet Name="MAR50-H-2017-Test_constant">
         <CollectionStart>6000</CollectionStart>

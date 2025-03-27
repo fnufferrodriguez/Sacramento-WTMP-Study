@@ -117,26 +117,12 @@
     </MeteorologyData>
   </Meteorology>
   <BoundaryConditions>
-    <BcData Name="APR50_WY2018v-H-2018">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F18-04-TTSP\bc.dss</Output-DSS-File>
-      <f-part>APR50_WY2018v-H-2018</f-part>
-      <Operations>APR50_WY2018v</Operations>
-      <Meteorology>H-2018</Meteorology>
-    </BcData>
     <BcData Name="APR50_WY2018v-H-2014">
       <Description />
       <Output-DSS-File>forecast\simGroups\F18-04-TTSP\bc.dss</Output-DSS-File>
       <f-part>APR50_WY2018v-H-2014</f-part>
       <Operations>APR50_WY2018v</Operations>
       <Meteorology>H-2014</Meteorology>
-    </BcData>
-    <BcData Name="APR90_WY2018v-H-2018">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F18-04-TTSP\bc.dss</Output-DSS-File>
-      <f-part>APR90_WY2018v-H-2018</f-part>
-      <Operations>APR90_WY2018v</Operations>
-      <Meteorology>H-2018</Meteorology>
     </BcData>
     <BcData Name="APR90_WY2018v-H-2014">
       <Description />
@@ -147,49 +133,7 @@
     </BcData>
   </BoundaryConditions>
   <EnsembleSets>
-    <Simulation>
-      ResSim-F18-04-TTSP
-      <EnsembleSet Name="APR50_WY2018v-H-2018-SHASTA - TIER 5">
-        <Description />
-        <BcData>APR50_WY2018v-H-2018</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="5" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="APR50_WY2018v-H-2014-SHASTA - TIER 5">
-        <Description />
-        <BcData>APR50_WY2018v-H-2014</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="APR90_WY2018v-H-2018-SHASTA - TIER 5">
-        <Description />
-        <BcData>APR90_WY2018v-H-2018</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="3" Step="10">
-            <I Range="0-3" Data="1,5,11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1,5,11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="APR90_WY2018v-H-2014-SHASTA - TIER 5">
-        <Description />
-        <BcData>APR90_WY2018v-H-2014</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>ResSim-F18-04-TTSP</Simulation>
     <Simulation>W2 5-Res-F18-04-TTSP</Simulation>
     <Simulation>W2 Shasta-F18-04-TTSP</Simulation>
   </EnsembleSets>

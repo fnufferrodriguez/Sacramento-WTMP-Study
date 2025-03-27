@@ -15,13 +15,9 @@
       <Description>
         <desc cnt="0" value=" Adds tunnel heating to output values to provide a record of end-tunnel temperatures" />
       </Description>
-      <LastComputeTime Date="21 February 2024, 22:48:18" />
+      <LastComputeTime Date="21 February 2024, 22:48" />
     </ModelAlternative2>
   </ModelAlternatives>
-  <SkipModelAltCompute>
-    <SkipModelAlt>Scripting-Pre-Process_ResSim_SacTrnPO</SkipModelAlt>
-    <SkipModelAlt>ResSim-RSSacTrnPO</SkipModelAlt>
-  </SkipModelAltCompute>
   <TimeWindowManager Class="hec2.plugin.timewindow.TimeWindowManagerImpl" />
 </WatSimulation>
 
