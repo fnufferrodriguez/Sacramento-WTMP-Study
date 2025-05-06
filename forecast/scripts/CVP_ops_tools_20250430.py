@@ -381,11 +381,7 @@ def uniform_transform_monthly_to_daily(tsmath_months, start_day_count=None, curr
 		tsmath_months = tsmath_months.multiply(1000.0)
 		tsmath_months.setUnits("AC-FT")
 		tsmath_months.setType("PER-CUM")
-	elif (tsmath_months.getUnits().upper().startswith("CFS") or
-		tsmath_months.getUnits().upper().startswith("DEG") or
-		(len(tsmath_months.getUnits().upper().strip()) == 1 and
-		(tsmath_months.getUnits().upper() == "F" or 
-		tsmath_months.getUnits().upper() == "C"))):
+	elif tsmath_months.getUnits().upper().startswith("CFS"):
 		input_is_acrefeet = False
 
 	# get the date and time value lists from the TimeSeriesMath objects

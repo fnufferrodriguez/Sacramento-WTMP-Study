@@ -3,40 +3,262 @@
   "features" : [ {
     "type" : "Feature",
     "properties" : {
+      "elevation" : 0.0,
       "labelposition" : "EAST",
       "name" : "RDD Redding Airport",
       "description" : "",
       "streamStation" : 0.0,
       "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
       "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1836676.7128546566,
+      "stationIconLatitude" : 1.471073644145215E7,
       "latitude" : 0.0,
       "longitude" : 0.0
     },
     "geometry" : {
       "type" : "Point",
-      "coordinates" : [ 696260.7128546566, 1.471073644145215E7 ]
+      "coordinates" : [ 1836676.7128546566, 1.471073644145215E7 ]
     },
-    "latitude" : 0.0,
     "longitude" : 0.0,
+    "latitude" : 0.0,
     "labelPosition" : "EAST"
   }, {
     "type" : "Feature",
     "properties" : {
+      "elevation" : 0.0,
       "labelposition" : "EAST",
       "name" : "Trinity Center",
       "description" : "",
       "streamStation" : 0.0,
       "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
       "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1713636.7749852159,
+      "stationIconLatitude" : 1.4885876381680042E7,
       "latitude" : 0.0,
       "longitude" : 0.0
     },
     "geometry" : {
       "type" : "Point",
-      "coordinates" : [ 573220.7749852159, 1.4885876381680042E7 ]
+      "coordinates" : [ 1713636.7749852159, 1.4885876381680042E7 ]
     },
-    "latitude" : 0.0,
     "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "labelposition" : "EAST",
+      "name" : "Lewiston Met",
+      "description" : "",
+      "streamStation" : 0.0,
+      "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
+      "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1699089.6830725598,
+      "stationIconLatitude" : 1.4795019742212119E7,
+      "latitude" : 0.0,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1699089.6830725598, 1.4795019742212119E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "labelposition" : "EAST",
+      "name" : "Whiskeytown Met",
+      "description" : "",
+      "streamStation" : 0.0,
+      "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
+      "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1764597.5977540498,
+      "stationIconLatitude" : 1.4744432209193386E7,
+      "latitude" : 0.0,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1764597.5977540498, 1.4744432209193386E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "labelposition" : "EAST",
+      "name" : "Sacramento R Met",
+      "description" : "",
+      "streamStation" : 0.0,
+      "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
+      "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1877454.790197891,
+      "stationIconLatitude" : 1.461170800271761E7,
+      "latitude" : 0.0,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1877454.790197891, 1.461170800271761E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "labelposition" : "EAST",
+      "name" : "Shasta Met",
+      "description" : "",
+      "streamStation" : 0.0,
+      "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
+      "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1796062.7042259397,
+      "stationIconLatitude" : 1.4792048375982564E7,
+      "latitude" : 0.0,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1796062.7042259397, 1.4792048375982564E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "labelposition" : "EAST",
+      "name" : "Trinity R Met",
+      "description" : "",
+      "streamStation" : 0.0,
+      "streamName" : "",
+      "nearestMeridian" : 0,
+      "isObservedStation" : false,
+      "isMetStation" : true,
+      "isProfileStation" : false,
+      "locationId" : "",
+      "stationIconLongitude" : 1631514.0799724148,
+      "stationIconLatitude" : 1.4785052300285578E7,
+      "latitude" : 0.0,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1631514.0799724148, 1.4785052300285578E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "latitude" : 0.0,
+      "description" : "Above Clear Creek monitoring location",
+      "streamStation" : 1533564.2333435623,
+      "streamName" : "Sacramento River",
+      "nearestMeridian" : 0,
+      "isObservedStation" : true,
+      "labelposition" : "EAST",
+      "stationIconLongitude" : 1821147.2915083438,
+      "locationId" : "",
+      "stationIconLatitude" : 1.4725857207114095E7,
+      "name" : "CCR",
+      "isProfileStation" : false,
+      "isMetStation" : false,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1818861.3282091303, 1.4723675896361647E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "latitude" : 0.0,
+      "description" : "Observation/Compliance location at Balls Ferry",
+      "streamStation" : 1449507.1159788987,
+      "streamName" : "Sacramento River",
+      "nearestMeridian" : 0,
+      "isObservedStation" : true,
+      "labelposition" : "EAST",
+      "stationIconLongitude" : 1867989.5588705726,
+      "locationId" : "",
+      "stationIconLatitude" : 1.4680185059663152E7,
+      "name" : "Balls Ferry",
+      "isProfileStation" : false,
+      "isMetStation" : false,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1864791.9051570534, 1.4679884407720307E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
+    "labelPosition" : "EAST"
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "elevation" : 0.0,
+      "latitude" : 0.0,
+      "description" : "Observation/Compliance location at Airport Road",
+      "streamStation" : 1491721.9867495312,
+      "streamName" : "Sacramento River",
+      "nearestMeridian" : 0,
+      "isObservedStation" : true,
+      "labelposition" : "EAST",
+      "stationIconLongitude" : 1837196.504643964,
+      "locationId" : "",
+      "stationIconLatitude" : 1.4703005802115882E7,
+      "name" : "Airport Road",
+      "isProfileStation" : false,
+      "isMetStation" : false,
+      "longitude" : 0.0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 1836592.2222560034, 1.4699400998800084E7 ]
+    },
+    "longitude" : 0.0,
+    "latitude" : 0.0,
     "labelPosition" : "EAST"
   } ],
   "name" : "StationSet",

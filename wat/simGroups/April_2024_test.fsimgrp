@@ -11,6 +11,10 @@
       <Name>W2 5-Res-April_2024_test</Name>
       <Class>hec2.wat.model.WatSimulation</Class>
     </Simulation>
+    <Simulation>
+      <Name>W2 Shasta-April_2024_test</Name>
+      <Class>hec2.wat.model.WatSimulation</Class>
+    </Simulation>
   </Simulations>
   <TemperatureTargetSets>
     <TemperatureTargetSet Name="SHASTA - TIER 1" user-defined="false">
@@ -215,7 +219,7 @@
     </Reservoir>
   </InitialConditions>
   <Operations>
-    <OperationsData Name="Apr2024">
+    <OperationsData Name="90Apr2024">
       <Description />
       <OperationsFile>forecast/CVP-ops/Apr90_WY2024.prof 1.xlsx</OperationsFile>
     </OperationsData>
@@ -238,85 +242,54 @@
     </MeteorologyData>
   </Meteorology>
   <BoundaryConditions>
-    <BcData Name="Apr2024-H-2010">
+    <BcData Name="90Apr2024-H-2010">
       <Description />
       <Output-DSS-File>forecast\simGroups\April_2024_test\bc.dss</Output-DSS-File>
-      <f-part>Apr2024-H-2010</f-part>
-      <Operations>Apr2024</Operations>
+      <f-part>90Apr2024-H-2010</f-part>
+      <Operations>90Apr2024</Operations>
       <Meteorology>H-2010</Meteorology>
     </BcData>
-    <BcData Name="Apr2024-H-2015">
+    <BcData Name="90Apr2024-H-2015">
       <Description />
       <Output-DSS-File>forecast\simGroups\April_2024_test\bc.dss</Output-DSS-File>
-      <f-part>Apr2024-H-2015</f-part>
-      <Operations>Apr2024</Operations>
+      <f-part>90Apr2024-H-2015</f-part>
+      <Operations>90Apr2024</Operations>
       <Meteorology>H-2015</Meteorology>
     </BcData>
-    <BcData Name="Apr2024-H-2020">
+    <BcData Name="90Apr2024-H-2020">
       <Description />
       <Output-DSS-File>forecast\simGroups\April_2024_test\bc.dss</Output-DSS-File>
-      <f-part>Apr2024-H-2020</f-part>
-      <Operations>Apr2024</Operations>
+      <f-part>90Apr2024-H-2020</f-part>
+      <Operations>90Apr2024</Operations>
       <Meteorology>H-2020</Meteorology>
     </BcData>
   </BoundaryConditions>
   <EnsembleSets>
     <Simulation>
       ResSim-April_2024_test
-      <EnsembleSet Name="Apr2024-H-2010-SHASTA - TIER 8">
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 5">
         <Description />
-        <BcData>Apr2024-H-2010</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 8</TemperatureTargetSet>
+        <BcData>90Apr2024-H-2015</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
         <ComputedMembers>
-          <intArray Length="3" Step="10">
-            <I Range="0-3" Data="1,5,11" />
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="5" />
           </intArray>
         </ComputedMembers>
-        <MembersToCompute>1,5,11</MembersToCompute>
+        <MembersToCompute>5</MembersToCompute>
       </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2010-SHASTA - TIER 2">
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 8">
         <Description />
-        <BcData>Apr2024-H-2010</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 2</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1,5,11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2015-SHASTA - TIER 8">
-        <Description />
-        <BcData>Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 8</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="2" Step="10">
-            <I Range="0-2" Data="1,5" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1,5,11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2015-SHASTA - TIER 2">
-        <Description />
-        <BcData>Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 2</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="3" Step="10">
-            <I Range="0-3" Data="1,5,11" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1,5,11</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2020-SHASTA - TIER 8">
-        <Description />
-        <BcData>Apr2024-H-2020</BcData>
+        <BcData>90Apr2024-H-2015</BcData>
         <TemperatureTargetSet>SHASTA - TIER 8</TemperatureTargetSet>
         <ComputedMembers>
           <intArray Length="0" Step="10" />
         </ComputedMembers>
         <MembersToCompute />
       </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2020-SHASTA - TIER 2">
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 2">
         <Description />
-        <BcData>Apr2024-H-2020</BcData>
+        <BcData>90Apr2024-H-2015</BcData>
         <TemperatureTargetSet>SHASTA - TIER 2</TemperatureTargetSet>
         <ComputedMembers>
           <intArray Length="0" Step="10" />
@@ -325,9 +298,97 @@
       </EnsembleSet>
     </Simulation>
     <Simulation>W2 5-Res-April_2024_test</Simulation>
+    <Simulation>
+      W2 Shasta-April_2024_test
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 5">
+        <Description />
+        <BcData>90Apr2024-H-2015</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="1" Step="10">
+            <I Range="0-1" Data="5" />
+          </intArray>
+        </ComputedMembers>
+        <MembersToCompute>5</MembersToCompute>
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 8">
+        <Description />
+        <BcData>90Apr2024-H-2015</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 8</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="0" Step="10" />
+        </ComputedMembers>
+        <MembersToCompute />
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 2">
+        <Description />
+        <BcData>90Apr2024-H-2015</BcData>
+        <TemperatureTargetSet>SHASTA - TIER 2</TemperatureTargetSet>
+        <ComputedMembers>
+          <intArray Length="0" Step="10" />
+        </ComputedMembers>
+        <MembersToCompute />
+      </EnsembleSet>
+    </Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-April_2024_test">
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 5">
+        <CollectionStart>13000</CollectionStart>
+        <CollectionEnd>13499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 8">
+        <CollectionStart>12000</CollectionStart>
+        <CollectionEnd>12499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Apr17-H--2014-SHASTA - TIER 5">
+        <CollectionStart>2500</CollectionStart>
+        <CollectionEnd>2999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2010-SHASTA - TIER 8">
+        <CollectionStart>11500</CollectionStart>
+        <CollectionEnd>11999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Apr17-H--2014-SHASTA - TIER 1">
+        <CollectionStart>3500</CollectionStart>
+        <CollectionEnd>3999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="APR_24-90-H--2014-SHASTA - TIER 1">
+        <CollectionStart>500</CollectionStart>
+        <CollectionEnd>999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Apr2024-H-2015-SHASTA - TIER 8">
+        <CollectionStart>9500</CollectionStart>
+        <CollectionEnd>9999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Apr17-H--2017-SHASTA - TIER 5">
+        <CollectionStart>4500</CollectionStart>
+        <CollectionEnd>4999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Apr2024-H-2015-SHASTA - TIER 2">
+        <CollectionStart>10000</CollectionStart>
+        <CollectionEnd>10499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="APR_24-90-H--2017-SHASTA - TIER 5">
+        <CollectionStart>1000</CollectionStart>
+        <CollectionEnd>1499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 2">
+        <CollectionStart>13500</CollectionStart>
+        <CollectionEnd>13999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="APR_24-90-H--2014-SHASTA - TIER 5">
+        <CollectionStart>1500</CollectionStart>
+        <CollectionEnd>1999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="APR_24-90-H--2017-SHASTA - TIER 1">
+        <CollectionStart>0</CollectionStart>
+        <CollectionEnd>499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="Apr90_2024-H--2018-SHASTA - TIER 5">
+        <CollectionStart>6000</CollectionStart>
+        <CollectionEnd>6499</CollectionEnd>
+      </EnsembleSet>
       <EnsembleSet Name="Apr90_2024-Hnew-2020-SHASTA - TIER 5">
         <CollectionStart>6500</CollectionStart>
         <CollectionEnd>6999</CollectionEnd>
@@ -352,10 +413,6 @@
         <CollectionStart>8500</CollectionStart>
         <CollectionEnd>8999</CollectionEnd>
       </EnsembleSet>
-      <EnsembleSet Name="Apr17-H--2014-SHASTA - TIER 5">
-        <CollectionStart>2500</CollectionStart>
-        <CollectionEnd>2999</CollectionEnd>
-      </EnsembleSet>
       <EnsembleSet Name="Apr90_2024-H--2017-SHASTA - TIER 5">
         <CollectionStart>5500</CollectionStart>
         <CollectionEnd>5999</CollectionEnd>
@@ -364,57 +421,25 @@
         <CollectionStart>7000</CollectionStart>
         <CollectionEnd>7499</CollectionEnd>
       </EnsembleSet>
-      <EnsembleSet Name="Apr17-H--2014-SHASTA - TIER 1">
-        <CollectionStart>3500</CollectionStart>
-        <CollectionEnd>3999</CollectionEnd>
-      </EnsembleSet>
       <EnsembleSet Name="Apr2024-H-2010-SHASTA - TIER 2">
         <CollectionStart>9000</CollectionStart>
         <CollectionEnd>9499</CollectionEnd>
-      </EnsembleSet>
-      <EnsembleSet Name="APR_24-90-H--2014-SHASTA - TIER 1">
-        <CollectionStart>500</CollectionStart>
-        <CollectionEnd>999</CollectionEnd>
       </EnsembleSet>
       <EnsembleSet Name="APR_24-90-H--2018-SHASTA - TIER 5">
         <CollectionStart>2000</CollectionStart>
         <CollectionEnd>2499</CollectionEnd>
       </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2015-SHASTA - TIER 8">
-        <CollectionStart>9500</CollectionStart>
-        <CollectionEnd>9999</CollectionEnd>
-      </EnsembleSet>
-      <EnsembleSet Name="Apr17-H--2017-SHASTA - TIER 5">
-        <CollectionStart>4500</CollectionStart>
-        <CollectionEnd>4999</CollectionEnd>
-      </EnsembleSet>
-      <EnsembleSet Name="Apr2024-H-2015-SHASTA - TIER 2">
-        <CollectionStart>10000</CollectionStart>
-        <CollectionEnd>10499</CollectionEnd>
-      </EnsembleSet>
       <EnsembleSet Name="Apr2024-H-2020-SHASTA - TIER 8">
         <CollectionStart>10500</CollectionStart>
         <CollectionEnd>10999</CollectionEnd>
       </EnsembleSet>
-      <EnsembleSet Name="APR_24-90-H--2017-SHASTA - TIER 5">
-        <CollectionStart>1000</CollectionStart>
-        <CollectionEnd>1499</CollectionEnd>
-      </EnsembleSet>
-      <EnsembleSet Name="APR_24-90-H--2014-SHASTA - TIER 5">
-        <CollectionStart>1500</CollectionStart>
-        <CollectionEnd>1999</CollectionEnd>
-      </EnsembleSet>
-      <EnsembleSet Name="APR_24-90-H--2017-SHASTA - TIER 1">
-        <CollectionStart>0</CollectionStart>
-        <CollectionEnd>499</CollectionEnd>
+      <EnsembleSet Name="90Apr2024-H-2020-SHASTA - TIER 8">
+        <CollectionStart>12500</CollectionStart>
+        <CollectionEnd>12999</CollectionEnd>
       </EnsembleSet>
       <EnsembleSet Name="Apr17-H--2018-SHASTA - TIER 5">
         <CollectionStart>3000</CollectionStart>
         <CollectionEnd>3499</CollectionEnd>
-      </EnsembleSet>
-      <EnsembleSet Name="Apr90_2024-H--2018-SHASTA - TIER 5">
-        <CollectionStart>6000</CollectionStart>
-        <CollectionEnd>6499</CollectionEnd>
       </EnsembleSet>
       <EnsembleSet Name="Apr2024-H-2020-SHASTA - TIER 2">
         <CollectionStart>11000</CollectionStart>
@@ -426,6 +451,10 @@
         <CollectionStart>1000</CollectionStart>
         <CollectionEnd>1499</CollectionEnd>
       </EnsembleSet>
+      <EnsembleSet Name="Apr2024-H-2020-SHASTA - TIER 8">
+        <CollectionStart>2500</CollectionStart>
+        <CollectionEnd>2999</CollectionEnd>
+      </EnsembleSet>
       <EnsembleSet Name="Apr17-H--2014-SHASTA - TIER 5">
         <CollectionStart>500</CollectionStart>
         <CollectionEnd>999</CollectionEnd>
@@ -434,7 +463,25 @@
         <CollectionStart>1500</CollectionStart>
         <CollectionEnd>1999</CollectionEnd>
       </EnsembleSet>
+      <EnsembleSet Name="Apr2024-H-2020-SHASTA - TIER 2">
+        <CollectionStart>2000</CollectionStart>
+        <CollectionEnd>2499</CollectionEnd>
+      </EnsembleSet>
       <EnsembleSet Name="Apr17-H--2014-SHASTA - TIER 1">
+        <CollectionStart>0</CollectionStart>
+        <CollectionEnd>499</CollectionEnd>
+      </EnsembleSet>
+    </Simulation>
+    <Simulation Name="W2 Shasta-April_2024_test">
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 5">
+        <CollectionStart>500</CollectionStart>
+        <CollectionEnd>999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 8">
+        <CollectionStart>1000</CollectionStart>
+        <CollectionEnd>1499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 2">
         <CollectionStart>0</CollectionStart>
         <CollectionEnd>499</CollectionEnd>
       </EnsembleSet>
