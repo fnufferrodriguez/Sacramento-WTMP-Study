@@ -228,16 +228,19 @@
     <MeteorologyData Name="H-2010">
       <Description />
       <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2010</Year>
     </MeteorologyData>
     <MeteorologyData Name="H-2015">
       <Description />
       <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2015</Year>
     </MeteorologyData>
     <MeteorologyData Name="H-2020">
       <Description />
       <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2020</Year>
     </MeteorologyData>
   </Meteorology>

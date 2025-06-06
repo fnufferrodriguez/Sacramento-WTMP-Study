@@ -62,6 +62,7 @@
     <MeteorologyData Name="Historical-2018">
       <Description />
       <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2018</Year>
     </MeteorologyData>
   </Meteorology>

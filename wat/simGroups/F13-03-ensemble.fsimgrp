@@ -99,11 +99,13 @@
     <MeteorologyData Name="H-2014">
       <Description />
       <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2014</Year>
     </MeteorologyData>
     <MeteorologyData Name="H-2018">
       <Description />
       <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2018</Year>
     </MeteorologyData>
   </Meteorology>
