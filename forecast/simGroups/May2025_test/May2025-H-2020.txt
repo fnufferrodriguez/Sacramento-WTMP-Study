@@ -109,4 +109,6 @@ ZERO-BY-DAY,FLOW-ZERO,forecast/simGroups/May2025_test/bc.dss,//ZERO-BY-DAY/FLOW-
 ZERO-BY-HOUR,FLOW-ZERO,forecast/simGroups/May2025_test/bc.dss,//ZERO-BY-HOUR/FLOW-ZERO//1Hour/May2025-H-2020/
 ZERO-BY-HOUR,GATES-ZERO,forecast/simGroups/May2025_test/bc.dss,//ZERO-BY-HOUR/GATES-ZERO//1Hour/May2025-H-2020/
 ONE-BY-HOUR,GATES-ONE,forecast/simGroups/May2025_test/bc.dss,//ONE-BY-HOUR/GATES-ONE//1Hour/May2025-H-2020/
+THREE-BY-HOUR,GATES-3,forecast/simGroups/May2025_test/bc.dss,//THREE-BY-HOUR/GATES-3//1Hour/May2025-H-2020/
+TWO-BY-HOUR,GATES-2,forecast/simGroups/May2025_test/bc.dss,//TWO-BY-HOUR/GATES-2//1Hour/May2025-H-2020/
 FIVE-BY-HOUR,GATES-FIVE,forecast/simGroups/May2025_test/bc.dss,//FIVE-BY-HOUR/GATES-FIVE//1Hour/May2025-H-2020/

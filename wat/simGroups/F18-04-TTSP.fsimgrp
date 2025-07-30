@@ -116,22 +116,7 @@
       <Year>2014</Year>
     </MeteorologyData>
   </Meteorology>
-  <BoundaryConditions>
-    <BcData Name="APR50_WY2018v-H-2014">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F18-04-TTSP\bc.dss</Output-DSS-File>
-      <f-part>APR50_WY2018v-H-2014</f-part>
-      <Operations>APR50_WY2018v</Operations>
-      <Meteorology>H-2014</Meteorology>
-    </BcData>
-    <BcData Name="APR90_WY2018v-H-2014">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F18-04-TTSP\bc.dss</Output-DSS-File>
-      <f-part>APR90_WY2018v-H-2014</f-part>
-      <Operations>APR90_WY2018v</Operations>
-      <Meteorology>H-2014</Meteorology>
-    </BcData>
-  </BoundaryConditions>
+  <BoundaryConditions />
   <EnsembleSets>
     <Simulation>ResSim-F18-04-TTSP</Simulation>
     <Simulation>W2 5-Res-F18-04-TTSP</Simulation>

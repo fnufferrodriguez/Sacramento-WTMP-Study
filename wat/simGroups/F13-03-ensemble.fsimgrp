@@ -109,82 +109,9 @@
       <Year>2018</Year>
     </MeteorologyData>
   </Meteorology>
-  <BoundaryConditions>
-    <BcData Name="Mar50-H-2014">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>Mar50-H-2014</f-part>
-      <Operations>Mar50</Operations>
-      <Meteorology>H-2014</Meteorology>
-    </BcData>
-    <BcData Name="Mar50-H-2018">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\F13-03-ensemble\bc.dss</Output-DSS-File>
-      <f-part>Mar50-H-2018</f-part>
-      <Operations>Mar50</Operations>
-      <Meteorology>H-2018</Meteorology>
-    </BcData>
-  </BoundaryConditions>
+  <BoundaryConditions />
   <EnsembleSets>
-    <Simulation>
-      ResSim-F13-03-ensemble
-      <EnsembleSet Name="Mar50-H-2014-SHASTA - TIER 1">
-        <Description />
-        <BcData>Mar50-H-2014</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="Mar50-H-2014-Test_constant">
-        <Description />
-        <BcData>Mar50-H-2014</BcData>
-        <TemperatureTargetSet>Test_constant</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="Mar50-H-2014-test_early_season">
-        <Description />
-        <BcData>Mar50-H-2014</BcData>
-        <TemperatureTargetSet>test_early_season</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="Mar50-H-2018-SHASTA - TIER 1">
-        <Description />
-        <BcData>Mar50-H-2018</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="5" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>5</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="Mar50-H-2018-Test_constant">
-        <Description />
-        <BcData>Mar50-H-2018</BcData>
-        <TemperatureTargetSet>Test_constant</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="Mar50-H-2018-test_early_season">
-        <Description />
-        <BcData>Mar50-H-2018</BcData>
-        <TemperatureTargetSet>test_early_season</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>ResSim-F13-03-ensemble</Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-F13-03-ensemble">

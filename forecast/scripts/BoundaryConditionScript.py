@@ -1095,6 +1095,30 @@ def create_ops_BC_data(ops_file_name, start_time, end_time, BC_output_DSS_filena
 	tsmath_one_gate_hour.setVersion(BC_F_part)
 	tsm_list.append(tsmath_one_gate_hour)
 
+	tsmath_three_gate_hour = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(ops_start_date.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1HOUR", "0M", 3.0)
+	tsmath_three_gate_hour.setUnits("Count")
+	tsmath_three_gate_hour.setType("INST-VAL")
+	tsmath_three_gate_hour.setTimeInterval("1Hour")
+	tsmath_three_gate_hour.setLocation("THREE-BY-HOUR")
+	tsmath_three_gate_hour.setParameterPart("GATES-3")
+	tsmath_three_gate_hour.setVersion(BC_F_part)
+	tsm_list.append(tsmath_three_gate_hour)
+
+	tsmath_two_gate_hour = tsmath.generateRegularIntervalTimeSeries(
+		"%s 0000"%(ops_start_date.date(4)),
+		"%s 2400"%(end_time.date(4)),
+		"1HOUR", "0M", 2.0)
+	tsmath_two_gate_hour.setUnits("Count")
+	tsmath_two_gate_hour.setType("INST-VAL")
+	tsmath_two_gate_hour.setTimeInterval("1Hour")
+	tsmath_two_gate_hour.setLocation("TWO-BY-HOUR")
+	tsmath_two_gate_hour.setParameterPart("GATES-2")
+	tsmath_two_gate_hour.setVersion(BC_F_part)
+	tsm_list.append(tsmath_two_gate_hour)
+
 	tsmath_five_gates_hour = tsmath.generateRegularIntervalTimeSeries(
 		"%s 0000"%(ops_start_date.date(4)),
 		"%s 2400"%(end_time.date(4)),

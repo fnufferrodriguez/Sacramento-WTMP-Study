@@ -50,6 +50,17 @@
         <dss-pathname>/WTMP_Sac_Trinity/Shasta Dam Target degC/TEMP-WATER//1Week/C:000001|May_BSF/</dss-pathname>
       </dss-pathnames>
     </TemperatureTargetSet>
+    <TemperatureTargetSet Name="Fifty-Three-point-Five" user-defined="true">
+      <Description />
+      <file-path>forecast\simGroups\May2025_test\Fifty-Three-point-Five.dss</file-path>
+      <Output-DSS-File>forecast\simGroups\May2025_test\Fifty-Three-point-Five.dss</Output-DSS-File>
+      <River-Location Name="Above Clear Creek" Index="2">
+        <Description />
+      </River-Location>
+      <dss-pathnames>
+        <dss-pathname>///TEMP-WATER-TARGET//1Week/C:000001|USER-DEFINED/</dss-pathname>
+      </dss-pathnames>
+    </TemperatureTargetSet>
   </TemperatureTargetSets>
   <InitialConditions>
     <Reservoir Name="Keswick Reservoir">
@@ -90,68 +101,62 @@
     </OperationsData>
   </Operations>
   <Meteorology>
-    <MeteorologyData Name="L3-May-2019">
-      <Description />
-      <MetDataType>Historic</MetDataType>
-      <MetConfigFile>forecast/config/met/L3MTO_May2025.config</MetConfigFile>
-      <Year>2019</Year>
-    </MeteorologyData>
     <MeteorologyData Name="H-2020">
       <Description />
       <MetDataType>Historic</MetDataType>
       <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
       <Year>2020</Year>
     </MeteorologyData>
+    <MeteorologyData Name="H-2011">
+      <Description />
+      <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
+      <Year>2011</Year>
+    </MeteorologyData>
+    <MeteorologyData Name="H-2015">
+      <Description />
+      <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
+      <Year>2015</Year>
+    </MeteorologyData>
+    <MeteorologyData Name="H-2019">
+      <Description />
+      <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/historic.config</MetConfigFile>
+      <Year>2019</Year>
+    </MeteorologyData>
+    <MeteorologyData Name="L3-2019">
+      <Description />
+      <MetDataType>Historic</MetDataType>
+      <MetConfigFile>forecast/config/met/L3MTO_March2025.config</MetConfigFile>
+      <Year>2019</Year>
+    </MeteorologyData>
   </Meteorology>
   <BoundaryConditions>
-    <BcData Name="May2025-L3-May-2019">
+    <BcData Name="May2025-H-2019">
       <Description />
       <Output-DSS-File>forecast\simGroups\May2025_test\bc.dss</Output-DSS-File>
-      <f-part>May2025-L3-May-2019</f-part>
+      <f-part>May2025-H-2019</f-part>
       <Operations>May2025</Operations>
-      <Meteorology>L3-May-2019</Meteorology>
+      <Meteorology>H-2019</Meteorology>
     </BcData>
-    <BcData Name="May2025-H-2020">
+    <BcData Name="May2025-L3-2019">
       <Description />
       <Output-DSS-File>forecast\simGroups\May2025_test\bc.dss</Output-DSS-File>
-      <f-part>May2025-H-2020</f-part>
+      <f-part>May2025-L3-2019</f-part>
       <Operations>May2025</Operations>
-      <Meteorology>H-2020</Meteorology>
+      <Meteorology>L3-2019</Meteorology>
     </BcData>
   </BoundaryConditions>
   <EnsembleSets>
-    <Simulation>
-      W2 Shasta-May2025_test
-      <EnsembleSet Name="May2025-L3-May-2019-Manual_Test_Shasta_Dam">
-        <Description />
-        <BcData>May2025-L3-May-2019</BcData>
-        <TemperatureTargetSet>Manual_Test_Shasta_Dam</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-    </Simulation>
-    <Simulation>
-      W2 5-Res-May2025_test
-      <EnsembleSet Name="May2025-L3-May-2019-Manual_Test_Shasta_Dam">
-        <Description />
-        <BcData>May2025-L3-May-2019</BcData>
-        <TemperatureTargetSet>Manual_Test_Shasta_Dam</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="1" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>W2 Shasta-May2025_test</Simulation>
+    <Simulation>W2 5-Res-May2025_test</Simulation>
     <Simulation>
       ResSim-May2025_test
-      <EnsembleSet Name="May2025-L3-May-2019-Manual_Test_Shasta_Dam">
+      <EnsembleSet Name="May2025-H-2019-Fifty-Three-point-Five">
         <Description />
-        <BcData>May2025-L3-May-2019</BcData>
-        <TemperatureTargetSet>Manual_Test_Shasta_Dam</TemperatureTargetSet>
+        <BcData>May2025-H-2019</BcData>
+        <TemperatureTargetSet>Fifty-Three-point-Five</TemperatureTargetSet>
         <ComputedMembers>
           <intArray Length="1" Step="10">
             <I Range="0-1" Data="1" />
@@ -159,10 +164,10 @@
         </ComputedMembers>
         <MembersToCompute>1</MembersToCompute>
       </EnsembleSet>
-      <EnsembleSet Name="May2025-H-2020-Shasta Dam Target degC - May">
+      <EnsembleSet Name="May2025-L3-2019-Fifty-Three-point-Five">
         <Description />
-        <BcData>May2025-H-2020</BcData>
-        <TemperatureTargetSet>Shasta Dam Target degC - May</TemperatureTargetSet>
+        <BcData>May2025-L3-2019</BcData>
+        <TemperatureTargetSet>Fifty-Three-point-Five</TemperatureTargetSet>
         <ComputedMembers>
           <intArray Length="1" Step="10">
             <I Range="0-1" Data="1" />
@@ -186,13 +191,45 @@
       </EnsembleSet>
     </Simulation>
     <Simulation Name="ResSim-May2025_test">
+      <EnsembleSet Name="May2025-H-2019-Fifty-Three-point-Five">
+        <CollectionStart>1500</CollectionStart>
+        <CollectionEnd>1999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="May2025-L32025_test-2025-Fifty-Three-point-Five">
+        <CollectionStart>3500</CollectionStart>
+        <CollectionEnd>3999</CollectionEnd>
+      </EnsembleSet>
       <EnsembleSet Name="May2025-L3-May-2019-Manual_Test_Shasta_Dam">
         <CollectionStart>0</CollectionStart>
         <CollectionEnd>499</CollectionEnd>
       </EnsembleSet>
+      <EnsembleSet Name="May2025-L3-May-2019-Shasta Dam Target degC - May">
+        <CollectionStart>2000</CollectionStart>
+        <CollectionEnd>2499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="May2025-H-2020-Fifty-Three-point-Five">
+        <CollectionStart>3000</CollectionStart>
+        <CollectionEnd>3499</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="May2025-L3-May-2019-Fifty-Three-point-Five">
+        <CollectionStart>2500</CollectionStart>
+        <CollectionEnd>2999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="May2025-L3-2019-Fifty-Three-point-Five">
+        <CollectionStart>4500</CollectionStart>
+        <CollectionEnd>4999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="May2025-L3_2025_-2025-Fifty-Three-point-Five">
+        <CollectionStart>4000</CollectionStart>
+        <CollectionEnd>4499</CollectionEnd>
+      </EnsembleSet>
       <EnsembleSet Name="May2025-H-2020-Shasta Dam Target degC - May">
         <CollectionStart>500</CollectionStart>
         <CollectionEnd>999</CollectionEnd>
+      </EnsembleSet>
+      <EnsembleSet Name="May2025-H-2019-Shasta Dam Target degC - May">
+        <CollectionStart>1000</CollectionStart>
+        <CollectionEnd>1499</CollectionEnd>
       </EnsembleSet>
     </Simulation>
   </EnsembleSetIndexing>

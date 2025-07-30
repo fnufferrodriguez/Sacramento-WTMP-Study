@@ -168,78 +168,10 @@
       <Year>2020</Year>
     </MeteorologyData>
   </Meteorology>
-  <BoundaryConditions>
-    <BcData Name="Mar2025-H-2017">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\18Mar2025\bc.dss</Output-DSS-File>
-      <f-part>Mar2025-H-2017</f-part>
-      <Operations>Mar2025</Operations>
-      <Meteorology>H-2017</Meteorology>
-    </BcData>
-    <BcData Name="Mar2025-H-2019">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\18Mar2025\bc.dss</Output-DSS-File>
-      <f-part>Mar2025-H-2019</f-part>
-      <Operations>Mar2025</Operations>
-      <Meteorology>H-2019</Meteorology>
-    </BcData>
-    <BcData Name="Mar2025-H-2020">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\18Mar2025\bc.dss</Output-DSS-File>
-      <f-part>Mar2025-H-2020</f-part>
-      <Operations>Mar2025</Operations>
-      <Meteorology>H-2020</Meteorology>
-    </BcData>
-  </BoundaryConditions>
+  <BoundaryConditions />
   <EnsembleSets>
-    <Simulation>
-      W2 5-Res-18Mar2025
-      <EnsembleSet Name="Mar2025-H-2020-Shasta Dam Target degC - May">
-        <Description />
-        <BcData>Mar2025-H-2020</BcData>
-        <TemperatureTargetSet>Shasta Dam Target degC - May</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-    </Simulation>
-    <Simulation>
-      ResSim-18Mar2025
-      <EnsembleSet Name="Mar2025-H-2017-Test1">
-        <Description />
-        <BcData>Mar2025-H-2017</BcData>
-        <TemperatureTargetSet>Test1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="1" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="Mar2025-H-2019-Test1">
-        <Description />
-        <BcData>Mar2025-H-2019</BcData>
-        <TemperatureTargetSet>Test1</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="1" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="Mar2025-H-2020-Shasta Dam Target degC - May">
-        <Description />
-        <BcData>Mar2025-H-2020</BcData>
-        <TemperatureTargetSet>Shasta Dam Target degC - May</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="1" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>1</MembersToCompute>
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>W2 5-Res-18Mar2025</Simulation>
+    <Simulation>ResSim-18Mar2025</Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="W2 5-Res-18Mar2025">

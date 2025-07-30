@@ -244,95 +244,11 @@
       <Year>2020</Year>
     </MeteorologyData>
   </Meteorology>
-  <BoundaryConditions>
-    <BcData Name="90Apr2024-H-2010">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\April_2024_test\bc.dss</Output-DSS-File>
-      <f-part>90Apr2024-H-2010</f-part>
-      <Operations>90Apr2024</Operations>
-      <Meteorology>H-2010</Meteorology>
-    </BcData>
-    <BcData Name="90Apr2024-H-2015">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\April_2024_test\bc.dss</Output-DSS-File>
-      <f-part>90Apr2024-H-2015</f-part>
-      <Operations>90Apr2024</Operations>
-      <Meteorology>H-2015</Meteorology>
-    </BcData>
-    <BcData Name="90Apr2024-H-2020">
-      <Description />
-      <Output-DSS-File>forecast\simGroups\April_2024_test\bc.dss</Output-DSS-File>
-      <f-part>90Apr2024-H-2020</f-part>
-      <Operations>90Apr2024</Operations>
-      <Meteorology>H-2020</Meteorology>
-    </BcData>
-  </BoundaryConditions>
+  <BoundaryConditions />
   <EnsembleSets>
-    <Simulation>
-      ResSim-April_2024_test
-      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 5">
-        <Description />
-        <BcData>90Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="5" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>5</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 8">
-        <Description />
-        <BcData>90Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 8</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 2">
-        <Description />
-        <BcData>90Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 2</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>ResSim-April_2024_test</Simulation>
     <Simulation>W2 5-Res-April_2024_test</Simulation>
-    <Simulation>
-      W2 Shasta-April_2024_test
-      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 5">
-        <Description />
-        <BcData>90Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 5</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="1" Step="10">
-            <I Range="0-1" Data="5" />
-          </intArray>
-        </ComputedMembers>
-        <MembersToCompute>5</MembersToCompute>
-      </EnsembleSet>
-      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 8">
-        <Description />
-        <BcData>90Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 8</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-      <EnsembleSet Name="90Apr2024-H-2015-SHASTA - TIER 2">
-        <Description />
-        <BcData>90Apr2024-H-2015</BcData>
-        <TemperatureTargetSet>SHASTA - TIER 2</TemperatureTargetSet>
-        <ComputedMembers>
-          <intArray Length="0" Step="10" />
-        </ComputedMembers>
-        <MembersToCompute />
-      </EnsembleSet>
-    </Simulation>
+    <Simulation>W2 Shasta-April_2024_test</Simulation>
   </EnsembleSets>
   <EnsembleSetIndexing>
     <Simulation Name="ResSim-April_2024_test">
