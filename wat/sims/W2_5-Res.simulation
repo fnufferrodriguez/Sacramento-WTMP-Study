@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WatSimulation SimulationName="W2 5-Res" Description="" FPart="W2 5-Res:2018-03-FC" HasComputed="false" ComputeError="false" Parent="W2 5-Res" IsFrmSimulation="false">
-  <ModelAlternatives ModelAlternativeCount="13">
+  <ModelAlternatives ModelAlternativeCount="12">
     <ModelAlternative0 Program="Scripting" Name="Pre-Process_W2_5-Res_SacTrn" File="scripting/Pre-Process_W2_5-Res_SacTrn.scAlt">
       <Description>
         <desc cnt="0" value="Process forecast data for use by W2-5Res coupled to a ResSim river model" />

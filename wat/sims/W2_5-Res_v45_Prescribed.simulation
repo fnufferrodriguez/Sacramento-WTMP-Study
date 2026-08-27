@@ -49,8 +49,10 @@
       </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative9>
-    <ModelAlternative10 Program="ResSim" Name="RSSacTrnRv" File="rss/RSSacTrnRv.ralt">
-      <Description />
+    <ModelAlternative10 Program="ResSim" Name="SacTrnRvP" File="rss/SacTrnRvP.ralt">
+      <Description>
+        <desc cnt="0" value="Derived from RSSacTrnPO, but includes a rivers-only water quality geometry model with upstream boundaries at Keswick Dam and Whiskeytown Dam, and Lewiston Dam. ResSim will run the full 5-reservoir hydralics, so if alternative flows are desired ResSim overides must be used." />
+      </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative10>
   </ModelAlternatives>

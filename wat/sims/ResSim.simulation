@@ -7,8 +7,10 @@
       </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative0>
-    <ModelAlternative1 Program="ResSim" Name="RSSacTrn" File="rss/RSSacTrn.ralt">
-      <Description />
+    <ModelAlternative1 Program="ResSim" Name="SacTrnF" File="rss/SacTrnF.ralt">
+      <Description>
+        <desc cnt="0" value="Predictive Operations/Forecast ResSim model runs for the 5-reservoir and 2-river (+ Clear Creek) Sacramento-Trinity system." />
+      </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative1>
     <ModelAlternative2 Program="Scripting" Name="Post-Process_ResSim_SacTrn" File="scripting/Post-Process_ResSim_SacTrn.scAlt">

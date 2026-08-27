@@ -17,8 +17,10 @@
       </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative2>
-    <ModelAlternative3 Program="ResSim" Name="RSSacTrnNS" File="rss/RSSacTrnNS.ralt">
-      <Description />
+    <ModelAlternative3 Program="ResSim" Name="SacTrnNSF" File="rss/SacTrnNSF.ralt">
+      <Description>
+        <desc cnt="0" value="Copy of Copy of RSSacTrn, but with WQ setup to excude Shasta so that it can be simulated by another model or input." />
+      </Description>
       <LastComputeTime Date="31 December 1899, 24:00" />
     </ModelAlternative3>
     <ModelAlternative4 Program="Scripting" Name="Post-Process_ResSim_SacTrnNS" File="scripting/Post-Process_ResSim_SacTrnNS.scAlt">
